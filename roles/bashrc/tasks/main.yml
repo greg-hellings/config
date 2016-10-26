@@ -1,0 +1,7 @@
+- name: install bash configuration (local)
+  include: local.yml
+  when: "'{{ ansible_connection }}' == 'local'"
+
+- name: install bash configuration (remote)
+  include: remote.yml
+  when: "'{{ ansible_connection }}' != 'local'"

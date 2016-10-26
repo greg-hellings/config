@@ -1,0 +1,82 @@
+# .bash_shared
+
+export JAVA_HOME=/etc/alternatives/java_sdk/
+export MAVEN_OPTS=" -Dmaven.wagon.http.ssl.insecure=true"
+export MAVEN_OPTS
+export TIMEFORMAT='%3Uu %3Ss %3lR %P%%'
+export CLICOLOR=1
+export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
+export GOPATH=~/.go
+export EDITOR=/usr/bin/vim
+export GOPATH=${HOME}/build/go
+#export VAGRANT_DEFAULT_PROVIDER=virtualbox
+color_prompt="yes"
+if [ "$color_prompt" = yes ]; then
+        PS1='[\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
+else
+        PS1='[\u@\h \W]$(parse_git_branch)\$ '
+fi
+
+alias ll='ls -l'
+alias calc='bc'
+alias gohome='ssh greg@home.thehellings.com -D localhost:10080'
+alias s102='ssh greg@192.168.1.102'
+alias savecentral="set -ex && git -C ~/build/redhat/ci/ci-ops-central \
+        commit -a --amend && git -C ~/build/redhat/ci/ci-ops-central push \
+        --force gitlab && set +ex"
+alias saveprojex="set -ex && git -C ~/build/redhat/ci/ci-ops-projex \
+        commit -a --amend && git -C ~/build/redhat/ci/ci-ops-projex push \
+        --force gitlab && set +ex"
+alias vup='vagrant up'
+alias vssh='vagrant ssh'
+alias vhalt='vagrant halt'
+alias vprov='vagrant provision'
+alias vdown='vagrant destroy'
+alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+alias acp="rsync --progress -ah"
+alias vb="VBoxManage"
+alias an='ansible -i hosts'
+alias ap='ansible-playbook -i hosts'
+alias d='deactivate'
+
+function parse_git_branch {
+        ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+        echo " ("${ref#refs/heads/}")"
+}
+
+function swordmerge {
+    if [ x"$1" == "x" ]; then
+        echo "Please provide revision"
+        return
+    fi
+    svn merge -c r${1} ^/trunk || return
+    svn ci && svn up
+}
+
+function newdock {
+    if [ x"$1" == "x" -o x"$2" == "x" ]; then
+        echo "expected arguments [name] [source]"
+        return
+    fi
+    docker run -P --privileged=true -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/dmnt -t -i --name="$1" "$2" /bin/bash
+}
+
+function rundock {
+    docker start -a -i "$1"
+}
+
+function ac {
+    source ~/venv/${1}/bin/activate
+}
+
+function pyenv {
+    virtualenv ~/venv/${1}
+}
+
+function py3env {
+    pyvenv ~/venv/${1}
+}
+
+if [ -f $HOME/.bash_local ]; then
+    . $HOME/.bash_local
+fi

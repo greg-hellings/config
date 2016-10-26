@@ -1,0 +1,6 @@
+- name: link vimrc file into place
+  file:
+    src: "{{ playbook_dir }}/roles/vimrc/files/vimrc"
+    dest: "{{ ansible_user_dir }}/.vimrc"
+    state: link
+    force: true

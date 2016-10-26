@@ -1,0 +1,65 @@
+- name: install python2-dnf
+  become: true
+  shell: dnf install -y python2-dnf creates=/usr/lib/python2.7/site-packages/dnf
+
+- name: install base packages
+  become: true
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python-virtualenv
+    - gcc-c++
+    - openssl-devel
+    - libyaml-devel
+    - gmp-devel
+    - libffi-devel
+    - redhat-rpm-config
+    - git
+    - vim
+    - libselinux-python
+
+- name: install virtualenv
+  pip:
+    virtualenv: "{{ ansible_user_dir }}/venv"
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - jsonschema
+    - functools32
+    - ansible
+    - python-krbV
+    - ipython
+
+- name: clone beaker
+  git:
+    repo: https://github.com/beaker-project/beaker.git
+    dest: "{{ ansible_user_dir }}/beaker"
+
+- name: create /etc/beaker
+  become: true
+  file:
+    dest: /etc/beaker
+    owner: "{{ ansible_user }}"
+    mode: 0700
+    state: directory
+
+- name: give temporary write access to bash completions
+  become: true
+  file:
+    dest: /usr/share/bash-completion/completions/
+    mode: a+w
+    state: directory
+
+- name: install beaker folders
+  shell: source ~/venv/bin/activate && pip install . chdir={{ item.path }} creates={{ item.creates }}
+  with_items:
+    - path: "{{ ansible_user_dir }}/beaker/Common"
+      creates: "{{ ansible_user_dir }}/venv/lib/python2.7/site-packages/bkr/common"
+    - path: "{{ ansible_user_dir }}/beaker/Client"
+      creates: "{{ ansible_user_dir }}/venv/lib/python2.7/site-packages/bkr/client"
+
+- name: install bash_local
+  copy:
+    src: bash_local
+    dest: "{{ ansible_user_dir }}/.bash_local"

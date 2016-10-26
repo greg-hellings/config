@@ -1,0 +1,7 @@
+- name: link to bash files
+  file:
+    src: "{{ playbook_dir }}/roles/bashrc/files/{{ item }}"
+    dest: "{{ ansible_user_dir }}/.{{ item }}"
+    state: link
+    force: true
+  with_items: "{{ bashrc_files }}"

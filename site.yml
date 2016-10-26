@@ -1,0 +1,10 @@
+- name: configure for linch-pin development
+  hosts: linch-pin
+  roles:
+    - linch_pin
+
+- name: basic user config files
+  hosts: all
+  roles:
+    - vimrc
+    - bashrc

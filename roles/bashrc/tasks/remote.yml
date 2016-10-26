@@ -1,0 +1,5 @@
+- name: upload bash config files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_user_dir }}/.{{ item }}"
+  with_items: "{{ bashrc_files }}"

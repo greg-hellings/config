@@ -1,0 +1,34 @@
+- name: install static files (remote)
+  include: remote.yml
+  when: "'{{ ansible_connection }}' != 'local'"
+
+- name: install static files (local)
+  include: local.yml
+  when: "'{{ ansible_connection }}' == 'local'"
+
+- name: ensure vim directory is created
+  file:
+    dest: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ ansible_user_dir }}/.vim"
+    - "{{ ansible_user_dir }}/.vim/autoload"
+    - "{{ ansible_user_dir }}/.vim/bundle"
+    - "{{ ansible_user_dir }}/.vim/sessions"
+
+- name: download pathogen
+  get_url:
+    url: https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+    dest: "{{ ansible_user_dir }}/.vim/autoload"
+    force: true
+
+- name: checkout vim plugins
+  git:
+    dest: "{{ ansible_user_dir }}/.vim/bundle"
+    repo: "{{ item }}"
+    update: true
+  with_items:
+    - https://github.com/jlanzarotta/bufexplorer.git
+    - https://github.com/ctrlpvim/ctrlp.vim.git
+    - https://github.com/scrooloose/nerdtree.git
+    - https://github.com/pangloss/vim-javascript.git
