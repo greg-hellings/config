@@ -1,0 +1,1 @@
+source "{{ ansible_user_dir }}/venv/cinch/bin/activate"

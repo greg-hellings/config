@@ -1,0 +1,11 @@
+- name: install Ansible build deps
+  become: true
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python-virtualenv
+    - libffi-devel
+    - openssl-devel
+    - libyaml-devel
+    - gmp-devel

@@ -1,0 +1,35 @@
+- name: install dependency packages
+  become: true
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libvirt-devel
+    - python-virtualenv
+    - libyaml-devel
+    - openssl-devel
+    - libffi-devel
+
+- name: download cinch source
+  git:
+    repo: https://github.com/RedHatQE/cinch.git
+    dest: "{{ ansible_user_dir }}/cinch"
+
+- name: create virtualenv
+  pip:
+    virtualenv: "{{ ansible_user_dir }}/venv/cinch"
+    requirements: "{{ ansible_user_dir }}/cinch/requirements.txt"
+    state: present
+
+- name: install extra python dev packages
+  pip:
+    virtualenv: "{{ ansible_user_dir }}/venv/cinch"
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ipython
+
+- name: copy in bash_local file
+  template:
+    src: bash_local
+    dest: "{{ ansible_user_dir }}/.bash_local"

@@ -1,0 +1,19 @@
+- name: install python2-dnf
+  become: true
+  shell: dnf install -y python2-dnf creates=/usr/lib/python2.7/site-packages/dnf
+
+- name: install shared tools
+  become: true
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - vim
+    - gcc-c++
+    - git
+    - redhat-rpm-config
+    - libselinux-python
+
+- name: disable selinux
+  become: true
+  selinux: state=disabled
