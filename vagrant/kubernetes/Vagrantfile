@@ -1,0 +1,13 @@
+require '../shared.rb'
+
+Vagrant.configure('2') do |config|
+    vm(config, 'support', 'centos/7')
+    vm(config, 'master', 'centos/7')
+    vm(config, 'slave', 'centos/7') do |ansible|
+        ansible.groups = {
+            "kubernetes_master" => ["master"],
+            "kubernetes_slave" => ["slave"],
+            "etcd" => ["support"]
+        }
+    end
+end

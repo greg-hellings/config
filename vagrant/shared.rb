@@ -9,8 +9,9 @@ def vm(config, name, base_box='fedora/24-cloud-base')
         node.vm.hostname = name + ".box"
         node.vm.network "private_network", ip: "192.168.8.#{$ip}", netmask: "255.255.255.0"
         node.vm.synced_folder "../..", "/vagrant", type: "sshfs"
-        node.vm.provision "ansible_local" do |ansible|
-            ansible.playbook = "site.yml"
+        node.vm.provision "ansible" do |ansible|
+            ansible.playbook = "../../site.yml"
+            yield ansible if block_given?
         end
         $ip += 1
     end
