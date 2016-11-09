@@ -10,11 +10,6 @@
     - python-krbV
     - ipython
 
-- name: clone beaker
-  git:
-    repo: https://github.com/beaker-project/beaker.git
-    dest: "{{ ansible_user_dir }}/beaker"
-
 - name: create /etc/beaker
   become: true
   file:
@@ -29,14 +24,6 @@
     dest: /usr/share/bash-completion/completions/
     mode: a+w
     state: directory
-
-- name: install beaker folders
-  shell: source ~/venv/bin/activate && pip install . chdir={{ item.path }} creates={{ item.creates }}
-  with_items:
-    - path: "{{ ansible_user_dir }}/beaker/Common"
-      creates: "{{ ansible_user_dir }}/venv/lib/python2.7/site-packages/bkr/common"
-    - path: "{{ ansible_user_dir }}/beaker/Client"
-      creates: "{{ ansible_user_dir }}/venv/lib/python2.7/site-packages/bkr/client"
 
 - name: install bash_local
   copy:

@@ -3,3 +3,4 @@
 *.swo
 site.retry
 ci
+.idea

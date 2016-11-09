@@ -1,0 +1,4 @@
+kubernetes_service_ip: 10.254.0.0/16
+kubernetes_network_prefix: 10.154.0.0/16
+kubernetes_network_prefix_length: 24
+kubernetes_server_port: 8080

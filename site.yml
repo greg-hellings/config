@@ -1,3 +1,25 @@
+- name: mounts
+  hosts: all
+  become: true
+  roles:
+    - common
+    - mounts
+
+- name: etcd needs to be up before kubernetes
+  hosts: etcd
+  become: true
+  gather_facts: false
+  roles:
+    - etcd
+
+- name: install kubernetes masters to configure system
+  hosts: kubernetes_master
+  roles:
+    - role: kubernetes-master
+      become: true
+    - role: kubernetes-client
+      become: false
+
 - name: configure for cinch development
   hosts: cinch
   roles:
@@ -10,6 +32,7 @@
 
 - name: basic user config files
   hosts: all
+  gather_facts: false
   roles:
     - vimrc
     - bashrc

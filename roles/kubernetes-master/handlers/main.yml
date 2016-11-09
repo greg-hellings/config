@@ -1,0 +1,13 @@
+- name: restart flanneld
+  service:
+    name: flanneld
+    state: restarted
+
+- name: restart kubernetes
+  service:
+    name: "{{ item }}"
+    state: restarted
+  with_items:
+    - kube-apiserver
+    - kube-controller-manager
+    - kube-scheduler
