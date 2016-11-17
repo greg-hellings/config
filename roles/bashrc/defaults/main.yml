@@ -2,3 +2,4 @@ bashrc_files:
   - bashrc
   - bash_profile
   - bash_shared
+  - screenrc
