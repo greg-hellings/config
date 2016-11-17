@@ -1,8 +1,18 @@
+- name: install necessary rpms
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libselinux-python
+    - krb5-workstation
+
 - name: install virtualenv
   pip:
     virtualenv: "{{ ansible_user_dir }}/venv"
     state: present
     name: "{{ item }}"
+    virtualenv_site_packages: true
   with_items:
     - jsonschema
     - functools32
