@@ -30,6 +30,11 @@
   roles:
     - linch_pin
 
+- name: configure for Fedora packaging development
+  hosts: packaging
+  roles:
+    - packaging
+
 - name: basic user config files
   hosts: all
   gather_facts: false
