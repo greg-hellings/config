@@ -1,0 +1,9 @@
+- name: install Vagrant
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - vagrant
+    - vagrant-sshfs
+    - vagrant-cachier
+    - vagrant-libvirt

@@ -1,10 +1,10 @@
 startup_message off
-defscrollback 1000000
+#defscrollback 1000000
 
 chdir $HOME/dev/source
-screen -t vim 0 /bin/bash
-screen -t bash 1 /bin/bash
-screen -t bash 2 /bin/bash
+screen -t vim 0 /usr/bin/bash
+screen -t bash 1 /usr/bin/bash
+screen -t bash 2 /usr/bin/bash
 
 set-option -g allow-rename off
 

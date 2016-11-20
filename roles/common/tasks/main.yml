@@ -15,6 +15,7 @@
     - redhat-rpm-config
     - libselinux-python
     - mlocate
+    - screen
 
 - name: disable selinux
   become: true

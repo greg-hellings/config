@@ -1,0 +1,9 @@
+- name: install necessary GUI packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - shutter
+    - google-chrome-stable
+    - virt-manager
+    - vim-X11

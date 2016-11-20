@@ -1,0 +1,51 @@
+- name: install libvirt
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libvirt
+    - qemu-kvm
+
+- name: create image storage
+  file:
+    dest: "{{ libvirt_storage }}"
+    owner: root
+    group: root
+    mode: 711
+    state: directory
+
+- name: configure libvirt storage
+  template:
+    src: storage
+    dest: /etc/libvirt/storage/default.xml
+    owner: root
+    group: root
+    mode: 755
+  check_mode: true
+  register: check
+
+- name: make sure libvirt is stopped
+  service:
+    name: libvirtd
+    state: stopped
+  when: "{{ check.changed }}"
+
+- name: configure libvirt storage
+  template:
+    src: storage
+    dest: /etc/libvirt/storage/default.xml
+    owner: root
+    group: root
+    mode: 755
+
+- name: start and enable libvirtd
+  service:
+    name: libvirtd
+    state: started
+    enabled: true
+
+- name: add current user to libvirt group
+  user:
+    name: "{{ ansible_user }}"
+    append: true
+    groups: libvirt

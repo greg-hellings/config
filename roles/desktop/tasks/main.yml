@@ -1,0 +1,8 @@
+- name: setup libvirt
+  include: libvirt.yml
+
+- name: setup vagrant
+  include: vagrant.yml
+
+- name: install GUI programs
+  include: gui.yml

@@ -5,3 +5,9 @@
 - name: install bash configuration (remote)
   include: remote.yml
   when: "'{{ ansible_connection }}' != 'local'"
+
+- name: set executable file permissions
+  file:
+    dest: "{{ ansible_user_dir }}/.local/bin/"
+    mode: a+x
+    recurse: true

@@ -5,6 +5,12 @@
     - common
     - mounts
 
+- name: configure desktop systems
+  hosts: desktop
+  become: true
+  roles:
+    - desktop
+
 - name: etcd needs to be up before kubernetes
   hosts: etcd
   become: true

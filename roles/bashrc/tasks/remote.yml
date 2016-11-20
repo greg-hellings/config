@@ -3,3 +3,8 @@
     src: "{{ item }}"
     dest: "{{ ansible_user_dir }}/.{{ item }}"
   with_items: "{{ bashrc_files }}"
+
+- name: upload local helper files
+  copy:
+    src: local/bin
+    dest: "{{ ansible_user_dir }}/.local"
