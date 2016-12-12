@@ -3,7 +3,7 @@
 
 $ip = 2
 
-def vm(config, name, base_box='fedora/24-cloud-base')
+def vm(config, name, base_box='fedora/25-cloud-base')
     config.vm.define name do |node|
         node.vm.box = base_box
         node.vm.hostname = name + ".box"
