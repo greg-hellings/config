@@ -1,1 +1,21 @@
 libvirt_storage: /home/libvirt
+gui: true
+gui_repositories:
+  - name: google-chrome
+    url: http://dl.google.com/linux/chrome/rpm/stable/$basearch
+    gpgcheck: true
+  - name: fedora-Handbrake
+    url: http://negativo17.org/repos/HandBrake/fedora-$releasever/$basearch/
+    gpgcheck: true
+  - name: fedora-Handbrake-source
+    url: http://negativo17.org/repos/HandBrake/fedora-$releasever/SRPMS/
+    gpgcheck: true
+  - name: copr-phracek-PyCharm
+    url: https://copr-be.cloud.fedoraproject.org/results/phracek/PyCharm/fedora-$releasever-$basearch/
+    gpgcheck: true
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/phracek/PyCharm/pubkey.gpg
+  - name: copr-rommon-intellij-idea
+    url: https://copr-be.cloud.fedoraproject.org/results/rommon/intellij-idea/fedora-$releasever-$basearch/
+    gpgcheck: true
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/rommon/intellij-idea/pubkey.gpg
+cli_repositories: []

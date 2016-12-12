@@ -1,0 +1,55 @@
+- name: install CLI repositories
+  become: true
+  yum_repository:
+    name: "{{ item.name }}"
+    baseurl: "{{ item.url | default(omit) }}"
+    mirrorlist: "{{ item.mirrors | default(omit) }}"
+    enabled: true
+    gpgcheck: "{{ item.gpgcheck | default(false) }}"
+    gpgkey: "{{ item.gpgkey | default(omit) }}"
+    skip_if_unavailable: "{{ item.skip | default(true) }}"
+  with_items: "{{ cli_repositories }}"
+
+- name: install CLI packages
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - HandBrake-cli
+    - libaacs
+    - git-review
+    - jq
+
+- name: create blu-ray config directories
+  file:
+    dest: "{{ ansible_user_dir }}/.config/{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+      - aacs
+
+- name: downloading aacs files
+  get_url:
+    url: http://www.labdv.com/aacs/KEYDB.cfg
+    dest: "{{ ansible_user_dir }}/.config/aacs"
+    force: true
+
+- name: download bdplus archive
+  get_url:
+    url: http://www.labdv.com/aacs/libbdplus/bdplus-vm0.bz2
+    dest: "{{ ansible_user_dir }}/.config/"
+    force: true
+
+- name: extract archive
+  unarchive:
+    src: "{{ ansible_user_dir }}/.config/bdplus-vm0.bz2"
+    dest: "{{ ansible_user_dir }}/.config"
+
+- name: set ownership on files
+  file:
+    dest: "{{ item }}"
+    recurse: true
+  with_items:
+    - "{{ ansible_user_dir }}/.config/bdplus"
+    - "{{ ansible_user_dir }}/.config/aacs"

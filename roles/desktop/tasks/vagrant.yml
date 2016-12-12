@@ -1,4 +1,5 @@
 - name: install Vagrant
+  become: true
   package:
     name: "{{ item }}"
     state: present

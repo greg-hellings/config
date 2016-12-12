@@ -4,5 +4,15 @@
 - name: setup vagrant
   include: vagrant.yml
 
-- name: install GUI programs
+- name: install cloud service options
+  include: cloud.yml
+
+- name: install RPMFusion repositories
+  include: rpmfusion.yml
+
+- name: install CLI apps
+  include: cli.yml
+
+- name: install GUI apps
   include: gui.yml
+  when: "{{ gui }}"
