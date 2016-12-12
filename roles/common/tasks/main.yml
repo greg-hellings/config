@@ -3,6 +3,14 @@
   shell: dnf install -y python2-dnf creates=/usr/lib/python2.7/site-packages/dnf
   when: "{{ ansible_distribution == 'Fedora' }}"
 
+- name: update selected packages
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - vim-minimal
+
 - name: install shared tools
   become: true
   package:
@@ -20,3 +28,18 @@
 - name: disable selinux
   become: true
   selinux: state=disabled
+
+- name: enable SSHD
+  become: true
+  service:
+    name: sshd
+    state: started
+    enabled: true
+  when: "'{{ ansible_os_family }}' != 'Darwin'"
+
+- name: configure git
+  git_config:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    scope: global
+  with_items: "{{ git_config_values }}"

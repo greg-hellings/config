@@ -24,11 +24,15 @@
 
 - name: checkout vim plugins
   git:
-    dest: "{{ ansible_user_dir }}/.vim/bundle"
-    repo: "{{ item }}"
+    dest: "{{ ansible_user_dir }}/.vim/bundle/{{ item.name }}"
+    repo: "{{ item.repo }}"
     update: true
   with_items:
-    - https://github.com/jlanzarotta/bufexplorer.git
-    - https://github.com/ctrlpvim/ctrlp.vim.git
-    - https://github.com/scrooloose/nerdtree.git
-    - https://github.com/pangloss/vim-javascript.git
+    - repo: https://github.com/jlanzarotta/bufexplorer.git
+      name: bufexplorer
+    - repo: https://github.com/ctrlpvim/ctrlp.vim.git
+      name: ctrlp
+    - repo: https://github.com/scrooloose/nerdtree.git
+      name: nerdtree
+    - repo: https://github.com/pangloss/vim-javascript.git
+      name: vim-javascript
