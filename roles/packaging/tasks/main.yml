@@ -6,3 +6,12 @@
   with_items:
     - fedpkg
     - fedora-packager
+    - fedora-review
+    - mock
+
+- name: setup user for mock
+  become: true
+  user:
+    name: vagrant
+    groups: mock
+    append: true
