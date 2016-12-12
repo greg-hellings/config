@@ -1,19 +1,27 @@
+# ############################################################################
+# Preliminary stuff that all the hosts need
+# ############################################################################
 - name: mounts
   hosts: all
-  become: true
   roles:
     - common
     - mounts
 
+# ############################################################################
+# Personal desktop configuration, for use on systems that I administrate, and
+# where GUI programs are needed
+# ############################################################################
 - name: configure desktop systems
   hosts: desktop
-  become: true
+  gather_facts: false
   roles:
     - desktop
 
+# ############################################################################
+# Kubernetes and related configurations
+# ############################################################################
 - name: etcd needs to be up before kubernetes
   hosts: etcd
-  become: true
   gather_facts: false
   roles:
     - etcd
@@ -21,26 +29,48 @@
 - name: install kubernetes masters to configure system
   hosts: kubernetes_master
   roles:
-    - role: kubernetes-master
-      become: true
-    - role: kubernetes-client
-      become: false
+    - kubernetes-master
 
+- name: configure kubernetes slaves
+  hosts: kubernetes_slave
+  roles:
+    - kubernetes-slave
+
+- name: install kubernetes client configuration
+  hosts: kubernetes_master:kubernetes_slave:kubernetes_client
+  roles:
+    - kubernetes-client
+
+- name: install kubernetes containers and other apps
+  hosts: kubernetes_master[0]
+  roles:
+    - kubernetes-containers
+# ############################################################################
+# Development machines, designed to be spun up in local VMs
+# ############################################################################
 - name: configure for cinch development
   hosts: cinch
+  gather_facts: false
   roles:
     - cinch
 
 - name: configure for linch-pin development
   hosts: linch-pin
+  gather_facts: false
   roles:
     - linch_pin
 
 - name: configure for Fedora packaging development
   hosts: packaging
+  gather_facts: false
   roles:
     - packaging
 
+# ############################################################################
+# Simple user-land configuration that does not require root access to install
+# but makes my life so much easier! Designed to be run on any system that I
+# have login-level access to
+# ############################################################################
 - name: basic user config files
   hosts: all
   gather_facts: false
