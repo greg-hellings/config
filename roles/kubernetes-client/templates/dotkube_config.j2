@@ -1,7 +1,7 @@
 apiVersion: v1
 clusters:
 - cluster:
-    server: http://{{ hostvars[groups['kubernetes_master'][0]]['ansible_eth0']['ipv4_secondaries'][0]['address'] }}:{{ kubernetes_server_port }}
+    server: http://{{ hostvars[groups['kubernetes_master'][0]]['kubernetes_private_ip'] }}:{{ hostvars[groups['kubernetes_master'][0]]['kubernetes_server_port'] }}
   name: default
 contexts:
 - context:

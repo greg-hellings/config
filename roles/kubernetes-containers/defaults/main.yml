@@ -1,0 +1,4 @@
+kubernetes_dashboard_version: v1.5.0-beta1
+kubernetes_dashboard_port: 80
+kubernetes_apps:
+  - kubernetes-dashboard.yaml

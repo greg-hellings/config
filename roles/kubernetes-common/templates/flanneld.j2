@@ -1,5 +1,5 @@
 # etcd url location. Point this to the server where etcd runs
-FLANNEL_ETCD="{{ etcd_hosts | join(',') }}"
+FLANNEL_ETCD="{{ _etcd_urls | join(',') }}"
 
 # etcd config key. This is the configuration key that flannel queries
 # for address range assignment

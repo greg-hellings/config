@@ -1,0 +1,20 @@
+- name: install kubelet configuration
+  become: true
+  template:
+    src: kubelet
+    dest: /etc/kubernetes/kubelet
+    owner: root
+    mode: 0644
+  notify: restart kubelet
+
+- name: start and enable services
+  become: true
+  service:
+    name: "{{ item }}"
+    state: restarted
+    enabled: true
+  with_items:
+    - docker
+    - kube-proxy
+    - kubelet
+    - flanneld

@@ -1,0 +1,27 @@
+- name: install necessary files
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - PyYAML
+
+- name: create app folder
+  file:
+    dest: "{{ ansible_user_dir }}/containers"
+    state: directory
+
+- name: deploy app files
+  template:
+    src: "{{ item }}"
+    dest: "{{ ansible_user_dir }}/containers/{{ item }}"
+  with_items: "{{ kubernetes_apps }}"
+
+- name: install app files to kubernetes
+  run_once: true
+  kubernetes:
+    api_endpoint: "{{ kubernetes_private_ip }}:{{ kubernetes_server_port }}"
+    file_reference: "{{ ansible_user_dir }}/containers/{{ item }}"
+    state: present
+    insecure: true
+  with_items: "{{ kubernetes_apps }}"

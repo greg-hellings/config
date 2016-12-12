@@ -137,7 +137,10 @@ def main():
     except KeyError:
         prev_value = None
     except etcd.EtcdException as err:
-        module.fail_json(msg="Etcd error: %s" % err)
+        if str(err).startswith('Key not found :'):
+            prev_value = None
+        else:
+            module.fail_json(msg="Etcd error: %s" % err)
 
     # handle check mode
     if module.check_mode:
@@ -168,7 +171,11 @@ def main():
                 client.write(d, '', dir=True)
                 prev_value = None
             except etcd.EtcdException as err:
-                module.fail_json(msg="Etcd error: %s" % err)
+                if str(err).startswith('Key not found :'):
+                    client.write(d, '', dir=True)
+                    prev_value = None
+                else:
+                    module.fail_json(msg="Etcd error: %s" % err)
 
         try:
             set_res = client.write(key, value)

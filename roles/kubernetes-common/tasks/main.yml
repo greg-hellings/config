@@ -1,14 +1,6 @@
-- name: install repository
-  yum_repository:
-    deltarpm_percentage: 0
-    gpgcheck: false
-    name: virt7-docker-common-release
-    baseurl: http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
-    state: present
-    description: Kubernetes repository
-
 - name: install kubernetes basics
-  yum:
+  become: true
+  package:
     name: "{{ item }}"
     state: present
   with_items:
@@ -16,25 +8,13 @@
     - etcd
     - flannel
 
-- name: set etc hosts
+- name: construct etcd_urls
   set_fact:
-    _hosts: "{{ _hosts + [item] }}"
-  with_items: "{{ groups['kubernetes_master'] }}"
-
-- name: set etc hosts
-  set_fact:
-    _hosts: "{{ _hosts + [item] }}"
-  with_items: "{{ groups['kubernetes_slave'] }}"
-  when: "{{ groups['kubernetes_slave'] is defined }}"
-
-- name: add hosts to /etc/hosts
-  lineinfile:
-    line: "{{ kubernetes_private_ip }} {{ hostvars[item]['inventory_hostname'] }}"
-    state: present
-    dest: /etc/hosts
-  with_items: "{{ groups['kubernetes_master'] + groups['kubernetes_slave'] }}"
+    _etcd_urls: "{{ (_etcd_urls | default([]) ) + ['http://' + item['host'] + ':' ~ item['port'] ] }}"
+  with_items: "{{ etcd_hosts }}"
 
 - name: drop in kubernetes config
+  become: true
   template:
     src: kubernetes_config.j2
     dest: /etc/kubernetes/config
@@ -42,9 +22,19 @@
     mode: 0644
 
 - name: stop firewalld
+  become: true
   service:
     name: "{{ item }}"
     state: stopped
     enabled: false
   with_items:
     - firewalld
+
+- name: configure flanneld
+  become: true
+  template:
+    src: flanneld.j2
+    dest: /etc/sysconfig/flanneld
+    owner: root
+    mode: 0644
+  notify: restart flanneld

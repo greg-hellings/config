@@ -1,5 +1,5 @@
-- name: restart etcd
+- name: restart flanneld
   become: true
   service:
-    name: etcd
+    name: flanneld
     state: restarted

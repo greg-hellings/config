@@ -1,5 +1,5 @@
 # Comma separated list of nodes in the etcd cluster
-KUBE_ETCD_SERVERS="--etcd-servers={{ etcd_hosts | join(',') }}"
+KUBE_ETCD_SERVERS="--etcd-servers={{ _etcd_urls | join(',') }}"
 
 # logging to stderr means we get it in the systemd journal
 KUBE_LOGTOSTDERR="--logtostderr=true"
@@ -11,4 +11,4 @@ KUBE_LOG_LEVEL="--v=0"
 KUBE_ALLOW_PRIV="--allow-privileged=false"
 
 # How the replication controller and scheduler find the kube-apiserver
-KUBE_MASTER="--master=http://{{ groups['kubernetes_master'][0] }}:8080"
+KUBE_MASTER="--master=http://{{ hostvars[groups['kubernetes_master'][0]]['kubernetes_private_ip'] }}:8080"
