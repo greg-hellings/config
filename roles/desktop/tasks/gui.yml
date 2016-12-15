@@ -1,6 +1,7 @@
 - name: install repositories
   become: true
   yum_repository:
+    description: A repository
     name: "{{ item.name }}"
     baseurl: "{{ item.url | default(omit) }}"
     mirrorlist: "{{ item.mirrors | default(omit) }}"

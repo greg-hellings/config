@@ -1,0 +1,17 @@
+- name: configure packer copr repo
+  become: true
+  yum_repository:
+    description: A repository
+    name: bnied-packer
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/bnied/packer/fedora-$releasever-$basearch/
+    gpgcheck: true
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/bnied/packer/pubkey.gpg
+    enabled: true
+    skip_if_unavailable: true
+    repo_gpgcheck: false
+
+- name: install packer
+  become: true
+  package:
+    state: present
+    name: packer

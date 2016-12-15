@@ -1,6 +1,7 @@
 - name: install CLI repositories
   become: true
   yum_repository:
+    description: A repository
     name: "{{ item.name }}"
     baseurl: "{{ item.url | default(omit) }}"
     mirrorlist: "{{ item.mirrors | default(omit) }}"
@@ -29,11 +30,11 @@
   with_items:
       - aacs
 
-- name: downloading aacs files
-  get_url:
-    url: http://www.labdv.com/aacs/KEYDB.cfg
-    dest: "{{ ansible_user_dir }}/.config/aacs"
-    force: true
+        #- name: downloading aacs files
+        #get_url:
+        #url: http://www.labdv.com/aacs/KEYDB.cfg
+        #dest: "{{ ansible_user_dir }}/.config/aacs"
+    #force: true
 
 - name: download bdplus archive
   get_url:
@@ -42,9 +43,10 @@
     force: true
 
 - name: extract archive
-  unarchive:
-    src: "{{ ansible_user_dir }}/.config/bdplus-vm0.bz2"
-    dest: "{{ ansible_user_dir }}/.config"
+  shell: tar xaf bdplus-vm0.bz2
+  args:
+    creates: "{{ ansible_user_dir }}/.config/bdplus"
+    chdir: "{{ ansible_user_dir }}/.config"
 
 - name: set ownership on files
   file:

@@ -13,6 +13,9 @@
 - name: install CLI apps
   include: cli.yml
 
+- name: install packer
+  include: packer.yml
+
 - name: install GUI apps
   include: gui.yml
   when: "{{ gui }}"

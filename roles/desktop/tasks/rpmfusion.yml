@@ -1,29 +1,8 @@
 - name: install more CLI repositories
   become: true
-  copy:
-    src: "{{ item }}"
-    dest: /etc/yum.repos.d/{{ item }}
-    owner: root
-    mode: 0644
+  package:
+    name: "{{ item }}"
+    state: present
   with_items:
-    - rpmfusion-free-rawhide.repo
-    - rpmfusion-free.repo
-    - rpmfusion-free-updates.repo
-    - rpmfusion-free-updates-testing.repo
-    - rpmfusion-nonfree-rawhide.repo
-    - rpmfusion-nonfree.repo
-    - rpmfusion-nonfree-updates.repo
-    - rpmfusion-nonfree-updates-testing.repo
-
-- name: install RPMFusion keys
-  become: true
-  copy:
-    src: "{{ item }}"
-    dest: /etc/pki/rpm-gpg/{{ item }}
-    owner: root
-    mode: 0644
-  with_items:
-    - RPM-GPG-KEY-rpmfusion-free-fedora-24
-    - RPM-GPG-KEY-rpmfusion-free-fedora-24-primary
-    - RPM-GPG-KEY-rpmfusion-free-fedora-latest
-    - RPM-GPG-KEY-rpmfusion-free-fedora-rawhide
+    - http://download1.rpmfusion.org/free/{{ (ansible_distribution == 'Fedora') | ternary('fedora', 'el') }}/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
+    - http://download1.rpmfusion.org/nonfree/{{ (ansible_distribution == 'Fedora') | ternary('fedora', 'el') }}/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm

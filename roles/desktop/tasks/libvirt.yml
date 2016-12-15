@@ -28,6 +28,16 @@
   check_mode: true
   register: check
 
+- name: create libvirt config directory
+  become: true
+  file:
+    dest: /etc/libvirt/storage
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+  when: "{{ check.changed }}"
+
 - name: make sure libvirt is stopped
   become: true
   service:
