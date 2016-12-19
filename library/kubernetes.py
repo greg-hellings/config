@@ -16,6 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Ansible.  If not, see <http://www.gnu.org/licenses/>
 
+import yaml
+import base64
+import json
+
 DOCUMENTATION = '''
 ---
 module: kubernetes
@@ -63,21 +67,22 @@ options:
     choices: ["present", "absent", "update", "replace"]
   url_password:
     description:
-      - The HTTP Basic Auth password for the API I(endpoint). This should be set
-        unless using the C('insecure') option.
+      - The HTTP Basic Auth password for the API I(endpoint). This should be
+        set unless using the C('insecure') option.
     default: null
     aliases: ["password"]
   url_username:
     description:
-      - The HTTP Basic Auth username for the API I(endpoint). This should be set
-        unless using the C('insecure') option.
+      - The HTTP Basic Auth username for the API I(endpoint). This should be
+        set unless using the C('insecure') option.
     default: "admin"
     aliases: ["username"]
   insecure:
     description:
-      - "Reverts the connection to using HTTP instead of HTTPS. This option should
-        only be used when execuing the M('kubernetes') module local to the Kubernetes
-        cluster using the insecure local port (locahost:8080 by default)."
+      - "Reverts the connection to using HTTP instead of HTTPS. This option
+        should only be used when execuing the M('kubernetes') module local to
+        the Kubernetes cluster using the insecure local port (locahost:8080 by
+        default)."
   validate_certs:
     description:
       - Enable/disable certificate validation. Note that this is set to
@@ -150,8 +155,6 @@ api_response:
             phase: "Active"
 '''
 
-import yaml
-import base64
 
 ############################################################################
 ############################################################################
@@ -195,20 +198,27 @@ KIND_URL = {
     "binding": "/api/v1/namespaces/{namespace}/bindings",
     "configmap": "/api/v1/namespaces/{namespace}/configmaps",
     "daemonset": "/apis/extensions/v1beta1/namespaces/{namespace}/daemonsets",
-    "deployment": "/apis/extensions/v1beta1/namespaces/{namespace}/deployments",
-    "horizontalpodautoscaler": "/apis/extensions/v1beta1/namespaces/{namespace}/horizontalpodautoscalers",
+    "deployment":
+        "/apis/extensions/v1beta1/namespaces/{namespace}/deployments",
+    "horizontalpodautoscaler":
+        "/apis/extensions/v1beta1/namespaces/{namespace}" +
+        "/horizontalpodautoscalers",
     "ingress": "/apis/extensions/v1beta1/namespaces/{namespace}/ingresses",
     "job": "/apis/extensions/v1beta1/namespaces/{namespace}/jobs",
     "limitrange": "/api/v1/namespaces/{namespace}/limitranges",
     "namespace": "/api/v1/namespaces",
-    "networkpolicy": "/apis/extensions/v1beta1/namespaces/{namespace}/networkpolicies",
+    "networkpolicy":
+        "/apis/extensions/v1beta1/namespaces/{namespace}/networkpolicies",
     "node": "/api/v1/nodes",
     "persistentvolume": "/api/v1/persistentvolumes",
-    "persistentvolumeclaim": "/api/v1/namespaces/{namespace}/persistentvolumeclaims",
+    "persistentvolumeclaim":
+        "/api/v1/namespaces/{namespace}/persistentvolumeclaims",
     "pod": "/api/v1/namespaces/{namespace}/pods",
     "podtemplate": "/api/v1/namespaces/{namespace}/podtemplates",
-    "replicaset": "/apis/extensions/v1beta1/namespaces/{namespace}/replicasets",
-    "replicationcontroller": "/api/v1/namespaces/{namespace}/replicationcontrollers",
+    "replicaset":
+        "/apis/extensions/v1beta1/namespaces/{namespace}/replicasets",
+    "replicationcontroller":
+        "/api/v1/namespaces/{namespace}/replicationcontrollers",
     "resourcequota": "/api/v1/namespaces/{namespace}/resourcequotas",
     "secret": "/api/v1/namespaces/{namespace}/secrets",
     "service": "/api/v1/namespaces/{namespace}/services",
@@ -244,70 +254,94 @@ def api_request(module, url, method="GET", headers=None, data=None):
     body = None
     if data:
         data = json.dumps(data)
-    response, info = fetch_url(module, url, method=method, headers=headers, data=data)
+    response, info = fetch_url(module, url, method=method, headers=headers,
+                               data=data)
     if int(info['status']) == -1:
-        module.fail_json(msg="Failed to execute the API request: %s" % info['msg'], url=url, method=method, headers=headers)
+        module.fail_json(msg="Failed to execute the API request: %s"
+                         % info['msg'],
+                         url=url,
+                         method=method,
+                         headers=headers)
     if response is not None:
         body = json.loads(response.read())
     return info, body
 
 
 def k8s_create_resource(module, url, data):
-    info, body = api_request(module, url, method="POST", data=data, headers={"Content-Type": "application/json"})
+    info, body = api_request(module,
+                             url,
+                             method="POST",
+                             data=data,
+                             headers={"Content-Type": "application/json"})
     if info['status'] == 409:
         name = data["metadata"].get("name", None)
         info, body = api_request(module, url + "/" + name)
         return False, body
     elif info['status'] >= 400:
-        module.fail_json(msg="failed to create the resource: %s" % info['msg'], url=url)
+        module.fail_json(msg="failed to create the resource: %s" % info['msg'],
+                         url=url)
     return True, body
 
 
 def k8s_delete_resource(module, url, data):
     name = data.get('metadata', {}).get('name')
     if name is None:
-        module.fail_json(msg="Missing a named resource in object metadata when trying to remove a resource")
+        module.fail_json(msg="Missing a named resource in object metadata " +
+                             "when trying to remove a resource")
 
     url = url + '/' + name
     info, body = api_request(module, url, method="DELETE")
     if info['status'] == 404:
         return False, "Resource name '%s' already absent" % name
     elif info['status'] >= 400:
-        module.fail_json(msg="failed to delete the resource '%s': %s" % (name, info['msg']), url=url)
+        module.fail_json(msg="failed to delete the resource '%s': %s"
+                             % (name, info['msg']), url=url)
     return True, "Successfully deleted resource name '%s'" % name
 
 
 def k8s_replace_resource(module, url, data):
     name = data.get('metadata', {}).get('name')
     if name is None:
-        module.fail_json(msg="Missing a named resource in object metadata when trying to replace a resource")
+        module.fail_json(msg="Missing a named resource in object metadata " +
+                             "when trying to replace a resource")
 
     headers = {"Content-Type": "application/json"}
     url = url + '/' + name
-    info, body = api_request(module, url, method="PUT", data=data, headers=headers)
+    info, body = api_request(module,
+                             url,
+                             method="PUT",
+                             data=data,
+                             headers=headers)
     if info['status'] == 409:
         name = data["metadata"].get("name", None)
         info, body = api_request(module, url + "/" + name)
         return False, body
     elif info['status'] >= 400:
-        module.fail_json(msg="failed to replace the resource '%s': %s" % (name, info['msg']), url=url)
+        module.fail_json(msg="failed to replace the resource '%s': %s"
+                             % (name, info['msg']), url=url)
     return True, body
 
 
 def k8s_update_resource(module, url, data):
     name = data.get('metadata', {}).get('name')
     if name is None:
-        module.fail_json(msg="Missing a named resource in object metadata when trying to update a resource")
+        module.fail_json(msg="Missing a named resource in object metadata " +
+                             "when trying to update a resource")
 
     headers = {"Content-Type": "application/strategic-merge-patch+json"}
     url = url + '/' + name
-    info, body = api_request(module, url, method="PATCH", data=data, headers=headers)
+    info, body = api_request(module,
+                             url,
+                             method="PATCH",
+                             data=data,
+                             headers=headers)
     if info['status'] == 409:
         name = data["metadata"].get("name", None)
         info, body = api_request(module, url + "/" + name)
         return False, body
     elif info['status'] >= 400:
-        module.fail_json(msg="failed to update the resource '%s': %s" % (name, info['msg']), url=url)
+        module.fail_json(msg="failed to update the resource '%s': %s"
+                             % (name, info['msg']), url=url)
     return True, body
 
 
@@ -325,12 +359,13 @@ def main():
             api_endpoint=dict(required=True),
             file_reference=dict(required=False),
             inline_data=dict(required=False),
-            state=dict(default="present", choices=["present", "absent", "update", "replace"])
+            state=dict(default="present",
+                       choices=["present", "absent", "update", "replace"])
         ),
-        mutually_exclusive = (('file_reference', 'inline_data'),
-                              ('url_username', 'insecure'),
-                              ('url_password', 'insecure')),
-        required_one_of = (('file_reference', 'inline_data'),),
+        mutually_exclusive=(('file_reference', 'inline_data'),
+                            ('url_username', 'insecure'),
+                            ('url_password', 'insecure')),
+        required_one_of=(('file_reference', 'inline_data'),),
     )
 
     decode_cert_data(module)
@@ -342,7 +377,8 @@ def main():
     file_reference = module.params.get('file_reference')
 
     if inline_data:
-        if not isinstance(inline_data, dict) and not isinstance(inline_data, list):
+        if not isinstance(inline_data, dict) and \
+           not isinstance(inline_data, list):
             data = yaml.load(inline_data)
         else:
             data = inline_data
@@ -354,7 +390,8 @@ def main():
             if not data:
                 module.fail_json(msg="No valid data could be found.")
         except:
-            module.fail_json(msg="The file '%s' was not found or contained invalid YAML/JSON data" % file_reference)
+            module.fail_json(msg="The file '%s' was not found or contained " +
+                                 "invalid YAML/JSON data" % file_reference)
 
     # set the transport type and build the target endpoint url
     transport = 'https'
@@ -368,7 +405,7 @@ def main():
 
     # make sure the data is a list
     if not isinstance(data, list):
-        data = [ data ]
+        data = [data]
 
     for item in data:
         namespace = "default"
@@ -378,7 +415,8 @@ def main():
             try:
                 url = target_endpoint + KIND_URL[kind]
             except KeyError:
-                module.fail_json(msg="invalid resource kind specified in the data: '%s'" % kind)
+                module.fail_json(msg="invalid resource kind specified in the" +
+                                     " data: '%s'" % kind)
             url = url.replace("{namespace}", namespace)
         else:
             url = target_endpoint
