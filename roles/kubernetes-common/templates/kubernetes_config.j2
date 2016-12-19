@@ -8,7 +8,7 @@ KUBE_LOGTOSTDERR="--logtostderr=true"
 KUBE_LOG_LEVEL="--v=0"
 
 # Should this cluster be allowed to run privileged docker containers
-KUBE_ALLOW_PRIV="--allow-privileged=false"
+KUBE_ALLOW_PRIV="--allow-privileged=true"
 
 # How the replication controller and scheduler find the kube-apiserver
 KUBE_MASTER="--master=http://{{ hostvars[groups['kubernetes_master'][0]]['kubernetes_private_ip'] }}:8080"
