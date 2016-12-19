@@ -9,17 +9,7 @@
     - libyaml-devel
     - openssl-devel
     - libffi-devel
-
-- name: download cinch source
-  git:
-    repo: https://github.com/RedHatQE/cinch.git
-    dest: "{{ ansible_user_dir }}/cinch"
-
-- name: create virtualenv
-  pip:
-    virtualenv: "{{ ansible_user_dir }}/venv/cinch"
-    requirements: "{{ ansible_user_dir }}/cinch/requirements.txt"
-    state: present
+    - ShellCheck
 
 - name: install extra python dev packages
   pip:
