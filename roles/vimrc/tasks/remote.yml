@@ -2,3 +2,10 @@
   copy:
     src: vimrc
     dest: "{{ ansible_user_dir }}/.vimrc"
+
+- name: copy ftplugin options
+  copy:
+    src: ftplugin
+    dest: "{{ ansible_user_dir }}/.vim/ftplugin"
+    owner: "{{ ansible_user }}"
+    mode: 0644

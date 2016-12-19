@@ -1,33 +1,86 @@
-set tabstop=4
-set shiftwidth=4
-set expandtab
-
-execute pathogen#infect()
+" ============================================================================
+" General editor settings
+" ============================================================================
 set nocompatible
-set mouse=a
-filetype plugin indent on
 syntax enable
-set number
+set noexpandtab
+set tabstop=4
+" set softtabstop=4
+set shiftwidth=4
+set nowrap
+set showcmd
+set cursorline " highlight the line you're on
+filetype plugin indent on
+set lazyredraw " Only redraw screen when needed
+set showmatch " Show matching parenthesis
+set number " Show line numbers
+" Ignore case on search, unless you use caps
+set ignorecase
+set smartcase
+set hlsearch
+" These two, together, show ends of lines and other npc
+set listchars=tab:→\ ,extends:→,precedes:←,trail:·,eol:¬
+set list
+" Show unwanted whitespace
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()    
 
+" ============================================================================
+" Plugin-specific settings
+" ============================================================================
 let g:php_folding=2
-let g:ctrlp_working_path_mode = 0
-set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*
-" let g:ctrlp_custom_ignore = 'control/tmp'
 set foldmethod=indent
+" CtrlP settings
+set wildignore+=*.git,*.swp,*.pyc,*.class
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_cmd = 'CtrlPMixed'
+" let g:ctrlp_custom_ignore = 'source'
+" NerdTree settings
+let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.class$']
+" indent guides
+let g:indent_guides_enable_on_vim_startup = 1
+autocmd! BufWritePost .vimrc source $MYVIMRC
 
+" ============================================================================
+" Keybindings for necessary plugins
+" ============================================================================
+" bufexplorer
 map <F2>	<Esc>\be
-map <F3> <Esc>:%s/\t/        /g
 map <F4> <Esc>:NERDTreeToggle<Cr>
 map <F6> <Esc>:CtrlP<Cr>
 
+" ============================================================================
 " Allows use of Ctrl-hjkl to swich splits without resizing them
+" ============================================================================
 map <C-j> <C-w>j<C-w><Cr>
 map <C-k> <C-w>k<C-w><Cr>
 map <C-h> <C-w>h<C-w><Cr>
 map <C-l> <C-w>l<C-w><Cr>
 
+" ============================================================================
+" Load plugins
+" ============================================================================
+execute pathogen#infect()
+
+colorscheme gruvbox
+if has("gui_running")
+    set mouse=a
+    let g:gruvbox_contrast_light='hard'
+    set background=light
+else
+    let g:gruvbox_contrast_dark='hard'
+    set background=dark
+end
+
 set hidden
 
+" ============================================================================
+" User functions to just make life easier
+" ============================================================================
 " Creates the directory for a file if it doesn't already exist.
 function! s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
