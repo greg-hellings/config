@@ -1,0 +1,8 @@
+require '../shared.rb'
+
+Vagrant.configure('2') do |config|
+    vm(config, 'desktop') do |node|
+        node.vm.provision :shell, inline: "dnf install -y python"
+        ansible(node)
+    end
+end
