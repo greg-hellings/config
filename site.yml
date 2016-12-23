@@ -77,3 +77,5 @@
   roles:
     - vimrc
     - bashrc
+    - private_files
+    - cleanup

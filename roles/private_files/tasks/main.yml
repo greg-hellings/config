@@ -1,0 +1,13 @@
+- name: include files {{ ansible_connection }}
+  include: remote.yml
+  with_items: "{{ private_files }}"
+  loop_control:
+    loop_var: private
+  when: "{{ ansible_connection != 'local' }}"
+
+- name: include files
+  include: local.yml
+  with_items: "{{ private_files }}"
+  loop_control:
+    loop_var: private
+  when: "{{ ansible_connection == 'local' }}"

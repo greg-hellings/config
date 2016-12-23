@@ -1,0 +1,6 @@
+- name: link {{ private.src }} into place
+  file:
+    src: "{{ private.src }}"
+    dest: "{{ private.dest }}"
+    state: link
+    force: true

@@ -24,7 +24,6 @@
     - libselinux-python
     - mlocate
     - screen
-    - python3-flake8
 
 - name: disable selinux
   become: true

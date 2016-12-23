@@ -1,0 +1,5 @@
+- name: upload {{ private.src }} into place
+  copy:
+    src: "{{ private.src }}"
+    dest: "{{ private.dest }}"
+    mode: "{{ private.mode | default(omit) }}"
