@@ -7,6 +7,12 @@
     - common
     - mounts
 
+- name: prepare for openshift
+  hosts: OSEv3
+  gather_facts: false
+  roles:
+    - ose_warmup
+
 # ############################################################################
 # Personal desktop configuration, for use on systems that I administrate, and
 # where GUI programs are needed
@@ -20,11 +26,11 @@
 # ############################################################################
 # Kubernetes and related configurations
 # ############################################################################
-- name: etcd needs to be up before kubernetes
-  hosts: etcd
-  gather_facts: false
-  roles:
-    - etcd
+#- name: etcd needs to be up before kubernetes
+#  hosts: etcd
+#  gather_facts: false
+#  roles:
+#    - etcd
 
 - name: install kubernetes masters to configure system
   hosts: kubernetes_master

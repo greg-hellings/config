@@ -28,6 +28,7 @@
 - name: disable selinux
   become: true
   selinux: state=disabled
+  when: "{{ 'OSEv3' not in groups }}"
 
 - name: enable SSHD
   become: true
