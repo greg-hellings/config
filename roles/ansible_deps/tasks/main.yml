@@ -1,6 +1,6 @@
 - name: install Ansible build deps
   become: true
-  dnf:
+  package:
     name: "{{ item }}"
     state: present
   with_items:
