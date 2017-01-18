@@ -6,6 +6,7 @@
   with_items:
     - libselinux-python
     - krb5-workstation
+    - make
 
 - name: install virtualenv
   pip:
