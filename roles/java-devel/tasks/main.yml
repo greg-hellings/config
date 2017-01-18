@@ -1,0 +1,25 @@
+- name: install necessary files
+  become: true
+  package:
+    name: "{{ item }}"
+  with_items:
+    - maven
+    - maven-wagon-http
+    - maven-wagon-http-shared
+    - maven-wagon-provider-api
+    - maven-wagon-file
+    - java-1.8.0-openjdk-headless
+
+- name: ensure m2 directory exists
+  file:
+    dest: "{{ ansible_user_dir }}/.m2/"
+    state: directory
+    owner: "{{ ansible_user }}"
+    mode: 0644
+
+- name: configure maven repository
+  template:
+    src: settings.xml
+    dest: "{{ ansible_user_dir }}/.m2/settings.xml"
+    owner: "{{ ansible_user }}"
+    mode: 0644
