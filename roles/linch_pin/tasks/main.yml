@@ -10,7 +10,7 @@
 
 - name: install virtualenv
   pip:
-    virtualenv: "{{ ansible_user_dir }}/venv"
+    virtualenv: "{{ ansible_user_dir }}/venv/linchpin"
     state: present
     name: "{{ item }}"
     virtualenv_site_packages: true
