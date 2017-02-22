@@ -59,6 +59,7 @@
   gather_facts: false
   roles:
     - cinch
+    - docker
 
 - name: configure for linch-pin development
   hosts: linch-pin
@@ -72,6 +73,11 @@
   roles:
     - packaging
 
+- name: configure a basic docker system
+  hosts: docker
+  gather_facts: false
+  roles:
+    - docker
 # ############################################################################
 # Simple user-land configuration that does not require root access to install
 # but makes my life so much easier! Designed to be run on any system that I

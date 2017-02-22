@@ -1,0 +1,19 @@
+- name: install docker
+  package:
+    name: docker
+    state: present
+  become: true
+
+- name: add docker group
+  group:
+    name: docker
+    state: present
+  become: true
+
+- name: add current user to docker group
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: true
+    state: present
+  become: true
