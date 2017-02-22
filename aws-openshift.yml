@@ -1,0 +1,6 @@
+- name: configure systems for fun
+  hosts: OSEv3
+  roles:
+    - aws-openshift-configure
+    - bashrc
+    - vimrc

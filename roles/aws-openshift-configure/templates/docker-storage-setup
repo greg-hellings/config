@@ -1,0 +1,2 @@
+STORAGE_DRIVER=overlay2
+DEV={{ docker_storage_volume }}
