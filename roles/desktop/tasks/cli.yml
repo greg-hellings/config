@@ -23,6 +23,8 @@
     - jq
     - python3-flake8
     - gnupg2
+    - origin-clients
+    - source-to-image
 
 - name: create blu-ray config directories
   file:
