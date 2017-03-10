@@ -85,9 +85,9 @@
 # ############################################################################
 - name: basic user config files
   hosts: all
-  gather_facts: false
   roles:
     - vimrc
     - bashrc
+    - gitconfig
     - private_files
     - cleanup
