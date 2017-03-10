@@ -2,7 +2,7 @@
 # Preliminary stuff that all the hosts need
 # ############################################################################
 - name: mounts
-  hosts: all
+  hosts: all:!noadmin
   roles:
     - common
     - mounts
@@ -78,6 +78,14 @@
   gather_facts: false
   roles:
     - docker
+
+- name: sword development
+  hosts: sword
+  gather_facts: false
+  roles:
+    - docker
+    - sword
+    - swordweb
 # ############################################################################
 # Simple user-land configuration that does not require root access to install
 # but makes my life so much easier! Designed to be run on any system that I

@@ -1,0 +1,15 @@
+- name: install devel packages
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - clucene-core-devel
+    - libcurl-devel
+    - xapian-core-devel
+    - gcc-c++
+    - libicu-devel
+    - automake
+    - autoconf
+    - libtool
+    - cmake
