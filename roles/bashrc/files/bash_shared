@@ -28,6 +28,7 @@ alias saveprojex="set -ex && git -C ~/build/redhat/ci/ci-ops-projex \
         commit -a --amend && git -C ~/build/redhat/ci/ci-ops-projex push \
         --force gitlab && set +ex"
 alias vup='vagrant up --provision'
+alias vos='vagrant up --provision --provider openstack'
 alias vssh='vagrant ssh'
 alias vhalt='vagrant halt'
 alias vprov='vagrant provision'
