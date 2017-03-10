@@ -3,3 +3,4 @@ bashrc_files:
   - bash_profile
   - bash_shared
   - screenrc
+  - ansible.cfg
