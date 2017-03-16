@@ -58,8 +58,8 @@
   hosts: cinch
   gather_facts: false
   roles:
-    - cinch
     - docker
+    - cinch
 
 - name: configure for linch-pin development
   hosts: linch-pin
