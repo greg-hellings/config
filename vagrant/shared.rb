@@ -39,6 +39,7 @@ def vm(config, name, base_box='fedora/25-cloud-base')
 			local_setup(override, base_box)
 		end
         node.vm.hostname = name + ".box"
+		node.vm.synced_folder ".", "/vagrant", disabled: true
 		node.vm.provider :openstack do |os, override|
 			os.openstack_auth_url = ENV['OS_ENDPOINT']
 			os.username = ENV['OS_USERNAME']
@@ -49,8 +50,7 @@ def vm(config, name, base_box='fedora/25-cloud-base')
 			os.image = get_image(base_box)
 			os.server_create_timeout = 900
 			override.ssh.username = get_username(base_box)
-			#override.vm.synced_folder "../..", "/home/" + get_username(base_box) + "/dev", type: "sshfs"
-			override.vm.synced_folder ".", "/vagrant", disabled: true
+			override.vm.synced_folder "../..", "/home/" + get_username(base_box) + "/dev", type: "sshfs"
 		end
 
         yield node if block_given?
