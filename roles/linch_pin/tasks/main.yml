@@ -1,5 +1,4 @@
 - name: install necessary rpms
-  become: true
   package:
     name: "{{ item }}"
     state: present
@@ -7,6 +6,7 @@
     - libselinux-python
     - krb5-workstation
     - make
+  become: true
 
 - name: install virtualenv
   pip:
@@ -22,21 +22,26 @@
     - ipython
 
 - name: create /etc/beaker
-  become: true
   file:
     dest: /etc/beaker
     owner: "{{ ansible_user }}"
     mode: 0700
     state: directory
+  become: true
 
 - name: give temporary write access to bash completions
-  become: true
   file:
     dest: /usr/share/bash-completion/completions/
     mode: a+w
     state: directory
+  become: true
 
 - name: install bash_local
   copy:
     src: bash_local
     dest: "{{ ansible_user_dir }}/.bash_local"
+
+- name: check out code
+  git:
+    dest: "{{ ansible_user_dir }}/linchpin"
+    repo: http://github.com/greg-hellings/linch-pin

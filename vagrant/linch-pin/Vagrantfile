@@ -4,6 +4,5 @@ Vagrant.configure("2") do |config|
     vm(config, "linch-pin") do |node|
         node.vm.provision :shell, inline: "dnf install -y python"
         ansible(node)
-        node.vm.provision :shell, inline: "cp -r /home/vagrant/dev/source/beaker/* /etc/"
     end
 end
