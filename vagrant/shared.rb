@@ -47,10 +47,12 @@ def vm(config, name, base_box='fedora/25-cloud-base')
 			os.tenant_name = ENV['OS_TENANT']
 			os.flavor = ENV['OS_NOVA_FLAVOR']
 			os.floating_ip_pool = ENV['OS_FLOATING_NETWORK']
+			os.networks = [{ name: ENV['OS_NETWORK'] }]
 			os.image = get_image(base_box)
 			os.server_create_timeout = 900
 			override.ssh.username = get_username(base_box)
 			override.vm.synced_folder "../..", "/home/" + get_username(base_box) + "/dev", type: "sshfs"
+			os.server_name = 'pet-' + ENV['USER'] + '-' + name
 		end
 
         yield node if block_given?
