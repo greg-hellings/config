@@ -25,6 +25,7 @@
     - gnupg2
     - origin-clients
     - source-to-image
+    - google-drive-ocamlfuse
 
 - name: create blu-ray config directories
   file:
