@@ -24,6 +24,7 @@
     - libselinux-python
     - mlocate
     - screen
+    - patch
 
 - name: disable selinux
   become: true
