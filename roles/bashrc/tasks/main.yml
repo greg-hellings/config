@@ -1,10 +1,10 @@
 - name: install bash configuration (local)
   include: local.yml
-  when: "'{{ ansible_connection }}' == 'local'"
+  when: ansible_connection == 'local'
 
 - name: install bash configuration (remote)
   include: remote.yml
-  when: "'{{ ansible_connection }}' != 'local'"
+  when: ansible_connection != 'local'
 
 - name: set executable file permissions
   file:

@@ -1,10 +1,10 @@
 - name: install static files (remote)
   include: remote.yml
-  when: "'{{ ansible_connection }}' != 'local'"
+  when: ansible_connection != 'local'
 
 - name: install static files (local)
   include: local.yml
-  when: "'{{ ansible_connection }}' == 'local'"
+  when: ansible_connection == 'local'
 
 - name: ensure vim directory is created
   file:

@@ -1,7 +1,7 @@
 - name: install python2-dnf
   become: true
   shell: dnf install -y python2-dnf creates=/usr/lib/python2.7/site-packages/dnf
-  when: "{{ ansible_distribution == 'Fedora' }}"
+  when: ansible_distribution == 'Fedora'
 
 - name: update selected packages
   become: true
@@ -29,7 +29,7 @@
 - name: disable selinux
   become: true
   selinux: state=disabled
-  when: "{{ 'OSEv3' not in groups }}"
+  when: "'OSEv3' not in groups"
 
 - name: enable SSHD
   become: true
@@ -37,4 +37,4 @@
     name: sshd
     state: started
     enabled: true
-  when: "'{{ ansible_os_family }}' != 'Darwin'"
+  when: ansible_os_family != 'Darwin'

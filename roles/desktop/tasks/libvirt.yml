@@ -36,14 +36,14 @@
     group: root
     mode: 0755
     state: directory
-  when: "{{ check.changed }}"
+  when: check|changed
 
 - name: make sure libvirt is stopped
   become: true
   service:
     name: libvirtd
     state: stopped
-  when: "{{ check.changed }}"
+  when: check|changed
 
 - name: configure libvirt storage
   become: true

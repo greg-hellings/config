@@ -18,4 +18,4 @@
 
 - name: install GUI apps
   include: gui.yml
-  when: "{{ gui }}"
+  when: gui
