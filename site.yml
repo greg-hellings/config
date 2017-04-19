@@ -19,7 +19,6 @@
 # ############################################################################
 - name: configure desktop systems
   hosts: desktop
-  gather_facts: false
   roles:
     - desktop
 

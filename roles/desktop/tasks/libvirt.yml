@@ -64,6 +64,6 @@
 - name: add current user to libvirt group
   become: true
   user:
-    name: "{{ ansible_user }}"
+    name: "{{ ansible_user_id }}"
     append: true
     groups: libvirt
