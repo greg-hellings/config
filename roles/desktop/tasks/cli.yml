@@ -26,6 +26,7 @@
     - origin-clients
     - source-to-image
     - google-drive-ocamlfuse
+    - python-virtualenv
 
 - name: create blu-ray config directories
   file:
@@ -60,3 +61,21 @@
   with_items:
     - "{{ ansible_user_dir }}/.config/bdplus"
     - "{{ ansible_user_dir }}/.config/aacs"
+
+- name: create python virtualenv packages
+  pip:
+    virtualenv: "{{ ansible_user_dir }}/venv/{{ item.name }}"
+    state: present
+    name: "{{ item.packages }}"
+  with_items:
+    - name: dev
+      packages:
+        - cookiecutter
+        - tox
+        - sphinx
+    - name: ansible
+      packages:
+        - ansible
+    - name: twine
+      packages:
+        - twine
