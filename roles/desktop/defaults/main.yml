@@ -12,6 +12,9 @@ gui_repositories:
     url: https://copr-be.cloud.fedoraproject.org/results/rommon/intellij-idea/fedora-$releasever-$basearch/
     gpgcheck: true
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/rommon/intellij-idea/pubkey.gpg
+  - name: entropypianotuner
+    url: http://download.opensuse.org/repositories/home:/entropytuner/Fedora_$releasever/
+    gpgkey: http://download.opensuse.org/repositories/home:/entropytuner/Fedora_$releasever/repodata/repomd.xml.key
 cli_repositories:
   - name: fedora-Handbrake
     url: http://negativo17.org/repos/HandBrake/fedora-$releasever/$basearch/

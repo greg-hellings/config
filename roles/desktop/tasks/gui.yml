@@ -27,5 +27,6 @@
     - virt-manager
     - HandBrake-gui
     - intellij-idea-community
-    - pycharm-community
+    #- pycharm-community
     - vlc
+    - entropypianotuner
