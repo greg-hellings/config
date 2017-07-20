@@ -1,7 +1,7 @@
 require '../shared.rb'
 
 Vagrant.configure('2') do |config|
-    vm(config, 'packaging', 'greg-hellings/fedora-26-alpha') do |node|
+    vm(config, 'packaging', 'fedora/25-cloud-base') do |node|
         node.vm.provision :shell, inline: "dnf install -y python"
         ansible(node)
         node.vm.provider :libvirt do |virt|

@@ -21,7 +21,6 @@ def vm(config, name, base_box='fedora/25-cloud-base')
         node.vm.hostname = name + ".box"
 		node.vm.synced_folder ".", "/vagrant", disabled: true
 		node.vm.provider :openstack do |os, override|
-			override.vm.synced_folder "../..", "/home/" + get_username(base_box) + "/dev", type: "sshfs"
 			os.image = get_image(base_box)
 			override.ssh.username = get_username(base_box)
 			os.server_name = 'pet-' + ENV['USER'] + '-' + name

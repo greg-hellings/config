@@ -61,7 +61,7 @@
     - cinch
 
 - name: configure for linch-pin development
-  hosts: linch-pin
+  hosts: linchpin
   gather_facts: false
   roles:
     - linch_pin
