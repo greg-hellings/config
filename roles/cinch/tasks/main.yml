@@ -10,6 +10,7 @@
     - openssl-devel
     - libffi-devel
     - ShellCheck
+    - vagrant
 
 - name: install extra python dev packages
   pip:
@@ -34,6 +35,8 @@
     - 0.3.0
     - 0.4.1
     - 0.5.1
+    - 0.6.0
+    - 0.7.0
 
 - name: start and enable docker
   become: true
@@ -44,5 +47,5 @@
 
 - name: check out code
   git:
-    repo: https://github.com/greg-hellings/cinch
+    repo: https://github.com/RedHatQE/cinch
     dest: "{{ ansible_user_dir }}/cinch"
