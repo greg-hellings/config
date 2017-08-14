@@ -78,6 +78,10 @@ function py3env {
     pyvenv ~/venv/${1}
 }
 
+function unknown_host {
+	sed -i -e ${1}d ~/.ssh/known_hosts
+}
+
 if [ -f $HOME/.bash_local ]; then
     . $HOME/.bash_local
 fi

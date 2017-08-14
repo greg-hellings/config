@@ -17,6 +17,8 @@
     name: "{{ item }}"
     state: present
   with_items:
+    - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_lsb['major_release'] }}.noarch.rpm
+    - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_lsb['major_release'] }}.noarch.rpm
     - HandBrake-cli
     - libaacs
     - git-review
@@ -25,8 +27,8 @@
     - gnupg2
     - origin-clients
     - source-to-image
-    - google-drive-ocamlfuse
     - python-virtualenv
+    - entr
 
 - name: create blu-ray config directories
   file:
@@ -76,6 +78,29 @@
     - name: ansible
       packages:
         - ansible
-    - name: twine
+    - name: tools
       packages:
         - twine
+        - wheel
+        - ipython
+        - Pygments
+        - cookiecutter
+
+- name: install Kerberos
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - krb5-libs
+    - krb5-workstation
+  when: kerberos is defined
+  become: true
+
+- name: configure Kerberos
+  template:
+    src: krb5.conf
+    dest: /etc/krb5.conf
+    owner: root
+    mode: 0644
+  when: kerberos is defined
+  become: true

@@ -17,6 +17,8 @@
     name: "{{ item }}"
     state: present
   with_items:
+    - https://spideroak.com/release/spideroak/rpm_x64
+    - SpiderOak
     - vim-X11
     - google-chrome-stable
     - gnome-tweak-tool
@@ -30,3 +32,7 @@
     #- pycharm-community
     - vlc
     - entropypianotuner
+    - NetworkManager-openvpn
+    - NetworkManager-openvpn-gnome
+    - http://hdn.corp.redhat.com/rhel7-csb-stage/RPMS/noarch/redhat-internal-cert-install-0.1-7.el7.csb.noarch.rpm
+    - http://hdn.corp.redhat.com/rhel7-csb-stage/RPMS/noarch/redhat-internal-NetworkManager-openvpn-profiles-0.1-29.el7.csb.noarch.rpm

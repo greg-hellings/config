@@ -1,10 +1,11 @@
 libvirt_storage: /home/libvirt
 gui: true
 gui_repositories:
-  - name: google-chrome
-    url: http://dl.google.com/linux/chrome/rpm/stable/$basearch
+  - name: bluejeans
+    url: https://swdl.bluejeans.com/repos/bluejeans/x86_64/release/rpm
     gpgcheck: true
-  - name: copr-phracek-PyCharm
+    gpgkey: https://swdl.bluejeans.com/repos/bluejeans/bjn-key
+  - name: copr-phracek-PyCharmr
     url: https://copr-be.cloud.fedoraproject.org/results/phracek/PyCharm/fedora-$releasever-$basearch/
     gpgcheck: true
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/phracek/PyCharm/pubkey.gpg
@@ -15,7 +16,21 @@ gui_repositories:
   - name: entropypianotuner
     url: http://download.opensuse.org/repositories/home:/entropytuner/Fedora_$releasever/
     gpgkey: http://download.opensuse.org/repositories/home:/entropytuner/Fedora_$releasever/repodata/repomd.xml.key
+  - name: google-chrome
+    url: http://dl.google.com/linux/chrome/rpm/stable/$basearch
+    gpgcheck: true
+  - name: google-talkplugin
+    url: http://dl.google.com/linux/talkplugin/rpm/stable/x86_64/
+    gpgcheck: true
 cli_repositories:
+  - name: bnied-packer
+    url: https://copr-be.cloud.fedoraproject.org/results/bnied/packer/fedora-$releasever-$basearch/
+    gpgcheck: true
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/bnied/packer/pubkey.gpg
+  - name: openh264
+    url: https://codecs.fedoraproject.org/openh264/$releasever/$basearch/
+    gpgcheck: true
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
   - name: fedora-Handbrake
     url: http://negativo17.org/repos/HandBrake/fedora-$releasever/$basearch/
     gpgcheck: true

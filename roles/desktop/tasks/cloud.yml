@@ -8,3 +8,4 @@
     # These two are dependencies of acd_cli that are missing from the packaging
     - python3-dateutil
     - python3-fuse
+    - google-drive-ocamlfuse
