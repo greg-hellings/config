@@ -14,8 +14,8 @@ gui_repositories:
     gpgcheck: true
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/rommon/intellij-idea/pubkey.gpg
   - name: entropypianotuner
-    url: http://download.opensuse.org/repositories/home:/entropytuner/Fedora_$releasever/
-    gpgkey: http://download.opensuse.org/repositories/home:/entropytuner/Fedora_$releasever/repodata/repomd.xml.key
+    url: http://download.opensuse.org/repositories/home:/greg_hellings:/branches:/home:/entropytuner/Fedora_$releasever/
+    gpgkey: http://download.opensuse.org/repositories/home:/greg_hellings:/branches:/home:/entropytuner/Fedora_$releasever/repodata/repomd.xml.key
   - name: google-chrome
     url: http://dl.google.com/linux/chrome/rpm/stable/$basearch
     gpgcheck: true

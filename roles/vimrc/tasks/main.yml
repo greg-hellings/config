@@ -1,11 +1,3 @@
-- name: install static files (remote)
-  include: remote.yml
-  when: ansible_connection != 'local'
-
-- name: install static files (local)
-  include: local.yml
-  when: ansible_connection == 'local'
-
 - name: ensure vim directory is created
   file:
     dest: "{{ item }}"
@@ -15,6 +7,14 @@
     - "{{ ansible_user_dir }}/.vim/autoload"
     - "{{ ansible_user_dir }}/.vim/bundle"
     - "{{ ansible_user_dir }}/.vim/sessions"
+
+- name: install static files (remote)
+  include: remote.yml
+  when: ansible_connection != 'local'
+
+- name: install static files (local)
+  include: local.yml
+  when: ansible_connection == 'local'
 
 - name: download pathogen
   get_url:

@@ -17,8 +17,6 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_lsb['major_release'] }}.noarch.rpm
-    - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_lsb['major_release'] }}.noarch.rpm
     - HandBrake-cli
     - libaacs
     - git-review

@@ -23,3 +23,4 @@
     state: stopped
     enabled: false
     name: tmp.mount
+  ignore_errors: true

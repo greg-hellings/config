@@ -4,14 +4,14 @@
 - name: setup vagrant
   include: vagrant.yml
 
-- name: install cloud service options
-  include: cloud.yml
-
 - name: install RPMFusion repositories
   include: rpmfusion.yml
 
 - name: install CLI apps
   include: cli.yml
+
+- name: install cloud service options
+  include: cloud.yml
 
 - name: install packer
   include: packer.yml
