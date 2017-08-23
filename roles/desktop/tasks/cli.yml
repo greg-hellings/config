@@ -27,6 +27,8 @@
     - source-to-image
     - python-virtualenv
     - entr
+    - python3-tox
+    - ShellCheck
 
 - name: create blu-ray config directories
   file:
@@ -73,6 +75,10 @@
         - cookiecutter
         - tox
         - sphinx
+        - yamllint
+        - ansible
+        - ansible-lint
+        - flake8
     - name: ansible
       packages:
         - ansible

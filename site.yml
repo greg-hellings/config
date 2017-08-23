@@ -85,6 +85,13 @@
     - docker
     - sword
     - swordweb
+
+- name: xiphos development
+  hosts: xiphos
+  gather_facts: false
+  roles:
+    - sword
+    - xiphos
 # ############################################################################
 # Simple user-land configuration that does not require root access to install
 # but makes my life so much easier! Designed to be run on any system that I
