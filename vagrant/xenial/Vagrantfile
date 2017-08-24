@@ -1,0 +1,5 @@
+require '../shared.rb'
+
+Vagrant.configure('2') do |configure|
+	vm(config, 'ubuntu', 'ubuntu/xenial64')
+end

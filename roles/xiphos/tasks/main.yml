@@ -1,0 +1,23 @@
+- name: install Xiphos
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - biblesync-devel
+    - desktop-file-utils
+    - dbus-glib-devel
+    - docbook-utils
+    - GConf2-devel
+    - gettext
+    - gnome-doc-utils
+    - libglade2-devel
+    - intltool
+    - libgsf-devel
+    - libuuid-devel
+    - rarian-compat
+    - sword-devel
+    - gtk3-devel
+    - webkitgtk4-devel
+    - gtkhtml3-devel
+    - gtk2-devel
