@@ -8,7 +8,7 @@
     - desktop-file-utils
     - dbus-glib-devel
     - docbook-utils
-    - GConfg2-devel
+    - GConf2-devel
     - gettext
     - gnome-doc-utils
     - libglade2-devel
@@ -18,5 +18,6 @@
     - rarian-compat
     - sword-devel
     - gtk3-devel
-    - webktgtk4-devel
+    - webkitgtk4-devel
     - gtkhtml3-devel
+    - gtk2-devel
