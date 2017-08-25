@@ -18,9 +18,19 @@
 # where GUI programs are needed
 # ############################################################################
 - name: configure desktop systems
-  hosts: desktop
+  hosts: cli:gui:dev
   roles:
-    - desktop
+    - cli
+
+- name: configure desktop systems
+  hosts: gui:dev
+  roles:
+    - gui
+
+- name: configure development systems
+  hosts: dev
+  roles:
+    - dev
 
 # ############################################################################
 # Kubernetes and related configurations

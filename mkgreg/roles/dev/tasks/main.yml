@@ -9,12 +9,7 @@
     gpgcheck: "{{ item.gpgcheck | default(false) }}"
     gpgkey: "{{ item.gpgkey | default(omit) }}"
     skip_if_unavailable: "{{ item.skip | default(true) }}"
-  with_items: "{{ gui_repositories }}"
-
-- name: download SpiderOak RPM
-  get_url:
-    url: https://spideroak.com/release/spideroak/rpm_x64
-    dest: /tmp/spideroak.rpm
+  with_items: "{{ repositories }}"
 
 - name: install necessary GUI packages
   become: true
@@ -22,20 +17,5 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - /tmp/spideroak.rpm
-    - vim-X11
-    - google-chrome-stable
-    - gnome-tweak-tool
-    - gnome-shell-extension-*
-    - xchat
-    - polkit-gnome
-    - shutter
-    - virt-manager
-    - HandBrake-gui
     - intellij-idea-community
-    - transmission
-    #- pycharm-community
-    - vlc
-    #- entropypianotuner
-    - NetworkManager-openvpn
-    - NetworkManager-openvpn-gnome
+    - pycharm-community

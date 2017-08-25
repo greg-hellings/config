@@ -1,3 +1,6 @@
+- name: setup repositories
+  include: repositories.yml
+
 - name: setup libvirt
   include: libvirt.yml
 
@@ -15,7 +18,3 @@
 
 - name: install packer
   include: packer.yml
-
-- name: install GUI apps
-  include: gui.yml
-  when: gui

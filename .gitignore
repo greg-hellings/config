@@ -5,3 +5,6 @@ site.retry
 ci
 .idea
 source/*
+*.pyc
+*.pyo
+*.egg-info

@@ -1,0 +1,22 @@
+libvirt_storage: /home/libvirt
+repositories:
+  - name: bnied-packer
+    url: https://copr-be.cloud.fedoraproject.org/results/bnied/packer/fedora-$releasever-$basearch/
+    gpgcheck: true
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/bnied/packer/pubkey.gpg
+  - name: openh264
+    url: https://codecs.fedoraproject.org/openh264/$releasever/$basearch/
+    gpgcheck: true
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
+  - name: fedora-Handbrake
+    url: http://negativo17.org/repos/HandBrake/fedora-$releasever/$basearch/
+    gpgcheck: true
+    gpgkey: http://negativo17.org/repos/RPM-GPG-KEY-slaanesh
+  - name: fedora-Handbrake-source
+    url: http://negativo17.org/repos/HandBrake/fedora-$releasever/SRPMS/
+    gpgcheck: true
+    gpgkey: http://negativo17.org/repos/RPM-GPG-KEY-slaanesh
+  - name: google-cloud-ocamlfuse
+    url: https://copr-be.cloud.fedoraproject.org/results/sergiomb/google-drive-ocamlfuse/fedora-$releasever-$basearch/
+    gpgcheck: true
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/regiomb/google-drive-ocamlfuse/pubkey.gpg

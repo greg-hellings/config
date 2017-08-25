@@ -1,0 +1,12 @@
+- name: install CLI repositories
+  become: true
+  yum_repository:
+    description: A repository
+    name: "{{ item.name }}"
+    baseurl: "{{ item.url | default(omit) }}"
+    mirrorlist: "{{ item.mirrors | default(omit) }}"
+    enabled: true
+    gpgcheck: "{{ item.gpgcheck | default(false) }}"
+    gpgkey: "{{ item.gpgkey | default(omit) }}"
+    skip_if_unavailable: "{{ item.skip | default(true) }}"
+  with_items: "{{ repositories }}"

@@ -1,4 +1,4 @@
-- name: install more CLI repositories
+- name: install rpmfusion repositories
   become: true
   package:
     name: "{{ item }}"

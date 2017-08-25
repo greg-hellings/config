@@ -1,0 +1,4 @@
+self ansible_connection=local
+
+[dev]
+self

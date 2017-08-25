@@ -1,0 +1,9 @@
+repositories:
+  - name: copr-phracek-PyCharmr
+    url: https://copr-be.cloud.fedoraproject.org/results/phracek/PyCharm/fedora-$releasever-$basearch/
+    gpgcheck: true
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/phracek/PyCharm/pubkey.gpg
+  - name: copr-rommon-intellij-idea
+    url: https://copr-be.cloud.fedoraproject.org/results/rommon/intellij-idea/fedora-$releasever-$basearch/
+    gpgcheck: true
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/rommon/intellij-idea/pubkey.gpg

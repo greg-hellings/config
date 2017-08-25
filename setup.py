@@ -21,11 +21,15 @@ setup(
     install_package_data=True,
     install_requires=[
         "ansible>=2.3",
-        "plumbum>=1.6.9"
+        "plumbum>=1.6.0"
     ],
     entry_points={
         'console_scripts': [
-            "mkgreg=mkgreg.bin.mkgreg::mkgreg"
+            "mkgreg-gui=mkgreg.bin.mkgreg:mkgreg_gui",
+            "mkgreg-cli=mkgreg.bin.mkgreg:mkgreg_cli",
+            "mkgreg-dev=mkgreg.bin.mkgreg:mkgreg_dev",
+            "mkgreg-user=mkgreg.bin.mkgreg:mkgreg_user",
+            "mkgreg=mkgreg.bin.mkgreg:mkgreg"
         ]
     }
 )

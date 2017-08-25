@@ -1,0 +1,16 @@
+- name: install Vagrant
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - vagrant
+    - vagrant-sshfs
+    - vagrant-cachier
+    - vagrant-libvirt
+
+# TODO: Figure out how to detect ruby version in order to specify the
+# correct value of the creates= argument to this command
+- name: install Vagrant openstack
+  command: vagrant plugin install vagrant-openstack-provider
+  changed_when: false

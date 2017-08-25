@@ -1,0 +1,14 @@
+- name: install packer
+  become: true
+  package:
+    state: present
+    name: packer
+
+- name: disable tmpfs for /tmp because reasons
+  become: true
+  systemd:
+    masked: true
+    state: stopped
+    enabled: false
+    name: tmp.mount
+  ignore_errors: true

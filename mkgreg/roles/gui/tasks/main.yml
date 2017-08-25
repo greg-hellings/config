@@ -1,0 +1,39 @@
+- name: install repositories
+  become: true
+  yum_repository:
+    description: A repository
+    name: "{{ item.name }}"
+    baseurl: "{{ item.url | default(omit) }}"
+    mirrorlist: "{{ item.mirrors | default(omit) }}"
+    enabled: true
+    gpgcheck: "{{ item.gpgcheck | default(false) }}"
+    gpgkey: "{{ item.gpgkey | default(omit) }}"
+    skip_if_unavailable: "{{ item.skip | default(true) }}"
+  with_items: "{{ repositories }}"
+
+- name: download SpiderOak RPM
+  get_url:
+    url: https://spideroak.com/release/spideroak/rpm_x64
+    dest: /tmp/spideroak.rpm
+
+- name: install necessary GUI packages
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - /tmp/spideroak.rpm
+    - vim-X11
+    - google-chrome-stable
+    - gnome-tweak-tool
+    - gnome-shell-extension-*
+    - xchat
+    - polkit-gnome
+    - shutter
+    - virt-manager
+    - HandBrake-gui
+    - transmission
+    - vlc
+    #- entropypianotuner
+    - NetworkManager-openvpn
+    - NetworkManager-openvpn-gnome
