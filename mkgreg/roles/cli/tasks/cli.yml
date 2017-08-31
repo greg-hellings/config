@@ -16,6 +16,8 @@
     - entr
     - python3-tox
     - ShellCheck
+    - cmake
+    - make
 
 - name: create blu-ray config directories
   file:
