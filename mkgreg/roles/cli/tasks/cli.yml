@@ -76,6 +76,8 @@
         - Pygments
         - cookiecutter
         - ansible
+        - jinja2
+        - jinja2-cli
 
 - name: install Kerberos
   package:
