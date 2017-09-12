@@ -18,6 +18,7 @@
     - ShellCheck
     - cmake
     - make
+    - rpmdevtools
 
 - name: create blu-ray config directories
   file:
