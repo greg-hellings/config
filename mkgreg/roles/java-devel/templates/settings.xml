@@ -53,6 +53,7 @@
 			</activation>
 			<properties>
 				<gpg.executable>gpg2</gpg.executable>
+				<gpg.keyname>greg.hellings@gmail.com</gpg.keyname>
 				<gpg.passphrase>{{ gpg2_passphrase }}</gpg.passphrase>
 			</properties>
 		</profile>

@@ -1,5 +1,0 @@
-- name: upgrade packages
-  become: true
-  package:
-    state: latest
-    name: "*"

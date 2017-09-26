@@ -1,0 +1,30 @@
+- name: install epel-release
+  package:
+    name: epel-release
+    state: present
+  become: true
+  when: ansible_distribution == "CentOS"
+
+- name: install nginx
+  package:
+    name: nginx
+    state: present
+  become: true
+
+- name: install nginx configurations
+  template:
+    src: "{{ item }}"
+    dest: /etc/nginx/conf.d/
+    owner: root
+    group: root
+    mode: 0644
+  with_items: "{{ nginx_configs }}"
+  become: true
+  notify: restart nginx
+
+- name: enable nginx
+  service:
+    name: nginx
+    state: started
+    enabled: true
+  become: true

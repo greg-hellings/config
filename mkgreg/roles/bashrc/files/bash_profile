@@ -4,7 +4,7 @@
 if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
-PATH=$HOME/.local/bin:$HOME/.local/lib/flex/bin:/opt/android-studio/bin:/opt/intellij/bin:/opt/packer:$PATH
+PATH=$HOME/.gem/ruby/2.4.0/gems/travis-1.8.8/bin:/$HOME/.local/bin:$HOME/.local/lib/flex/bin:/opt/android-studio/bin:/opt/intellij/bin:/opt/packer:$PATH
 
 
 export PATH

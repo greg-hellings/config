@@ -1,9 +1,0 @@
-- name: restart kubernetes
-  become: true
-  service:
-    name: "{{ item }}"
-    state: restarted
-  with_items:
-    - kube-apiserver
-    - kube-controller-manager
-    - kube-scheduler

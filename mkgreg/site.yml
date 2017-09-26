@@ -7,12 +7,6 @@
     - common
     - mounts
 
-- name: prepare for openshift
-  hosts: OSEv3
-  gather_facts: false
-  roles:
-    - ose_warmup
-
 # ############################################################################
 # Personal desktop configuration, for use on systems that I administrate, and
 # where GUI programs are needed
@@ -30,36 +24,15 @@
 - name: configure development systems
   hosts: dev
   roles:
+    - packaging
+    - java-devel
     - dev
 
-# ############################################################################
-# Kubernetes and related configurations
-# ############################################################################
-#- name: etcd needs to be up before kubernetes
-#  hosts: etcd
-#  gather_facts: false
-#  roles:
-#    - etcd
-
-- name: install kubernetes masters to configure system
-  hosts: kubernetes_master
+- name: configure webserver
+  hosts: webserver
   roles:
-    - kubernetes-master
+    - webserver
 
-- name: configure kubernetes slaves
-  hosts: kubernetes_slave
-  roles:
-    - kubernetes-slave
-
-- name: install kubernetes client configuration
-  hosts: kubernetes_master:kubernetes_slave:kubernetes_client
-  roles:
-    - kubernetes-client
-
-- name: install kubernetes containers and other apps
-  hosts: kubernetes_master[0]
-  roles:
-    - kubernetes-containers
 # ############################################################################
 # Development machines, designed to be spun up in local VMs
 # ############################################################################
@@ -112,6 +85,6 @@
   roles:
     - vimrc
     - bashrc
-    - gitconfig
     - private_files
     - cleanup
+    - gitconfig

@@ -33,7 +33,7 @@ def ansible(config)
 	config.vm.provision :ansible do |ansible|
 		ansible.limit = "all"
 		ansible.verbose = "-v"
-		ansible.playbook = "../../site.yml"
+		ansible.playbook = "../../mkgreg/site.yml"
 		yield ansible if block_given?
 	end
 end

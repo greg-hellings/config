@@ -1,5 +1,0 @@
-- name: restart flanneld
-  become: true
-  service:
-    name: flanneld
-    state: restarted

@@ -27,7 +27,7 @@
     - google-chrome-stable
     - gnome-tweak-tool
     - gnome-shell-extension-*
-    - xchat
+    - hexchat
     - polkit-gnome
     - shutter
     - virt-manager

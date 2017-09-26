@@ -34,25 +34,25 @@
         #dest: "{{ ansible_user_dir }}/.config/aacs"
     #force: true
 
-- name: download bdplus archive
-  get_url:
-    url: http://www.labdv.com/aacs/libbdplus/bdplus-vm0.bz2
-    dest: "{{ ansible_user_dir }}/.config/"
-    force: true
+        #- name: download bdplus archive
+        #  get_url:
+        #    url: http://www.labdv.com/aacs/libbdplus/bdplus-vm0.bz2
+        #    dest: "{{ ansible_user_dir }}/.config/"
+        #    force: true
 
-- name: extract archive
-  shell: tar xaf bdplus-vm0.bz2
-  args:
-    creates: "{{ ansible_user_dir }}/.config/bdplus"
-    chdir: "{{ ansible_user_dir }}/.config"
+        #- name: extract archive
+        #  shell: tar xaf bdplus-vm0.bz2
+        #  args:
+        #    creates: "{{ ansible_user_dir }}/.config/bdplus"
+        #    chdir: "{{ ansible_user_dir }}/.config"
 
-- name: set ownership on files
-  file:
-    dest: "{{ item }}"
-    recurse: true
-  with_items:
-    - "{{ ansible_user_dir }}/.config/bdplus"
-    - "{{ ansible_user_dir }}/.config/aacs"
+        #- name: set ownership on files
+        #  file:
+        #    dest: "{{ item }}"
+        #    recurse: true
+        #  with_items:
+        #    - "{{ ansible_user_dir }}/.config/bdplus"
+        #    - "{{ ansible_user_dir }}/.config/aacs"
 
 - name: create python virtualenv packages
   pip:
@@ -79,6 +79,7 @@
         - ansible
         - jinja2
         - jinja2-cli
+        - pyp2rpm
 
 - name: install Kerberos
   package:

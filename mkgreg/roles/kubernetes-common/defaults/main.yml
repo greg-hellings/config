@@ -1,4 +1,0 @@
-etcd_port: 2379
-kubernetes_private_ip: "{{ ansible_eth0['ipv4_secondaries'][0]['address'] }}"
-kubelet_port: 10250
-kubernetes_server_port: 8080

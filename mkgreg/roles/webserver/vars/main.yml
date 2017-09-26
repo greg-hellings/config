@@ -1,0 +1,2 @@
+nginx_configs:
+  - 0000_allegrodfw.com.conf

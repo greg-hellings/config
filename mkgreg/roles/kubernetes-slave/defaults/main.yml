@@ -1,2 +1,0 @@
-kubernetes_api_server: http://{{ hostvars[groups['kubernetes_master'][0]]['kubernetes_private_ip'] }}:{{ kubernetes_server_port }}
-kubelet_hostname: "{{ inventory_hostname }}"
