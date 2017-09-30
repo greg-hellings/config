@@ -19,6 +19,7 @@
     - cmake
     - make
     - rpmdevtools
+    - libdvdcss
 
 - name: create blu-ray config directories
   file:

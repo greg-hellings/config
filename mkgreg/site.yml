@@ -12,7 +12,7 @@
 # where GUI programs are needed
 # ############################################################################
 - name: configure desktop systems
-  hosts: cli:gui:dev
+  hosts: cli:gui:dev:mythtv
   roles:
     - cli
 
@@ -24,6 +24,7 @@
 - name: configure development systems
   hosts: dev
   roles:
+    - docker
     - packaging
     - java-devel
     - dev
@@ -33,6 +34,12 @@
   roles:
     - webserver
 
+- name: configure mythtv
+  hosts: mythtv
+  roles:
+    - role: mythtv
+      tags:
+        - mythtv
 # ############################################################################
 # Development machines, designed to be spun up in local VMs
 # ############################################################################

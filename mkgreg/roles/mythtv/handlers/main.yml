@@ -1,0 +1,11 @@
+- name: extract Hauppage firmware
+  command: unzip -j HVR-950.zip Driver85/hcw85bda.sys chdir={{ ansible_user_dir }}
+  notify: run extract
+
+- name: run extract
+  shell: /usr/src/kernels/`uname -r`/scripts/extract_xc3028.pl
+  notify: copy firmware
+
+- name: copy firmware
+  become: true
+  command: cp {{ ansible_user_dir }}/xc3028-v27.fw /lib/firmware

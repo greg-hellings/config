@@ -6,3 +6,4 @@
   with_items:
     - http://download1.rpmfusion.org/free/{{ (ansible_distribution == 'Fedora') | ternary('fedora', 'el') }}/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
     - http://download1.rpmfusion.org/nonfree/{{ (ansible_distribution == 'Fedora') | ternary('fedora', 'el') }}/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
+    - http://rpm.livna.org/livna-release.rpm
