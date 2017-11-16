@@ -10,3 +10,5 @@
     gpgkey: "{{ item.gpgkey | default(omit) }}"
     skip_if_unavailable: "{{ item.skip | default(true) }}"
   with_items: "{{ repositories }}"
+  tags:
+    - config

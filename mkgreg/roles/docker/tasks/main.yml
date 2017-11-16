@@ -9,6 +9,8 @@
     name: docker
     state: present
   become: true
+  tags:
+    - config
 
 - name: add current user to docker group
   user:
@@ -17,3 +19,5 @@
     append: true
     state: present
   become: true
+  tags:
+    - config

@@ -12,3 +12,5 @@
     enabled: false
     name: tmp.mount
   ignore_errors: true
+  tags:
+    - config

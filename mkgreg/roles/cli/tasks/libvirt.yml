@@ -16,6 +16,8 @@
     group: root
     mode: 0711
     state: directory
+  tags:
+    - config
 
 - name: configure libvirt storage
   become: true
@@ -27,6 +29,8 @@
     mode: 0755
   check_mode: true
   register: check
+  tags:
+    - config
 
 - name: create libvirt config directory
   become: true
@@ -37,6 +41,8 @@
     mode: 0755
     state: directory
   when: check|changed
+  tags:
+    - config
 
 - name: make sure libvirt is stopped
   become: true
@@ -44,6 +50,8 @@
     name: libvirtd
     state: stopped
   when: check|changed
+  tags:
+    - config
 
 - name: configure libvirt storage
   become: true
@@ -53,6 +61,8 @@
     owner: root
     group: root
     mode: 0755
+  tags:
+    - config
 
 - name: start and enable libvirtd
   become: true
@@ -60,6 +70,8 @@
     name: libvirtd
     state: started
     enabled: true
+  tags:
+    - config
 
 - name: add current user to libvirt group
   become: true
@@ -67,3 +79,5 @@
     name: "{{ ansible_user_id }}"
     append: true
     groups: libvirt
+  tags:
+    - config

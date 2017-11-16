@@ -16,3 +16,5 @@
     name: vagrant
     groups: mock
     append: true
+  tags:
+    - config

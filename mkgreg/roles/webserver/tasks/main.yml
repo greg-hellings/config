@@ -21,6 +21,8 @@
   with_items: "{{ nginx_configs }}"
   become: true
   notify: restart nginx
+  tags:
+    - config
 
 - name: enable nginx
   service:
@@ -28,3 +30,5 @@
     state: started
     enabled: true
   become: true
+  tags:
+    - config
