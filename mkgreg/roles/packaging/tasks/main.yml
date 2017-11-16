@@ -8,6 +8,7 @@
     - fedora-packager
     - fedora-review
     - mock
+    - fedrepo-req
 
 - name: setup user for mock
   become: true

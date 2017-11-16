@@ -16,7 +16,3 @@ repositories:
     url: http://negativo17.org/repos/HandBrake/fedora-$releasever/SRPMS/
     gpgcheck: true
     gpgkey: http://negativo17.org/repos/RPM-GPG-KEY-slaanesh
-  - name: google-cloud-ocamlfuse
-    url: https://copr-be.cloud.fedoraproject.org/results/sergiomb/google-drive-ocamlfuse/fedora-$releasever-$basearch/
-    gpgcheck: true
-    gpgkey: https://copr-be.cloud.fedoraproject.org/results/regiomb/google-drive-ocamlfuse/pubkey.gpg
