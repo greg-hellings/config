@@ -20,6 +20,7 @@
     - make
     - rpmdevtools
     - libdvdcss
+    - golang
 
 - name: create blu-ray config directories
   file:
@@ -81,6 +82,8 @@
         - jinja2
         - jinja2-cli
         - pyp2rpm
+        - jenkins-job-builder
+        - zerotk.jenkins-job-builder-pipeline
 
 - name: install Kerberos
   package:
