@@ -82,8 +82,7 @@
         - jinja2
         - jinja2-cli
         - pyp2rpm
-        - jenkins-job-builder
-        - zerotk.jenkins-job-builder-pipeline
+        - jenkins-job-builder==2.0.0.0b2
 
 - name: install Kerberos
   package:
