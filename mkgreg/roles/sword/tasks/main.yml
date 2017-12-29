@@ -13,3 +13,5 @@
     - autoconf
     - libtool
     - cmake
+    - swig
+    - libz-devel
