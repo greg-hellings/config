@@ -28,6 +28,8 @@
     - packaging
     - java-devel
     - dev
+    - sword
+    - cinch
 
 - name: configure webserver
   hosts: webserver
