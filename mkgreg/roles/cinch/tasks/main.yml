@@ -20,11 +20,6 @@
   with_items:
     - ipython
 
-- name: copy in bash_local file
-  template:
-    src: bash_local
-    dest: "{{ ansible_user_dir }}/.bash_local"
-
 - name: install released versions to new virtualenvs
   pip:
     virtualenv: "{{ ansible_user_dir }}/venv/{{ item }}"
@@ -37,6 +32,8 @@
     - 0.5.1
     - 0.6.0
     - 0.7.0
+    - 0.8.0
+    - 0.9.0
 
 - name: start and enable docker
   become: true
