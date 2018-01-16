@@ -21,6 +21,7 @@
     - rpmdevtools
     - libdvdcss
     - golang
+    - dnf-command(system-upgrade)
 
 - name: create blu-ray config directories
   file:

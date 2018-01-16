@@ -23,4 +23,5 @@
     - pycharm-community
     - swig
     - libicu-devel
-    - libz-devel
+    - zlib-devel
+    - subversion
