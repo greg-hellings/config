@@ -13,7 +13,7 @@
 - name: setup user for mock
   become: true
   user:
-    name: vagrant
+    name: "{{ mock_user }}"
     groups: mock
     append: true
   tags:

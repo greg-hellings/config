@@ -21,6 +21,3 @@
   with_items:
     - intellij-idea-community
     - pycharm-community
-    - swig
-    - libicu-devel
-    - libz-devel
