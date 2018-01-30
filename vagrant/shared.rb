@@ -10,7 +10,7 @@ def local_setup(node, base_box)
 	node.vm.synced_folder "../..", "/home/vagrant/dev", type: "sshfs", sshfs_opts_append: "-o idmap=user"
 end
 
-def vm(config, name, base_box='fedora/26-cloud-base')
+def vm(config, name, base_box='fedora/27-cloud-base')
     config.vm.define name do |node|
 		node.vm.provider :libvirt do |libvirt, override|
 			local_setup(override, base_box)
