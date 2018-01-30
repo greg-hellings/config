@@ -1,0 +1,25 @@
+- name: install package
+  become: true
+  dnf:
+    name: "{{ packages | join(',') }}"
+    state: present
+    enablerepo: fedora-debuginfo,updates-debuginfo,updates-testing,updates-testing-debuginfo
+
+- name: fetch version
+  command: rpm -qv --qf '%{VERSION}' mingw32-sword
+  register: rpm_version
+
+- name: register version
+  set_fact:
+    sword_version: "{{ rpm_version.stdout.strip() }}"
+    download_dest: "{{ inventory_dir }}/../../../../"
+
+- name: do the thing
+  include: arch.yml copy_files={{ outer_item.copy_files }} arch={{ outer_item.name }}
+  with_items:
+    - name: i686
+      copy_files: "{{ copy_files_i686 }}"
+    - name: x86_64
+      copy_files: "{{ copy_files_x86_64 }}"
+  loop_control:
+    loop_var: outer_item

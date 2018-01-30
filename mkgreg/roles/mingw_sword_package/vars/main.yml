@@ -1,0 +1,75 @@
+icu_version: 57
+builds:
+  - debug
+  - release
+packages:
+  - mingw32-sword
+  - mingw32-sword-debuginfo
+  - mingw64-sword
+  - mingw64-sword-debuginfo
+  - mingw32-gdb
+  - mingw64-gdb
+  - zip
+  - mingw32-openssl-debuginfo
+  - mingw64-openssl-debuginfo
+  - mingw32-zlib-debuginfo
+  - mingw64-zlib-debuginfo
+  - mingw32-curl-debuginfo
+  - mingw64-curl-debuginfo
+  - mingw32-clucene-debuginfo
+  - mingw64-clucene-debuginfo
+  - mingw32-icu-debuginfo
+  - mingw64-icu-debuginfo
+  - mingw32-gettext-debuginfo
+  - mingw64-gettext-debuginfo
+  - mingw32-gcc-debuginfo
+  - mingw64-gcc-debuginfo
+  - mingw32-gcc-c++-debuginfo
+  - mingw64-gcc-c++-debuginfo
+  - mingw32-win-iconv-debuginfo
+  - mingw64-win-iconv-debuginfo
+  - mingw32-libssh2-debuginfo
+  - mingw64-libssh2-debuginfo
+  - mingw32-libgnurx-debuginfo
+  - mingw64-libgnurx-debuginfo
+files:
+  - imp2ld.exe
+  - addld.exe
+  - mod2zmod.exe
+  - imp2gbs.exe
+  - xml2gbs.exe
+  - imp2vs.exe
+  - vpl2mod.exe
+  - mkfastmod.exe
+  - mod2vpl.exe
+  - tei2mod.exe
+  - osis2mod.exe
+  - mod2osis.exe
+  - mod2imp.exe
+  - installmgr.exe
+  - diatheke.exe
+  - vs2osisreftxt.exe
+  - uconv.exe
+  - icui18n{{ icu_version }}.dll
+  - icuuc{{ icu_version }}.dll
+  - icudata{{ icu_version }}.dll
+  - libclucene-core.dll
+  - libclucene-shared.dll
+  - libsword.dll
+  - libcurl-4.dll
+  - libgnurx-0.dll
+  - zlib1.dll
+  - libssh2-1.dll
+  - libintl-8.dll
+  - libcrypto-10.dll
+  - libssl-10.dll
+  - iconv.dll
+copy_files_i686:
+  - libgcc_s_sjlj-1.dll
+  - libstdc++-6.dll
+copy_files_x86_64:
+  - libgcc_s_seh-1.dll
+  - libstdc++-6.dll
+debug_files:
+  - libexpat-1.dll
+  - gdb.exe

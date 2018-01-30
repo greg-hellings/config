@@ -8,3 +8,4 @@ source/*
 *.pyc
 *.pyo
 *.egg-info
+vagrant/mingw_sword_package/*zip
