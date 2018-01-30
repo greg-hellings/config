@@ -1,5 +1,4 @@
-# .bash_shared
-
+#!/usr/bin/bash .bash_shared
 export JAVA_HOME=/etc/alternatives/java_sdk/
 export MAVEN_OPTS=" -Dmaven.wagon.http.ssl.insecure=true"
 export MAVEN_OPTS
@@ -45,13 +44,12 @@ function parse_git_branch {
         echo " ("${ref#refs/heads/}")"
 }
 
-function swordmerge {
+function swordtag {
     if [ x"$1" == "x" ]; then
-        echo "Please provide revision"
+        echo "Please provide tag version"
         return
     fi
-    svn merge -c r${1} ^/trunk || return
-    svn ci && svn up
+    svn cp http://crosswire.org/svn/sword/branches/sword-1-8-x/ http://crosswire.org/svn/sword/tags/sword-$1/
 }
 
 function newdock {

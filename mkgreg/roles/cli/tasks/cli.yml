@@ -21,6 +21,7 @@
     - rpmdevtools
     - libdvdcss
     - golang
+    - rubygem-gem2rpm
     - dnf-command(system-upgrade)
 
 - name: create blu-ray config directories
