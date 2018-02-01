@@ -1,0 +1,4 @@
+- name: install python2-dnf
+  become: true
+  shell: dnf install -y python2-dnf creates=/usr/lib/python2.7/site-packages/dnf
+  when: ansible_distribution == 'Fedora'

@@ -1,9 +1,14 @@
 # ############################################################################
 # Preliminary stuff that all the hosts need
 # ############################################################################
-- name: mounts
+- name: python2-dnf is needed
+  gather_facts: false
   hosts: all:!noadmin
   roles:
+    - dnf
+
+- name: most baseline things
+  hosts: all:!noadmin:!mingw_sword_package
     - common
     - mounts
 
@@ -17,6 +22,7 @@
     - cli
 
 - name: configure desktop systems
+  gather_facts: false
   hosts: gui:dev
   roles:
     - gui
@@ -38,6 +44,7 @@
     - webserver
 
 - name: configure mythtv
+  gather_facts: false
   hosts: mythtv
   roles:
     - role: mythtv

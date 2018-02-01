@@ -22,7 +22,15 @@
     - libdvdcss
     - golang
     - rubygem-gem2rpm
+
+- name: install dnf tools on Fedora
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
     - dnf-command(system-upgrade)
+  when: ansible_pkg_mgr == 'Fedora'
 
 - name: create blu-ray config directories
   file:
