@@ -5,7 +5,7 @@ $ip = 2
 
 def local_setup(node, base_box)
 	node.vm.box = base_box
-	node.vm.network "private_network", ip: "192.168.8.#{$ip}", netmask: "255.255.255.0"
+	node.vm.network "private_network", ip: "192.168.8.#{$ip}", netmask: "255.255.255.0", libvirt__guest_ipv6: 'yes'
 	$ip += 1
 	node.vm.synced_folder "../..", "/home/vagrant/dev", type: "sshfs", sshfs_opts_append: "-o idmap=user"
 end
@@ -14,6 +14,8 @@ def vm(config, name, base_box='fedora/27-cloud-base')
     config.vm.define name do |node|
 		node.vm.provider :libvirt do |libvirt, override|
 			local_setup(override, base_box)
+			libvirt.memory = 4096
+			libvirt.cpus = 2
 		end
 		node.vm.provider :virtualbox do |virtualbox, override|
 			local_setup(override, base_box)
