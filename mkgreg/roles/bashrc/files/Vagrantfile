@@ -20,6 +20,8 @@ def get_image(base_box)
 		return 'Fedora-Cloud-Base-25-compose-latest'
 	elsif base_box == 'fedora/24-cloud-base'
 		return 'Fedora-Cloud-Base-24-compose-latest'
+	elsif base_box == 'fedora/27-cloud-base'
+		return 'Fedora-Cloud-Base-27-1.6'
 	end
 end
 
