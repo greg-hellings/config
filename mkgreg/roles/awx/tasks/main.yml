@@ -1,0 +1,56 @@
+- name: start docker service
+  become: true
+  service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: install nodejs6 repo
+  become: true
+  yum_repository:
+    name: nodejs6-lts
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/greghellings/nodejs-lts/fedora-$releasever-$basearch/
+    gpgcheck: true
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/greghellings/nodejs-lts/pubkey.gpg
+    repo_gpgcheck: false
+    enabled: true
+    skip_if_unavailable: true
+    async: true
+    description: COPR repo for LTS versions of NodeJS
+
+- name: install dependencies
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ packages }}"
+
+- name: update ulimits
+  become: true
+  template:
+    src: 20-derp.conf
+    dest: /etc/security/limits.d/20-derp.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: clone awx repo
+  git:
+    repo: https://github.com/ansible/awx
+    dest: "{{ ansible_user_dir }}/awx"
+    version: 1.0.3
+
+- name: copy settings
+  copy:
+    remote_src: true
+    src: "{{ ansible_user_dir }}/awx/awx/settings/local_settings.py.docker_compose"
+    dest: "{{ ansible_user_dir }}/awx/awx/settings/local_settings.py"
+
+- name: build docker-compose targets
+  command: make "{{ item }}"
+  args:
+    chdir: "{{ ansible_user_dir }}/awx/"
+  with_items:
+    - docker-compose-build
+    - ui-devel
+    - docker-compose

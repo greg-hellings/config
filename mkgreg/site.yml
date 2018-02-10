@@ -2,7 +2,6 @@
 # Preliminary stuff that all the hosts need
 # ############################################################################
 - name: python2-dnf is needed
-  gather_facts: false
   hosts: all:!noadmin
   roles:
     - dnf
@@ -98,6 +97,14 @@
   gather_facts: false
   roles:
     - mingw_sword_package
+
+- name: awx development
+  hosts: awx-development
+  gather_facts: false
+  roles:
+    - docker
+    - ansible_deps
+    - awx
 # ############################################################################
 # Simple user-land configuration that does not require root access to install
 # but makes my life so much easier! Designed to be run on any system that I
