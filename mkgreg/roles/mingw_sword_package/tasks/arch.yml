@@ -41,7 +41,6 @@
   shell: zip "{{ target_file }}-{{ item }}.zip" *
   args:
     chdir: "{{ target }}/{{ item }}"
-    creates: "{{ target_file }}-{{ item }}.zip"
   with_items: "{{ builds }}"
 
 - name: fetch results

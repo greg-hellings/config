@@ -8,6 +8,7 @@
 - name: fetch version
   command: rpm -qv --qf '%{VERSION}' mingw32-sword
   register: rpm_version
+  changed_when: false
 
 - name: register version
   set_fact:
@@ -18,8 +19,8 @@
   include: arch.yml copy_files={{ outer_item.copy_files }} arch={{ outer_item.name }}
   with_items:
     - name: i686
-      copy_files: "{{ copy_files_i686 }}"
+      copy_files: "{{ copy_files_all + copy_files_i686 }}"
     - name: x86_64
-      copy_files: "{{ copy_files_x86_64 }}"
+      copy_files: "{{ copy_files_all + copy_files_x86_64 }}"
   loop_control:
     loop_var: outer_item
