@@ -40,6 +40,7 @@ packages:
 files:
   - addld.exe
   - diatheke.exe
+  - emptyvss.exe
   - imp2gbs.exe
   - imp2ld.exe
   - imp2vs.exe
