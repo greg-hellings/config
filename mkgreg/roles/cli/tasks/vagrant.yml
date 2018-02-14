@@ -8,3 +8,4 @@
     - vagrant-sshfs
     - vagrant-cachier
     - vagrant-libvirt
+    - vagrant-openstack-provider
