@@ -73,7 +73,7 @@ function pyenv {
 }
 
 function py3env {
-    pyvenv ~/venv/${1}
+    python3 -m venv ~/venv/${1}
 }
 
 function unknown_host {
