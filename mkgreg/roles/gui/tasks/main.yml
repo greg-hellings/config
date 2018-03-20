@@ -6,9 +6,8 @@
 - name: install necessary GUI packages
   become: true
   package:
-    name: "{{ item }}"
+    name: "{{ gui_packages | join(',') }}"
     state: present
-  with_items: "{{ packages }}"
 
 - name: create Chrome kerberos paths
   file:

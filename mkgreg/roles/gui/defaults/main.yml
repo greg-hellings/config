@@ -13,7 +13,7 @@ gui_repositories:
   - name: google-talkplugin
     url: http://dl.google.com/linux/talkplugin/rpm/stable/x86_64/
     gpgcheck: true
-packages:
+gui_packages:
   - /tmp/spideroak.rpm
   - vim-X11
   - google-chrome-stable
