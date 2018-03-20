@@ -1,9 +1,3 @@
-- name: install packer
-  become: true
-  package:
-    state: present
-    name: packer
-
 - name: disable tmpfs for /tmp because reasons
   become: true
   systemd:

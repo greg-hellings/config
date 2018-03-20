@@ -1,13 +1,3 @@
-- name: install libvirt
-  become: true
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - libvirt
-    - qemu-kvm
-    - seabios-bin
-
 - name: create image storage
   become: true
   file:

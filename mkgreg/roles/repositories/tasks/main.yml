@@ -12,6 +12,6 @@
     skip_if_unavailable: "{{ item.skip | default(true) }}"
     exclude: "{{ item.exclude | default(omit) }}"
     repo_gpgcheck: "{{ item.repo_gpgcheck | default(omit) }}"
-  with_items: "{{ raw_repos }}"
+  with_items: "{{ repositories }}"
   tags:
     - config

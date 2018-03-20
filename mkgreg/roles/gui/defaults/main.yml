@@ -1,4 +1,4 @@
-repositories:
+gui_repositories:
   - name: bluejeans
     url: https://swdl.bluejeans.com/repos/bluejeans/x86_64/release/rpm
     gpgcheck: true

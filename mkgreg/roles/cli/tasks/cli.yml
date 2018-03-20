@@ -1,28 +1,8 @@
 - name: install CLI packages
   become: true
   package:
-    name: "{{ item }}"
+    name: "{{ cli_packages | join(',') }}"
     state: present
-  with_items:
-    - HandBrake-cli
-    - libaacs
-    - git-review
-    - jq
-    - python3-flake8
-    - gnupg2
-    - origin-clients
-    - source-to-image
-    - python-virtualenv
-    - entr
-    - python3-tox
-    - ShellCheck
-    - cmake
-    - make
-    - rpmdevtools
-    - http://rpm.livna.org/livna-release.rpm
-    - libdvdcss
-    - golang
-    - rubygem-gem2rpm
 
 - name: install dnf tools on Fedora
   become: true

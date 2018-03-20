@@ -1,5 +1,5 @@
 libvirt_storage: /home/libvirt
-repositories:
+cli_repositories:
   - name: bnied-packer
     url: https://copr-be.cloud.fedoraproject.org/results/bnied/packer/fedora-$releasever-$basearch/
     gpgcheck: true
@@ -38,3 +38,35 @@ repositories:
     gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
     gpgcheck: true
     repo_gpgcheck: false
+cli_packages:
+  - HandBrake-cli
+  - libaacs
+  - git-review
+  - jq
+  - python3-flake8
+  - gnupg2
+  - origin-clients
+  - source-to-image
+  - python-virtualenv
+  - entr
+  - python3-tox
+  - ShellCheck
+  - cmake
+  - make
+  - rpmdevtools
+  - http://rpm.livna.org/livna-release.rpm
+  - libdvdcss
+  - golang
+  - rubygem-gem2rpm
+  # Related to libvirt packages
+  - libvirt
+  - qemu-kvm
+  - seabios-bin
+  # packer
+  - packer
+  # vagrant and its helpers
+  - vagrant
+  - vagrant-sshfs
+  - vagrant-cachier
+  - vagrant-libvirt
+  - vagrant-openstack-provider
