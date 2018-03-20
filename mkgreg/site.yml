@@ -8,6 +8,7 @@
 
 - name: most baseline things
   hosts: all:!noadmin:!mingw_sword_package
+  roles:
     - common
     - mounts
 
@@ -16,13 +17,13 @@
 # where GUI programs are needed
 # ############################################################################
 - name: configure desktop systems
-  hosts: cli:gui:dev:mythtv
+  hosts: cli:desktop:dev:mythtv
   roles:
     - cli
 
 - name: configure desktop systems
   gather_facts: false
-  hosts: gui:dev
+  hosts: desktop:dev
   roles:
     - gui
 

@@ -20,6 +20,7 @@
     - mlocate
     - screen
     - patch
+    - openssh-server
 
 - name: disable selinux
   become: true

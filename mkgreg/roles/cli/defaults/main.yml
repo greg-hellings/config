@@ -9,10 +9,32 @@ repositories:
     gpgcheck: true
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
   - name: fedora-Handbrake
-    url: http://negativo17.org/repos/HandBrake/fedora-$releasever/$basearch/
+    url: http://negativo17.org/repos/multimedia/fedora-$releasever/$basearch/
     gpgcheck: true
     gpgkey: http://negativo17.org/repos/RPM-GPG-KEY-slaanesh
   - name: fedora-Handbrake-source
-    url: http://negativo17.org/repos/HandBrake/fedora-$releasever/SRPMS/
+    url: http://negativo17.org/repos/multimedia/fedora-$releasever/SRPMS/
     gpgcheck: true
     gpgkey: http://negativo17.org/repos/RPM-GPG-KEY-slaanesh
+    enabled: false
+  - name: rpmfusion-free
+    metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
+    gpgcheck: true
+    repo_gpgcheck: false
+    exclude: avidemux
+  - name: rpmfusion-free-updates
+    metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
+    gpgcheck: true
+    repo_gpgcheck: false
+  - name: rpmfusion-nonfree
+    metalink: https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-$releasever&arch=$basearch
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
+    gpgcheck: true
+    repo_gpgcheck: false
+  - name: rpmfusion-nonfree-updates
+    metalink: https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-released-$releasever&arch=$basearch
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
+    gpgcheck: true
+    repo_gpgcheck: false

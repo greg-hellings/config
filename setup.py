@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="mkgreg",
-    version="1.2",
+    version="1.3",
     description="Making Greg's systems awesome",
     long_description="A set of scripts and Ansible playbooks to make Greg's" +
                      " systems awesome",
@@ -20,7 +20,7 @@ setup(
     packages=find_packages(exclude=("library", "bin")),
     install_package_data=True,
     install_requires=[
-        "ansible>=2.3",
+        "ansible>=2.4",
         "plumbum>=1.6.0"
     ],
     entry_points={

@@ -4,11 +4,29 @@ repositories:
     gpgcheck: true
     gpgkey: https://swdl.bluejeans.com/repos/bluejeans/bjn-key
   - name: entropypianotuner
-    url: http://download.opensuse.org/repositories/home:/greg_hellings:/branches:/home:/entropytuner/Fedora_$releasever/
-    gpgkey: http://download.opensuse.org/repositories/home:/greg_hellings:/branches:/home:/entropytuner/Fedora_$releasever/repodata/repomd.xml.key
+    url: https://copr-be.cloud.fedoraproject.org/results/greghellings/EntropyPianoTuner/fedora-$releasever-$basearch/
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/greghellings/EntropyPianoTuner/pubkey.gpg
+    gpgcheck: true
   - name: google-chrome
     url: http://dl.google.com/linux/chrome/rpm/stable/$basearch
     gpgcheck: true
   - name: google-talkplugin
     url: http://dl.google.com/linux/talkplugin/rpm/stable/x86_64/
     gpgcheck: true
+packages:
+  - /tmp/spideroak.rpm
+  - vim-X11
+  - google-chrome-stable
+  - gnome-tweak-tool
+  - gnome-shell-extension-*
+  - hexchat
+  - polkit-gnome
+  - shutter
+  - virt-manager
+  - HandBrake-gui
+  - transmission
+  - vlc
+  - entropypianotuner
+  - NetworkManager-openvpn
+  - NetworkManager-openvpn-gnome
+  - avidemux-gui

@@ -1,18 +1,3 @@
-- name: install repositories
-  become: true
-  yum_repository:
-    description: A repository
-    name: "{{ item.name }}"
-    baseurl: "{{ item.url | default(omit) }}"
-    mirrorlist: "{{ item.mirrors | default(omit) }}"
-    enabled: true
-    gpgcheck: "{{ item.gpgcheck | default(false) }}"
-    gpgkey: "{{ item.gpgkey | default(omit) }}"
-    skip_if_unavailable: "{{ item.skip | default(true) }}"
-  with_items: "{{ repositories }}"
-  tags:
-    - config
-
 - name: download SpiderOak RPM
   get_url:
     url: https://spideroak.com/release/spideroak/rpm_x64
@@ -23,23 +8,7 @@
   package:
     name: "{{ item }}"
     state: present
-  with_items:
-    - /tmp/spideroak.rpm
-    - vim-X11
-    - google-chrome-stable
-    - gnome-tweak-tool
-    - gnome-shell-extension-*
-    - hexchat
-    - polkit-gnome
-    - shutter
-    - virt-manager
-    - HandBrake-gui
-    - transmission
-    - vlc
-    #- entropypianotuner
-    - NetworkManager-openvpn
-    - NetworkManager-openvpn-gnome
-    - avidemux
+  with_items: "{{ packages }}"
 
 - name: create Chrome kerberos paths
   file:

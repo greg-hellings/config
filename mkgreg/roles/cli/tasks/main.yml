@@ -1,14 +1,8 @@
-- name: setup repositories
-  include: repositories.yml
-
 - name: setup libvirt
   include: libvirt.yml
 
 - name: setup vagrant
   include: vagrant.yml
-
-- name: install RPMFusion repositories
-  include: rpmfusion.yml
 
 - name: install CLI apps
   include: cli.yml

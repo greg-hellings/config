@@ -19,6 +19,7 @@
     - cmake
     - make
     - rpmdevtools
+    - http://rpm.livna.org/livna-release.rpm
     - libdvdcss
     - golang
     - rubygem-gem2rpm

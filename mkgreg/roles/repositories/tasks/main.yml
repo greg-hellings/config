@@ -1,14 +1,17 @@
-- name: install CLI repositories
+- name: install repositories
   become: true
   yum_repository:
     description: A repository
     name: "{{ item.name }}"
     baseurl: "{{ item.url | default(omit) }}"
     mirrorlist: "{{ item.mirrors | default(omit) }}"
-    enabled: true
+    metalink: "{{ item.metalink | default(omit) }}"
+    enabled: "{{ item.enabled | default(true) }}"
     gpgcheck: "{{ item.gpgcheck | default(false) }}"
     gpgkey: "{{ item.gpgkey | default(omit) }}"
     skip_if_unavailable: "{{ item.skip | default(true) }}"
-  with_items: "{{ repositories }}"
+    exclude: "{{ item.exclude | default(omit) }}"
+    repo_gpgcheck: "{{ item.repo_gpgcheck | default(omit) }}"
+  with_items: "{{ raw_repos }}"
   tags:
     - config
