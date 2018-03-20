@@ -1,0 +1,10 @@
+common_packages:
+  - vim
+  - gcc-c++
+  - git
+  - redhat-rpm-config
+  - libselinux-python
+  - mlocate
+  - screen
+  - patch
+  - openssh-server
