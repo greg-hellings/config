@@ -1,9 +1,9 @@
 libvirt_storage: /home/libvirt
 cli_repositories:
-  - name: bnied-packer
-    url: https://copr-be.cloud.fedoraproject.org/results/bnied/packer/fedora-$releasever-$basearch/
+  - name: greghellings-packer
+    url: https://copr-be.cloud.fedoraproject.org/results/greghellings/Packer/fedora-$releasever-$basearch/
     gpgcheck: true
-    gpgkey: https://copr-be.cloud.fedoraproject.org/results/bnied/packer/pubkey.gpg
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/greghellings/Packer/pubkey.gpg
   - name: openh264
     url: https://codecs.fedoraproject.org/openh264/$releasever/$basearch/
     gpgcheck: true
