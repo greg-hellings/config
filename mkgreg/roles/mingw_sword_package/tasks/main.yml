@@ -16,7 +16,7 @@
     download_dest: "{{ inventory_dir }}/../../../../"
 
 - name: do the thing
-  include: arch.yml copy_files={{ outer_item.copy_files }} arch={{ outer_item.name }}
+  include_tasks: arch.yml copy_files={{ outer_item.copy_files }} arch={{ outer_item.name }}
   with_items:
     - name: i686
       copy_files: "{{ copy_files_all + copy_files_i686 }}"

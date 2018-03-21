@@ -1,3 +1,3 @@
 - name: perform mounting
-  include: mount.yml
+  include_tasks: mount.yml
   with_items: "{{ mounts }}"

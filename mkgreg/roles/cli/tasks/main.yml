@@ -1,8 +1,8 @@
 - name: install CLI apps
-  include: cli.yml
+  import_tasks: cli.yml
 
 - name: setup libvirt
-  include: libvirt.yml
+  import_tasks: libvirt.yml
 
 - name: install packer
-  include: packer.yml
+  import_tasks: packer.yml

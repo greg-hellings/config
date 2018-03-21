@@ -1,9 +1,9 @@
 - name: install bash configuration (local)
-  include: local.yml
+  import_tasks: local.yml
   when: ansible_connection == 'local'
 
 - name: install bash configuration (remote)
-  include: remote.yml
+  import_tasks: remote.yml
   when: ansible_connection != 'local'
 
 - name: set executable file permissions

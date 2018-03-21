@@ -10,11 +10,11 @@
     - "{{ ansible_user_dir }}/.vim/sessions"
 
 - name: install static files (remote)
-  include: remote.yml
+  import_tasks: remote.yml
   when: ansible_connection != 'local'
 
 - name: install static files (local)
-  include: local.yml
+  import_tasks: local.yml
   when: ansible_connection == 'local'
 
 - name: download pathogen
