@@ -1,12 +1,10 @@
-require '../shared.rb'
-
 Vagrant.configure('2') do |config|
-    vm(config, 'packaging', 'fedora/25-cloud-base') do |node|
-        node.vm.provision :shell, inline: "dnf install -y python"
-        ansible(node)
-        node.vm.provider :libvirt do |virt|
-            virt.memory = 2048
-            virt.cpus = 2
-        end
-    end
+	vm(config, 'packaging') do |node|
+		node.vm.provision :shell, inline: "dnf install -y python"
+		ansible(node, '../../mkgreg/site.yml')
+		node.vm.provider :libvirt do |virt|
+			virt.memory = 2048
+			virt.cpus = 2
+		end
+	end
 end

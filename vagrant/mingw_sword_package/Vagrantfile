@@ -1,8 +1,6 @@
-require '../shared.rb'
-
 Vagrant.configure("2") do |config|
 	vm(config, 'mingw-sword-package') do |node|
 		node.vm.provision :shell, inline: "sudo dnf -y install python"
-		ansible(node)
+		ansible(node, '../../mkgreg/site.yml')
 	end
 end

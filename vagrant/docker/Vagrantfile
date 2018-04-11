@@ -1,8 +1,6 @@
-require '../shared.rb'
-
 Vagrant.configure('2') do |config|
 	vm(config, 'docker') do |node|
 		node.vm.provision :shell, inline: "sudo dnf install -y python python-dnf"
-		ansible(node)
+		ansible(node, '../../mkgreg/site.yml')
 	end
 end

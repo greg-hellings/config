@@ -1,3 +1,0 @@
-etcd_port: 2379
-etcd_private_ip: "{{ ansible_eth0['ipv4_secondaries'][0]['address'] }}"
-etcd_url: http://{{ etcd_private_ip }}:{{ etcd_port }}

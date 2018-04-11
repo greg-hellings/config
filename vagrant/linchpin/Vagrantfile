@@ -1,8 +1,6 @@
-require '../shared.rb'
-
 Vagrant.configure("2") do |config|
-    vm(config, "linchpin") do |node|
-        node.vm.provision :shell, inline: "dnf install -y python"
-        ansible(node)
-    end
+	vm(config, "linchpin") do |node|
+		node.vm.provision :shell, inline: "dnf install -y python"
+		ansible(node, '../../mkgreg/site.yml')
+	end
 end
