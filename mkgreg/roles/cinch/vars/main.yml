@@ -1,0 +1,8 @@
+cinch_packages:
+  - libvirt-devel
+  - python-virtualenv
+  - libyaml-devel
+  - openssl-devel
+  - libffi-devel
+  - ShellCheck
+  - vagrant

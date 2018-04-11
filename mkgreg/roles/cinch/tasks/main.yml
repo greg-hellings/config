@@ -1,16 +1,8 @@
 - name: install dependency packages
   become: true
   package:
-    name: "{{ item }}"
+    name: "{{ cinch_packages | join(',') }}"
     state: present
-  with_items:
-    - libvirt-devel
-    - python-virtualenv
-    - libyaml-devel
-    - openssl-devel
-    - libffi-devel
-    - ShellCheck
-    - vagrant
 
 - name: install extra python dev packages
   pip:
