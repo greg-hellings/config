@@ -1,23 +1,5 @@
-- name: install repositories
-  become: true
-  yum_repository:
-    description: A repository
-    name: "{{ item.name }}"
-    baseurl: "{{ item.url | default(omit) }}"
-    mirrorlist: "{{ item.mirrors | default(omit) }}"
-    enabled: true
-    gpgcheck: "{{ item.gpgcheck | default(false) }}"
-    gpgkey: "{{ item.gpgkey | default(omit) }}"
-    skip_if_unavailable: "{{ item.skip | default(true) }}"
-  with_items: "{{ repositories }}"
-  tags:
-    - config
-
 - name: install necessary GUI packages
   become: true
   package:
-    name: "{{ item }}"
+    name: "{{ dev_packages | join(',') }}"
     state: present
-  with_items:
-    - intellij-idea-community
-    - pycharm-community

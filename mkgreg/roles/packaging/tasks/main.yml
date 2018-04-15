@@ -1,14 +1,8 @@
 - name: install basic packaging tools
   become: true
   package:
-    name: "{{ item }}"
+    name: "{{ packaging_packages | join(',') }}"
     state: present
-  with_items:
-    - fedpkg
-    - fedora-packager
-    - fedora-review
-    - mock
-    - fedrepo-req
 
 - name: setup user for mock
   become: true
