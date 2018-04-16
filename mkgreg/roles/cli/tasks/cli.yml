@@ -13,11 +13,6 @@
     - dnf-command(system-upgrade)
   when: ansible_pkg_mgr == 'Fedora'
 
-- name: checkout vagrant.d folder
-  git:
-    repo: git@github.com:greg-hellings/vagrant.d.git
-    dest: "{{ ansible_user_dir }}/.vagrant.d"
-
 - name: create blu-ray config directories
   file:
     dest: "{{ ansible_user_dir }}/.config/{{ item }}"

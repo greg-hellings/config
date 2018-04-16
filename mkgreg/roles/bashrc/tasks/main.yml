@@ -11,3 +11,8 @@
     dest: "{{ ansible_user_dir }}/.local/bin/"
     mode: a+x
     recurse: true
+
+- name: checkout vagrant.d folder
+  git:
+    repo: git@github.com:oasis-origin/vagrant.d.git
+    dest: "{{ ansible_user_dir }}/.vagrant.d"
