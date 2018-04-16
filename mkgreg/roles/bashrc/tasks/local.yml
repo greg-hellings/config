@@ -12,18 +12,3 @@
     dest: "{{ ansible_user_dir }}/.local/bin"
     state: link
     force: true
-
-- name: ensure .vagrant.d folder exists
-  file:
-    dest: "{{ ansible_user_dir }}/.vagrant.d/"
-    state: directory
-    owner: "{{ ansible_user_id }}"
-    mode: 0755
-
-- name: link in Vagrantfile
-  file:
-    src: "{{ playbook_dir }}/roles/bashrc/files/Vagrantfile"
-    dest: "{{ ansible_user_dir }}/.vagrant.d/Vagrantfile"
-    state: link
-    force: true
-    owner: "{{ ansible_user_id }}"
