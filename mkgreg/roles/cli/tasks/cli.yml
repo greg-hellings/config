@@ -21,6 +21,11 @@
   with_items:
       - aacs
 
+- name: checkout vagrant.d folder
+  git:
+    repo: git@github.com:greg-hellings/vagrant.d.git
+    dest: "{{ ansible_user_dir }}/.vagrant.d"
+
         #- name: downloading aacs files
         #get_url:
         #url: http://www.labdv.com/aacs/KEYDB.cfg
