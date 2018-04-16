@@ -1,0 +1,6 @@
+packaging_packages:
+  - fedpkg
+  - fedora-packager
+  - fedora-review
+  - mock
+  - fedrepo-req

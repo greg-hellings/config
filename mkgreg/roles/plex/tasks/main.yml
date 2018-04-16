@@ -1,0 +1,13 @@
+- name: install plex
+  become: true
+  package:
+    name: plexmediaserver
+    state: present
+
+- name: configure plex
+  become: true
+  template:
+    src: PlexMediaServer
+    dest: /etc/sysconfig/PlexMediaServer
+    owner: root
+    mode: 0644

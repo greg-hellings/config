@@ -1,0 +1,7 @@
+java_devel_packages:
+  - maven
+  - maven-wagon-http
+  - maven-wagon-http-shared
+  - maven-wagon-provider-api
+  - maven-wagon-file
+  - java-1.8.0-openjdk-headless
