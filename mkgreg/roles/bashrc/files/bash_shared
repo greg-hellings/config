@@ -83,6 +83,16 @@ function unknown_host {
 	sed -i -e ${1}d ~/.ssh/known_hosts
 }
 
+function oasis_on {
+	project="${1}"
+	git -C "${HOME}/.vagrant.d/" co "${project}"
+	cd ~/config/source/oasis/origin/"${project}"
+}
+
+function oasis_off {
+	git -C "${HOME}/.vagrant.d/" co master
+}
+
 if [ -f $HOME/.bash_local ]; then
     . $HOME/.bash_local
 fi
