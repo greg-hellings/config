@@ -54,10 +54,10 @@ cli_packages:
   - cmake
   - make
   - rpmdevtools
-  - http://rpm.livna.org/livna-release.rpm
   - libdvdcss
   - golang
   - rubygem-gem2rpm
+  - ffmpeg
   # Related to libvirt packages
   - libvirt
   - qemu-kvm
