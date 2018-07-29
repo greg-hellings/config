@@ -1,0 +1,28 @@
+- name: instal database
+  become: true
+  package:
+    name: "{{ mysql_packages }}"
+    state: present
+
+- name: start database
+  become: true
+  service:
+    name: mariadb
+    state: started
+    enabled: true
+
+- name: create database
+  become: true
+  mysql_db:
+    name: "{{ mariadb_database_name }}"
+    state: present
+  when: mariadb_database_name is defined
+
+- name: configure database user
+  become: true
+  mysql_user:
+    name: "{{ mariadb_username }}"
+    priv: "{{ mariadb_database_name }}.*:{{ mariadb_database_privs }}"
+    password: "{{ mariadb_password | default(omit) }}"
+  when: mariadb_database_name is defined and mariadb_username is defined
+

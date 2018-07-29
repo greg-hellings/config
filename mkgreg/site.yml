@@ -9,6 +9,9 @@
 - name: most baseline things
   hosts: all:!noadmin:!mingw_sword_package
   roles:
+    - role: oasis-roles.system_repositories
+      system_repositories_configs: "{{ repositories }}"
+      when: repositories is defined
     - common
     - mounts
 
@@ -35,8 +38,12 @@
     - java-devel
     - dev
     - sword
-    - cinch
     - packaging
+
+- name: configure mariadb/mysql database
+  hosts: mariadb
+  roles:
+    - mariadb
 
 - name: configure webserver
   hosts: webserver
@@ -112,7 +119,7 @@
 # have login-level access to
 # ############################################################################
 - name: basic user config files
-  hosts: all:!mingw-sword-package
+  hosts: all:!mingw-sword-package:!crosswire.org
   roles:
     - vimrc
     - bashrc

@@ -1,2 +1,4 @@
-nginx_configs:
-  - 0000_allegrodfw.com.conf
+webserver_packages:
+  - nginx
+  - certbot
+  - python-virtualenv
