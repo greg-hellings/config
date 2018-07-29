@@ -39,25 +39,36 @@ cli_repositories:
     gpgcheck: true
     repo_gpgcheck: false
 cli_packages:
+  - gcc-c++
+  - redhat-rpm-config
   - HandBrake-cli
   - libaacs
-  - git-review
   - jq
-  - python3-flake8
   - gnupg2
   - origin-clients
   - source-to-image
+  # Python tools
   - python-virtualenv
   - entr
+  - python3-flake8
   - python3-tox
+  - python3-molecule
+  - python3-twine
+  - python3-jinja2
+  - python3-jenkins-job-builder
+  - python3-shade
   - ShellCheck
+  - ansible-lint
+  - pyp2rpm
+  # Dev tools
   - cmake
   - make
   - rpmdevtools
-  - http://rpm.livna.org/livna-release.rpm
-  - libdvdcss
   - golang
   - rubygem-gem2rpm
+  - yamllint
+  # Media tools
+  - libdvdcss
   # Related to libvirt packages
   - libvirt
   - qemu-kvm

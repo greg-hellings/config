@@ -21,11 +21,16 @@
   with_items:
       - aacs
 
-- name: downloading aacs files
-  get_url:
-    url: https://vlc-bluray.whoknowsmy.name/files/KEYDB.cfg
-    dest: "{{ ansible_user_dir }}/.config/aacs"
-    force: true
+- name: checkout vagrant.d folder
+  git:
+    repo: git@github.com:oasis-origin/vagrant.d.git
+    dest: "{{ ansible_user_dir }}/.vagrant.d"
+
+  #- name: downloading aacs files
+  #  get_url:
+  #    url: https://vlc-bluray.whoknowsmy.name/files/KEYDB.cfg
+  #    dest: "{{ ansible_user_dir }}/.config/aacs"
+  #    force: true
 
   #- name: download bdplus archive
   #  get_url:
@@ -53,27 +58,13 @@
     state: present
     name: "{{ item.packages }}"
   with_items:
-    - name: dev
-      packages:
-        - cookiecutter
-        - tox
-        - sphinx
-        - yamllint
-        - ansible
-        - ansible-lint
-        - flake8
     - name: tools
       packages:
-        - twine
         - wheel
         - ipython
         - Pygments
         - cookiecutter
         - ansible
-        - jinja2
-        - jinja2-cli
-        - pyp2rpm
-        - jenkins-job-builder==2.0.0.0b2
 
 - name: install Kerberos
   package:
