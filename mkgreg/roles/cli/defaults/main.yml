@@ -67,8 +67,11 @@ cli_packages:
   - golang
   - rubygem-gem2rpm
   - yamllint
+  - rubygem-gem2rpm
+  - golang
   # Media tools
   - libdvdcss
+  - ffmpeg
   # Related to libvirt packages
   - libvirt
   - qemu-kvm

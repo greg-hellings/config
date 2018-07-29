@@ -41,6 +41,7 @@ alias vb="VBoxManage"
 alias an='ansible -i hosts'
 alias ap='ansible-playbook -i hosts'
 alias d='deactivate'
+alias yaml2js="python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)'"
 
 function parse_git_branch {
         ref=$(git symbolic-ref HEAD 2> /dev/null) || return
