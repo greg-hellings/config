@@ -30,3 +30,5 @@ gui_packages:
   - NetworkManager-openvpn
   - NetworkManager-openvpn-gnome
   - avidemux-gui
+  - openshot
+  - qwinff
