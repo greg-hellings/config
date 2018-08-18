@@ -1,43 +1,51 @@
 libvirt_storage: /home/libvirt
 cli_repositories:
   - name: greghellings-packer
-    url: https://copr-be.cloud.fedoraproject.org/results/greghellings/Packer/fedora-$releasever-$basearch/
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/greghellings/Packer/fedora-$releasever-$basearch/
     gpgcheck: true
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/greghellings/Packer/pubkey.gpg
+    description: Greg Hellings's Packer builds
   - name: openh264
-    url: https://codecs.fedoraproject.org/openh264/$releasever/$basearch/
+    baseurl: https://codecs.fedoraproject.org/openh264/$releasever/$basearch/
     gpgcheck: true
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
+    description: openh264 repository
   - name: fedora-Handbrake
-    url: http://negativo17.org/repos/multimedia/fedora-$releasever/$basearch/
+    baseurl: http://negativo17.org/repos/multimedia/fedora-$releasever/$basearch/
     gpgcheck: true
     gpgkey: http://negativo17.org/repos/RPM-GPG-KEY-slaanesh
+    description: Negativo17's Handbrake repository
   - name: fedora-Handbrake-source
-    url: http://negativo17.org/repos/multimedia/fedora-$releasever/SRPMS/
+    baseurl: http://negativo17.org/repos/multimedia/fedora-$releasever/SRPMS/
     gpgcheck: true
     gpgkey: http://negativo17.org/repos/RPM-GPG-KEY-slaanesh
     enabled: false
+    desciprtion: Negativo17's Handbrake repository - source
   - name: rpmfusion-free
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
     gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
     gpgcheck: true
     repo_gpgcheck: false
     exclude: avidemux
+    description: RPMFusion free
   - name: rpmfusion-free-updates
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
     gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
     gpgcheck: true
     repo_gpgcheck: false
+    description: RPMFusion free - updates
   - name: rpmfusion-nonfree
     metalink: https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-$releasever&arch=$basearch
     gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
     gpgcheck: true
     repo_gpgcheck: false
+    description: RPMFusion nonfree
   - name: rpmfusion-nonfree-updates
     metalink: https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-released-$releasever&arch=$basearch
     gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
     gpgcheck: true
     repo_gpgcheck: false
+    description: RPMFusion nonfree - updates
 cli_packages:
   - HandBrake-cli
   - libaacs

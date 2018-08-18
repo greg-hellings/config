@@ -26,6 +26,7 @@
     url: https://vlc-bluray.whoknowsmy.name/files/KEYDB.cfg
     dest: "{{ ansible_user_dir }}/.config/aacs"
     force: true
+    validate_certs: false
 
   #- name: download bdplus archive
   #  get_url:

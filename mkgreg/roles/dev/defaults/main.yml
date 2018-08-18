@@ -1,12 +1,14 @@
 dev_repositories:
   - name: copr-phracek-PyCharmr
-    url: https://copr-be.cloud.fedoraproject.org/results/phracek/PyCharm/fedora-$releasever-$basearch/
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/phracek/PyCharm/fedora-$releasever-$basearch/
     gpgcheck: true
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/phracek/PyCharm/pubkey.gpg
+    description: Phracek's PyCharm
   - name: greghellings-intellij-idea
-    url: https://copr-be.cloud.fedoraproject.org/results/greghellings/intellij-idea/fedora-$releasever-$basearch/
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/greghellings/intellij-idea/fedora-$releasever-$basearch/
     gpgcheck: true
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/greghellings/intellij-idea/pubkey.gpg
+    description: Greg Hellings' builds of IntelliJ
 dev_packages:
   #- intellij-idea-community
   - pycharm-community

@@ -9,11 +9,12 @@ import sys
 
 TOP = path.normpath(path.join(path.dirname(__file__), '..'))
 INVENTORIES = {
-    'gui' : path.join(TOP, 'inventories', 'gui'),
-    'cli' : path.join(TOP, 'inventories', 'cli'),
-    'dev' : path.join(TOP, 'inventories', 'dev'),
-    'user' : path.join(TOP, 'inventories', 'user')
+    'gui': path.join(TOP, 'inventories', 'gui'),
+    'cli': path.join(TOP, 'inventories', 'cli'),
+    'dev': path.join(TOP, 'inventories', 'dev'),
+    'user': path.join(TOP, 'inventories', 'user')
 }
+REQUIREMENTS = path.join(TOP, 'requirements.yml')
 
 
 def call_ansible(inventory, playbook, *args):
@@ -28,6 +29,21 @@ def call_ansible(inventory, playbook, *args):
         ansible.run(ansible_args, stdout=sys.stdout, stderr=sys.stderr)
     except ProcessExecutionError as ex:
         print('Error encountered while executing Ansible', file=sys.stderr)
+        print(ex.stderr, file=sys.stderr)
+        print_exc()
+        sys.exit(ex.retcode)
+    except Exception as ex:
+        print('Unknown error occurred: {0}'.format(ex), file=sys.stderr)
+        print_exc()
+        sys.exit(255)
+
+
+def install_dependencies():
+    galaxy = local['ansible-galaxy']
+    try:
+        galaxy.run(['install', '-r', REQUIREMENTS])
+    except ProcessExecutionError as ex:
+        print('Error installing Galaxy dependencies')
         print(ex.stderr, file=sys.stderr)
         print_exc()
         sys.exit(ex.retcode)
