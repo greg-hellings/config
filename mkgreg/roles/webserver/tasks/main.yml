@@ -66,6 +66,7 @@
   with_items: "{{ webserver_domains }}"
   loop_control:
     loop_var: domain
+  when: domain.https | default(true)
 
 # TODO: configure SSL on host
 - name: instal nginx configurations for HTTPS serving
