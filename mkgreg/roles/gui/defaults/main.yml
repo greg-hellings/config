@@ -1,18 +1,22 @@
 gui_repositories:
   - name: bluejeans
-    url: https://swdl.bluejeans.com/repos/bluejeans/x86_64/release/rpm
+    baseurl: https://swdl.bluejeans.com/repos/bluejeans/x86_64/release/rpm
     gpgcheck: true
     gpgkey: https://swdl.bluejeans.com/repos/bluejeans/bjn-key
+    description: bluejeans
   - name: entropypianotuner
-    url: https://copr-be.cloud.fedoraproject.org/results/greghellings/EntropyPianoTuner/fedora-$releasever-$basearch/
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/greghellings/EntropyPianoTuner/fedora-$releasever-$basearch/
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/greghellings/EntropyPianoTuner/pubkey.gpg
     gpgcheck: true
+    description: Greg Hellings' builds of Entropy Piano Tuner
   - name: google-chrome
-    url: http://dl.google.com/linux/chrome/rpm/stable/$basearch
+    baseurl: http://dl.google.com/linux/chrome/rpm/stable/$basearch
     gpgcheck: true
+    description: Google Chrome
   - name: google-talkplugin
-    url: http://dl.google.com/linux/talkplugin/rpm/stable/x86_64/
+    baseurl: http://dl.google.com/linux/talkplugin/rpm/stable/x86_64/
     gpgcheck: true
+    description: Google Talk Plugin
 gui_packages:
   - /tmp/spideroak.rpm
   - vim-X11
@@ -30,3 +34,5 @@ gui_packages:
   - NetworkManager-openvpn
   - NetworkManager-openvpn-gnome
   - avidemux-gui
+  - openshot
+  - qwinff

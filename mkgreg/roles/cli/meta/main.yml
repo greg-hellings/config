@@ -1,3 +1,3 @@
 dependencies:
-  - role: repositories
-    repositories: "{{ cli_repositories }}"
+  - role: oasis-roles.system_repositories
+    system_repositories_configs: "{{ cli_repositories }}"

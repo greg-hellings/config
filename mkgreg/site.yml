@@ -67,12 +67,6 @@
     - docker
     - cinch
 
-- name: configure for linch-pin development
-  hosts: linchpin
-  gather_facts: false
-  roles:
-    - linch_pin
-
 - name: configure for Fedora packaging development
   hosts: packaging
   gather_facts: false
