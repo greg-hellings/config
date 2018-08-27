@@ -12,3 +12,7 @@ dev_repositories:
 dev_packages:
   #- intellij-idea-community
   - pycharm-community
+  - qt-creator
+  - qt5-qttools-devel
+  - qt5-qtbase-devel
+  - qt5-qtwebengine-devel

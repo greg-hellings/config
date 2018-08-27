@@ -1,5 +1,5 @@
 - name: install necessary GUI packages
   become: true
   package:
-    name: "{{ dev_packages | join(',') }}"
+    name: "{{ dev_packages }}"
     state: present

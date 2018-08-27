@@ -1,7 +1,7 @@
 - name: install CLI packages
   become: true
   package:
-    name: "{{ cli_packages | join(',') }}"
+    name: "{{ cli_packages }}"
     state: present
 
 - name: install dnf tools on Fedora
