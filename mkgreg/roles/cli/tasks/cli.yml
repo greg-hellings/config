@@ -4,6 +4,12 @@
     name: "{{ cli_packages }}"
     state: present
 
+- name: remove packages!
+  become: true
+  package:
+    name: "{{ cli_remove_packages }}"
+    state: absent
+
 - name: install dnf tools on Fedora
   become: true
   package:
@@ -58,14 +64,21 @@
     virtualenv: "{{ ansible_user_dir }}/venv/{{ item.name }}"
     state: present
     name: "{{ item.packages }}"
+    virtualenv_python: "{{ item.python }}"
   with_items:
-    - name: tools
-      packages:
+    - name: tools2
+      packages: &packages
         - wheel
         - ipython
         - Pygments
         - cookiecutter
         - ansible
+        - molecule
+        - openstacksdk
+      python: python2
+    - name: tools3
+      packages: *packages
+      python: python3
 
 - name: install Kerberos
   package:

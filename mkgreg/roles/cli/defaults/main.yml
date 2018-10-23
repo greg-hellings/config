@@ -92,3 +92,7 @@ cli_packages:
   - vagrant-cachier
   - vagrant-libvirt
   - vagrant-openstack-provider
+cli_remove_packages:
+  - ghc-ghc
+  - PackageKit
+  - thunderbird
