@@ -1,0 +1,5 @@
+dependencies:
+  - role: webserver
+    webserver_domains:
+      - mail.{{ item }}
+    with_items: "{{ mta_domains }}"
