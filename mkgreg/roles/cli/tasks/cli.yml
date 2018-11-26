@@ -75,6 +75,7 @@
         - ansible
         - molecule
         - openstacksdk
+        - docker # Wanted for molecule Docker driver
       python: python2
     - name: tools3
       packages: *packages
