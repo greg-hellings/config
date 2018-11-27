@@ -7,7 +7,7 @@
     - dnf
 
 - name: most baseline things
-  hosts: all:!noadmin:!mingw_sword_package
+  hosts: all:!noadmin
   roles:
     - role: oasis-roles.system_repositories
       system_repositories_configs: "{{ repositories }}"
@@ -93,12 +93,6 @@
   roles:
     - sword
     - xiphos
-
-- name: mingw sword creation
-  hosts: mingw-sword-package
-  gather_facts: false
-  roles:
-    - mingw_sword_package
 
 - name: awx development
   hosts: awx-development
