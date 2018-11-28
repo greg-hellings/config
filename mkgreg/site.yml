@@ -1,10 +1,10 @@
 # ############################################################################
 # Preliminary stuff that all the hosts need
 # ############################################################################
-- name: python2-dnf is needed
+- name: setup the python executable correctly
   hosts: all:!noadmin
   roles:
-    - dnf
+    - greg_hellings.python_prep
 
 - name: most baseline things
   hosts: all:!noadmin
@@ -33,6 +33,7 @@
 - name: configure development systems
   hosts: dev
   roles:
+    - greg_hellings.ansible
     - docker
     - packaging
     - java-devel
@@ -99,7 +100,7 @@
   gather_facts: false
   roles:
     - docker
-    - ansible_deps
+    - greg_hellings.ansible
     - awx
 # ############################################################################
 # Simple user-land configuration that does not require root access to install

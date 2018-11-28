@@ -1,5 +1,0 @@
-- name: install Ansible build deps
-  become: true
-  package:
-    name: "{{ ansible_deps_packages | join(',') }}"
-    state: present

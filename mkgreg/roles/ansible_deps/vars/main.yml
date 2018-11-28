@@ -1,6 +1,0 @@
-ansible_deps_packages:
-  - python2-virtualenv
-  - libffi-devel
-  - openssl-devel
-  - libyaml-devel
-  - gmp-devel
