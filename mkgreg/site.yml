@@ -66,7 +66,7 @@
   gather_facts: false
   roles:
     - docker
-    - cinch
+    - greg_hellings.cinch
 
 - name: configure for Fedora packaging development
   hosts: packaging
@@ -108,7 +108,7 @@
 # have login-level access to
 # ############################################################################
 - name: basic user config files
-  hosts: all:!mingw-sword-package:!crosswire.org
+  hosts: all:!crosswire.org
   roles:
     - vimrc
     - bashrc

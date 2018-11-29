@@ -3,4 +3,3 @@ packaging_packages:
   - fedora-packager
   - fedora-review
   - mock
-  - fedrepo-req
