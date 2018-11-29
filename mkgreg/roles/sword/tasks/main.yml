@@ -1,5 +1,0 @@
-- name: install devel packages
-  become: true
-  package:
-    name: "{{ sword_packages | join(',') }}"
-    state: present

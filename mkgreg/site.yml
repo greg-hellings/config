@@ -38,7 +38,7 @@
     - packaging
     - java-devel
     - dev
-    - sword
+    - greg_hellings.sword
     - packaging
 
 - name: configure mariadb/mysql database
@@ -85,14 +85,14 @@
   gather_facts: false
   roles:
     - docker
-    - sword
+    - greg_hellings.sword
     - swordweb
 
 - name: xiphos development
   hosts: xiphos
   gather_facts: false
   roles:
-    - sword
+    - greg_hellings.sword
     - xiphos
 
 - name: awx development
