@@ -27,4 +27,4 @@ env:
   #- ROLE=gitconfig
 
 script:
-  - cd mkgreg/roles/${ROLE} && molecule test -s docker
+  - cd mkgreg/roles/${ROLE} && travis_wait molecule test -s docker
