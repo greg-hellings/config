@@ -2,7 +2,7 @@
 from __future__ import print_function
 from argparse import ArgumentParser
 from os import path
-from utils import INVENTORIES, call_ansible, install_dependencies
+from .utils import INVENTORIES, call_ansible, install_dependencies
 
 
 parser = ArgumentParser(description="Configures a system for Greg's use")
