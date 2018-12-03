@@ -40,6 +40,29 @@
     - dev
     - greg_hellings.sword
     - packaging
+# ############################################################################
+# Simple user-land configuration that does not require root access to install
+# but makes my life so much easier! Designed to be run on any system that I
+# have login-level access to
+# ############################################################################
+- name: basic user config files
+  hosts: all:!crosswire.org
+  roles:
+    - vimrc
+    - bashrc
+    - private_files
+    - greg_hellings.authorized_key
+    - gitconfig
+  tags:
+    - config
+
+# ############################################################################
+# Sets up necessary Certificate Authority chains, if you need any of them.
+# ############################################################################
+- name: install certificate authorities
+  hosts: admin
+  roles:
+    - oasis-roles.update_ca_trust
 
 - name: configure mariadb/mysql database
   hosts: mariadb
@@ -102,18 +125,3 @@
     - docker
     - greg_hellings.ansible
     - awx
-# ############################################################################
-# Simple user-land configuration that does not require root access to install
-# but makes my life so much easier! Designed to be run on any system that I
-# have login-level access to
-# ############################################################################
-- name: basic user config files
-  hosts: all:!crosswire.org
-  roles:
-    - vimrc
-    - bashrc
-    - private_files
-    - greg_hellings.authorized_key
-    - gitconfig
-  tags:
-    - config

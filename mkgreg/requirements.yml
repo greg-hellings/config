@@ -1,4 +1,5 @@
 - oasis-roles.system_repositories
+- oasis-roles.update_ca_trust
 - greg_hellings.cinch
 - greg_hellings.ansible
 - greg_hellings.python_prep
