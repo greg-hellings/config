@@ -8,7 +8,7 @@ lint:
     config-file: tests/yamllint.yml
 platforms:
   - name: test-cli
-    image: rhel-7.4-server-x86_64-updated
+    image: Fedora 29
     flavor: m1.medium
 provisioner:
   name: ansible
@@ -17,6 +17,10 @@ provisioner:
   playbooks:
     prepare: ../shared/prepare.yml
     converge: ../shared/playbook.yml
+  inventory:
+    group_vars:
+      all:
+        ansible_python_interpreter: /usr/bin/python3
 scenario:
   name: openstack
 verifier:

@@ -8,4 +8,7 @@ source/*
 *.pyc
 *.pyo
 *.egg-info
+__pycache__/*
+junit.xml
+pytestdebug.log
 vagrant/mingw_sword_package/*zip
