@@ -1,13 +1,11 @@
 - name: create image storage
   become: true
   file:
-    dest: "{{ libvirt_storage }}"
+    dest: "{{ cli_libvirt_storage }}"
     owner: root
     group: root
     mode: 0711
     state: directory
-  tags:
-    - config
 
 - name: configure libvirt storage
   become: true
@@ -19,8 +17,6 @@
     mode: 0755
   check_mode: true
   register: check
-  tags:
-    - config
 
 - name: create libvirt config directory
   become: true
@@ -30,18 +26,14 @@
     group: root
     mode: 0755
     state: directory
-  when: check|changed
-  tags:
-    - config
+  when: check is changed
 
 - name: make sure libvirt is stopped
   become: true
   service:
     name: libvirtd
     state: stopped
-  when: check|changed
-  tags:
-    - config
+  when: check is changed and ansible_connection != 'docker'
 
 - name: configure libvirt storage
   become: true
@@ -51,8 +43,6 @@
     owner: root
     group: root
     mode: 0755
-  tags:
-    - config
 
 - name: start and enable libvirtd
   become: true
@@ -60,8 +50,7 @@
     name: libvirtd
     state: started
     enabled: true
-  tags:
-    - config
+  when: ansible_connection != 'docker'
 
 - name: add current user to libvirt group
   become: true
@@ -69,5 +58,3 @@
     name: "{{ ansible_user_id }}"
     append: true
     groups: libvirt
-  tags:
-    - config

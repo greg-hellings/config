@@ -4,100 +4,15 @@
     name: "{{ cli_packages }}"
     state: present
 
-- name: remove packages!
+- name: remove packages that shouldn't hang around
   become: true
   package:
     name: "{{ cli_remove_packages }}"
     state: absent
 
-- name: install dnf tools on Fedora
+- name: install dnf tools
   become: true
   package:
-    name: "{{ item }}"
+    name: "{{ cli_dnf_packages }}"
     state: present
-  with_items:
-    - dnf-command(system-upgrade)
-  when: ansible_pkg_mgr == 'Fedora'
-
-- name: create blu-ray config directories
-  file:
-    dest: "{{ ansible_user_dir }}/.config/{{ item }}"
-    state: directory
-    mode: 0755
-  with_items:
-      - aacs
-
-- name: checkout vagrant.d folder
-  git:
-    repo: https://github.com/oasis-origin/vagrant.d.git
-    dest: "{{ ansible_user_dir }}/.vagrant.d"
-
-- name: downloading aacs files
-  get_url:
-    url: https://vlc-bluray.whoknowsmy.name/files/KEYDB.cfg
-    dest: "{{ ansible_user_dir }}/.config/aacs"
-    force: true
-    validate_certs: false
-
-  #- name: download bdplus archive
-  #  get_url:
-  #    url: http://www.labdv.com/aacs/libbdplus/bdplus-vm0.bz2
-  #    dest: "{{ ansible_user_dir }}/.config/"
-  #    force: true
-
-  #- name: extract archive
-  #  shell: tar xaf bdplus-vm0.bz2
-  #  args:
-  #    creates: "{{ ansible_user_dir }}/.config/bdplus"
-  #    chdir: "{{ ansible_user_dir }}/.config"
-
-  #- name: set ownership on files
-  #  file:
-  #    dest: "{{ item }}"
-  #    recurse: true
-  #  with_items:
-  #    - "{{ ansible_user_dir }}/.config/bdplus"
-  #    - "{{ ansible_user_dir }}/.config/aacs"
-
-- name: create python virtualenv packages
-  pip:
-    virtualenv: "{{ ansible_user_dir }}/venv/{{ item.name }}"
-    state: present
-    name: "{{ item.packages }}"
-    virtualenv_python: "{{ item.python }}"
-  with_items:
-    - name: tools2
-      packages: &packages
-        - wheel
-        - ipython
-        - Pygments
-        - cookiecutter
-        - ansible
-        - molecule
-        - openstacksdk
-        - docker # Wanted for molecule Docker driver
-      python: python2
-    - name: tools3
-      packages: *packages
-      python: python3
-
-- name: install Kerberos
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - krb5-libs
-    - krb5-workstation
-  when: kerberos is defined
-  become: true
-
-- name: configure Kerberos
-  template:
-    src: krb5.conf
-    dest: /etc/krb5.conf
-    owner: root
-    mode: 0644
-  when: kerberos is defined
-  become: true
-  tags:
-    - config
+  when: ansible_pkg_mgr == 'dnf'

@@ -1,4 +1,4 @@
-- name: disable tmpfs for /tmp because reasons
+- name: disable tmpfs for /tmp to make Packer space
   become: true
   systemd:
     masked: true
@@ -6,5 +6,4 @@
     enabled: false
     name: tmp.mount
   ignore_errors: true
-  tags:
-    - config
+  when: ansible_service_mgr == 'systemd'

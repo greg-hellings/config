@@ -1,0 +1,30 @@
+language: python
+versions:
+  - "2.7"
+  - "3.5"
+cache: pip
+sudo: required
+services:
+  - docker
+
+install:
+  - pip install -U pip
+  - pip install ansible ansible-lint yamllint flake8 molecule docker
+  - pip --version
+  - ansible --version
+  - ansible-lint --version
+  - yamllint --version
+  - flake8 --version
+  - moleclue --version
+
+env:
+  - ROLE=cli
+  #- ROLE=gui
+  #- ROLE=bashrc
+  #- ROLE=dev
+  #- ROLE=packaging
+  #- ROLE=java-devel
+  #- ROLE=gitconfig
+
+script:
+  - cd mkgreg/roles/${ROLE} && molecule test -s docker

@@ -1,0 +1,21 @@
+- name: create pythong virtualenvs
+  pip:
+    virtualenv: "{{ ansible_user_dir }}/venv/{{ item.name }}"
+    state: present
+    name: "{{ item.packages }}"
+    virtualenv_python: "{{ item.python }}"
+  with_items:
+    - name: tools2
+      packages: &packages
+        - wheel
+        - ipython
+        - Pygments
+        - cookiecutter
+        - ansible
+        - molecule
+        - openstacksdk
+        - docker
+      python: python2
+    - name: tools3
+      packages: *packages
+      python: python3
