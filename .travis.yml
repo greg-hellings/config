@@ -15,7 +15,7 @@ install:
   - ansible-lint --version
   - yamllint --version
   - flake8 --version
-  - moleclue --version
+  - molecule --version
 
 env:
   - ROLE=cli
