@@ -1,2 +1,14 @@
-def test_package_installed(host):
-    assert host.package("sound-juicer").is_installed
+import pytest
+
+
+@pytest.mark.parameterized('name', [
+    ('vim-X11'),
+    ('google-chrome-stable'),
+    ('virt-manager'),
+    ('HandBrake-gui'),
+    ('sound-juicer'),
+    ('vlc'),
+    ('entropypianotuner')
+])
+def test_package_installed(host, name):
+    assert host.package(name).is_installed

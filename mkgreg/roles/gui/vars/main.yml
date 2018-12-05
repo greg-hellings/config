@@ -1,4 +1,11 @@
 gui_repositories:
+  # Also present in the CLI role - update there as well
+  - name: fedora-Handbrake
+    # yamllint disable-line rule:line-length
+    baseurl: http://negativo17.org/repos/multimedia/fedora-$releasever/$basearch/
+    gpgcheck: true
+    gpgkey: http://negativo17.org/repos/RPM-GPG-KEY-slaanesh
+    description: Negativo17's Handbrake repository
   - name: bluejeans
     baseurl: https://swdl.bluejeans.com/repos/bluejeans/x86_64/release/rpm
     gpgcheck: true
