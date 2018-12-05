@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.mark.parameterize('name', [
+@pytest.mark.parametrize('name', [
     ('java-1.8.0-openjdk-headless'),
     ('java-11-openjdk-headless'),
     ('maven')

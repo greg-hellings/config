@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.mark.parameterized('name', [
+@pytest.mark.parametrize('name', [
     ('vim-X11'),
     ('google-chrome-stable'),
     ('virt-manager'),

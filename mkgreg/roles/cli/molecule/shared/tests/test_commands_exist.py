@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.mark.parameterize('cmd', [
+@pytest.mark.parametrize('cmd', [
     ('g++'),
     ('jq'),
     ('python3'),
