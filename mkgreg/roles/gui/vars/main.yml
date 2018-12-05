@@ -1,11 +1,33 @@
 gui_repositories:
+  # ##########################################################################
   # Also present in the CLI role - update there as well
+  # ##########################################################################
   - name: fedora-Handbrake
     # yamllint disable-line rule:line-length
     baseurl: http://negativo17.org/repos/multimedia/fedora-$releasever/$basearch/
     gpgcheck: true
     gpgkey: http://negativo17.org/repos/RPM-GPG-KEY-slaanesh
     description: Negativo17's Handbrake repository
+  - name: rpmfusion-free
+    # yamllint disable-line rule:line-length
+    metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
+    # yamllint disable-line rule:line-length
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
+    gpgcheck: true
+    repo_gpgcheck: false
+    exclude: avidemux
+    description: RPMFusion free
+  - name: rpmfusion-free-updates
+    # yamllint disable-line rule:line-length
+    metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
+    # yamllint disable-line rule:line-length
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
+    gpgcheck: true
+    repo_gpgcheck: false
+    description: RPMFusion free - updates
+  # ##########################################################################
+  # END DUPLICATION
+  # ##########################################################################
   - name: bluejeans
     baseurl: https://swdl.bluejeans.com/repos/bluejeans/x86_64/release/rpm
     gpgcheck: true
@@ -19,9 +41,9 @@ gui_repositories:
     gpgcheck: true
     description: Greg Hellings' builds of Entropy Piano Tuner
   - name: google-chrome
-    baseurl: http://dl.google.com/linux/chrome/rpm/stable/$basearch
+    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
     gpgcheck: true
-    description: Google Chrome
+    description: google-chrome
   - name: google-talkplugin
     baseurl: http://dl.google.com/linux/talkplugin/rpm/stable/x86_64/
     gpgcheck: true

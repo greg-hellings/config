@@ -11,7 +11,9 @@ cli_repositories:
     gpgcheck: true
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
     description: openh264 repository
+  # ##########################################################################
   # Also in the GUI role, update there as well
+  # ##########################################################################
   - name: fedora-Handbrake
     # yamllint disable-line rule:line-length
     baseurl: http://negativo17.org/repos/multimedia/fedora-$releasever/$basearch/
@@ -41,6 +43,9 @@ cli_repositories:
     gpgcheck: true
     repo_gpgcheck: false
     description: RPMFusion free - updates
+  # ##########################################################################
+  # END DUPLICATION
+  # ##########################################################################
   - name: rpmfusion-nonfree
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-$releasever&arch=$basearch
