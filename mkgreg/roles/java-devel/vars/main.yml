@@ -5,3 +5,4 @@ java_devel_packages:
   - maven-wagon-provider-api
   - maven-wagon-file
   - java-1.8.0-openjdk-headless
+  - java-11-openjdk-headless

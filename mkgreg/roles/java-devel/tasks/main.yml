@@ -1,7 +1,7 @@
 - name: install necessary files
   become: true
   package:
-    name: "{{ java_devel_packages | join(',') }}"
+    name: "{{ java_devel_packages }}"
 
 - name: ensure m2 directory exists
   file:

@@ -23,7 +23,7 @@ env:
   #- ROLE=bashrc
   - ROLE=dev
   - ROLE=packaging
-  #- ROLE=java-devel
+  - ROLE=java-devel
   #- ROLE=gitconfig
 
 script:
