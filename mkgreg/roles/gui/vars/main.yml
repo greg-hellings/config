@@ -5,7 +5,9 @@ gui_repositories:
     gpgkey: https://swdl.bluejeans.com/repos/bluejeans/bjn-key
     description: bluejeans
   - name: entropypianotuner
+    # yamllint disable-line rule:line-length
     baseurl: https://copr-be.cloud.fedoraproject.org/results/greghellings/EntropyPianoTuner/fedora-$releasever-$basearch/
+    # yamllint disable-line rule:line-length
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/greghellings/EntropyPianoTuner/pubkey.gpg
     gpgcheck: true
     description: Greg Hellings' builds of Entropy Piano Tuner

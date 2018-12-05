@@ -1,4 +1,4 @@
-- name: install necessary GUI packages
+- name: install necessary devel packages
   become: true
   package:
     name: "{{ dev_packages }}"

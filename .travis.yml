@@ -19,9 +19,9 @@ install:
 
 env:
   - ROLE=cli
-  #- ROLE=gui
+  - ROLE=gui
   #- ROLE=bashrc
-  #- ROLE=dev
+  - ROLE=dev
   #- ROLE=packaging
   #- ROLE=java-devel
   #- ROLE=gitconfig
