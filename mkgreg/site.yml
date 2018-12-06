@@ -117,11 +117,3 @@
   roles:
     - greg_hellings.sword
     - xiphos
-
-- name: awx development
-  hosts: awx-development
-  gather_facts: false
-  roles:
-    - docker
-    - greg_hellings.ansible
-    - awx

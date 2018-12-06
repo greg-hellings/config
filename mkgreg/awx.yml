@@ -1,0 +1,7 @@
+- name: awx development
+  hosts: awx-development
+  gather_facts: false
+  roles:
+    - docker
+    - greg_hellings.ansible
+    - greg_hellings.awx_devel

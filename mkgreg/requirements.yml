@@ -1,7 +1,8 @@
 - oasis-roles.system_repositories
 - oasis-roles.update_ca_trust
-- greg_hellings.cinch
 - greg_hellings.ansible
+- greg_hellings.authorized_key
+- greg_hellings.awx_devel
+- greg_hellings.cinch
 - greg_hellings.python_prep
 - greg_hellings.sword
-- greg_hellings.authorized_key

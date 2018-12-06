@@ -1,6 +1,6 @@
 Vagrant.configure('2') do |config|
 	vm(config, 'awx-development') do |node|
 		node.vm.provision :shell, inline: "sudo dnf -y install python"
-		ansible(node, '../../mkgreg/site.yml')
+		ansible(node, '../../mkgreg/awx.yml')
 	end
 end
