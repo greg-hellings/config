@@ -18,12 +18,14 @@ install:
   - molecule --version
 
 env:
+  # Roles that install things
   - ROLE=cli
   - ROLE=gui
-  #- ROLE=bashrc
   - ROLE=dev
   - ROLE=packaging
   - ROLE=java-devel
+  # Roles that just have configuration options
+  - ROLE=bashrc
   #- ROLE=gitconfig
 
 script:
