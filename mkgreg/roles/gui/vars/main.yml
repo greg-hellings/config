@@ -12,7 +12,7 @@ gui_repositories:
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
     # yamllint disable-line rule:line-length
-    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
     gpgcheck: true
     repo_gpgcheck: false
     exclude: avidemux
@@ -21,7 +21,7 @@ gui_repositories:
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
     # yamllint disable-line rule:line-length
-    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
     gpgcheck: true
     repo_gpgcheck: false
     description: RPMFusion free - updates
@@ -43,7 +43,9 @@ gui_repositories:
   - name: google-chrome
     baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
     gpgcheck: true
+    enabled: true
     description: google-chrome
+    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
   - name: google-talkplugin
     baseurl: http://dl.google.com/linux/talkplugin/rpm/stable/x86_64/
     gpgcheck: true
