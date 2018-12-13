@@ -20,8 +20,9 @@ install:
 env:
   # Roles that install things
   - ROLE=cli
-  - ROLE=gui
+  - ROLE=common
   - ROLE=dev
+  - ROLE=gui
   - ROLE=packaging
   - ROLE=java-devel
   # Roles that just have configuration options
