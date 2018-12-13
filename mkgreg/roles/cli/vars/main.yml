@@ -9,7 +9,8 @@ cli_repositories:
   - name: openh264
     baseurl: https://codecs.fedoraproject.org/openh264/$releasever/$basearch/
     gpgcheck: true
-    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
+    # yamllint disable-line rule:line-length
+    gpgkey: /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-{{ ansible_distribution_version }}-{{ ansible_architecture }}
     description: openh264 repository
   # ##########################################################################
   # Also in the GUI role, update there as well
@@ -30,7 +31,7 @@ cli_repositories:
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
     # yamllint disable-line rule:line-length
-    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
     gpgcheck: true
     repo_gpgcheck: false
     exclude: avidemux
@@ -39,7 +40,7 @@ cli_repositories:
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
     # yamllint disable-line rule:line-length
-    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
     gpgcheck: true
     repo_gpgcheck: false
     description: RPMFusion free - updates
@@ -50,7 +51,7 @@ cli_repositories:
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-$releasever&arch=$basearch
     # yamllint disable-line rule:line-length
-    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_distribution_version }}
     gpgcheck: true
     repo_gpgcheck: false
     description: RPMFusion nonfree
@@ -58,7 +59,7 @@ cli_repositories:
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-released-$releasever&arch=$basearch
     # yamllint disable-line rule:line-length
-    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_distribution_version }}
     gpgcheck: true
     repo_gpgcheck: false
     description: RPMFusion nonfree - updates
