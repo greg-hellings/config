@@ -27,7 +27,6 @@ env:
   - ROLE=java-devel
   # Roles that just have configuration options
   - ROLE=bashrc
-  #- ROLE=gitconfig
 
 script:
   - cd mkgreg/roles/${ROLE} && travis_wait molecule test -s docker
