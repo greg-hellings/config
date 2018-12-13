@@ -73,7 +73,7 @@ function ac {
 }
 
 function py2env {
-	virtualenv "${HOME}/venv/${1}"
+	virtualenv -p /usr/bin/python2 "${HOME}/venv/${1}"
 	"${HOME}/venv/${1}/bin/pip" install -U pip
 }
 
