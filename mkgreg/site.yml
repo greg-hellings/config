@@ -34,12 +34,11 @@
   hosts: dev
   roles:
     - greg_hellings.ansible
-    - docker
+    - greg_hellings.docker
     - packaging
     - java-devel
     - dev
     - greg_hellings.sword
-    - packaging
 # ############################################################################
 # Simple user-land configuration that does not require root access to install
 # but makes my life so much easier! Designed to be run on any system that I
@@ -67,7 +66,7 @@
 - name: configure mariadb/mysql database
   hosts: mariadb
   roles:
-    - mariadb
+    - greg_hellings.mariadb
 
 - name: configure webserver
   hosts: webserver
@@ -88,7 +87,7 @@
   hosts: cinch
   gather_facts: false
   roles:
-    - docker
+    - greg_hellings.docker
     - greg_hellings.cinch
 
 - name: configure for Fedora packaging development
@@ -101,13 +100,13 @@
   hosts: docker
   gather_facts: false
   roles:
-    - docker
+    - greg_hellings.docker
 
 - name: sword development
   hosts: sword
   gather_facts: false
   roles:
-    - docker
+    - greg_hellings.docker
     - greg_hellings.sword
     - swordweb
 
