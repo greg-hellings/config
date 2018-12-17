@@ -13,7 +13,7 @@
       system_repositories_configs: "{{ repositories }}"
       when: repositories is defined
     - common
-    - mounts
+    - greg_hellings.mounts
 
 # ############################################################################
 # Personal desktop configuration, for use on systems that I administrate, and
