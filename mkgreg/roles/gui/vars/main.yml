@@ -70,3 +70,4 @@ gui_packages:
   - openshot
   - qwinff
   - sound-juicer
+  - grip
