@@ -83,36 +83,8 @@
 # ############################################################################
 # Development machines, designed to be spun up in local VMs
 # ############################################################################
-- name: configure for cinch development
-  hosts: cinch
-  gather_facts: false
-  roles:
-    - greg_hellings.docker
-    - greg_hellings.cinch
-
-- name: configure for Fedora packaging development
-  hosts: packaging
-  gather_facts: false
-  roles:
-    - packaging
-
 - name: configure a basic docker system
   hosts: docker
   gather_facts: false
   roles:
     - greg_hellings.docker
-
-- name: sword development
-  hosts: sword
-  gather_facts: false
-  roles:
-    - greg_hellings.docker
-    - greg_hellings.sword
-    - swordweb
-
-- name: xiphos development
-  hosts: xiphos
-  gather_facts: false
-  roles:
-    - greg_hellings.sword
-    - xiphos
