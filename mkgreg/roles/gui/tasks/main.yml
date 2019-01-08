@@ -8,6 +8,9 @@
   package:
     name: "{{ gui_packages }}"
     state: present
+  retries: 3
+  register: install_gui
+  until: install_gui is success
 
 - name: create Chrome kerberos paths
   file:
