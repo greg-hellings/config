@@ -72,6 +72,9 @@ cli_packages:
   - gnupg2
   - origin-clients
   - source-to-image
+  - sword
+  - python3-sword
+  - sword-utils
   # Python tools
   - python-virtualenv
   - entr
@@ -82,6 +85,7 @@ cli_packages:
   - python3-jinja2
   - python3-jenkins-job-builder
   - python3-shade
+  - python3-ipython
   - ShellCheck
   - ansible-lint
   - pyp2rpm
@@ -94,6 +98,10 @@ cli_packages:
   - yamllint
   - rubygem-gem2rpm
   - golang
+  # Vagrant development
+  - ruby-devel
+  - libvirt-devel
+  - rubygem-bundler
   # Media tools
   - libdvdcss
   - ffmpeg
