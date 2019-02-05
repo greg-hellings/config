@@ -6,7 +6,6 @@ import pytest
     ('google-chrome-stable'),
     ('virt-manager'),
     ('HandBrake-gui'),
-    ('sound-juicer'),
     ('vlc'),
     ('entropypianotuner')
 ])
