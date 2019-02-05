@@ -9,7 +9,7 @@
 - name: most baseline things
   hosts: all:!noadmin
   roles:
-    - role: oasis-roles.system_repositories
+    - role: oasis_roles.system_repositories
       system_repositories_configs: "{{ repositories }}"
       when: repositories is defined
     - common
@@ -61,7 +61,7 @@
 - name: install certificate authorities
   hosts: admin
   roles:
-    - oasis-roles.update_ca_trust
+    - oasis_roles.update_ca_trust
 
 - name: configure mariadb/mysql database
   hosts: mariadb

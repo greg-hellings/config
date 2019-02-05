@@ -1,5 +1,5 @@
-- oasis-roles.system_repositories
-- oasis-roles.update_ca_trust
+- oasis_roles.system_repositories
+- oasis_roles.update_ca_trust
 - greg_hellings.ansible
 - greg_hellings.authorized_key
 - greg_hellings.awx_devel
