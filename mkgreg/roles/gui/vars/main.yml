@@ -69,5 +69,3 @@ gui_packages:
   - avidemux-gui
   - openshot
   - qwinff
-  - sound-juicer
-  - grip
