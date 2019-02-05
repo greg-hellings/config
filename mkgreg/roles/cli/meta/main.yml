@@ -12,5 +12,5 @@ galaxy_info:
         - all
 
 dependencies:
-  - role: oasis-roles.system_repositories
+  - role: oasis_roles.system_repositories
     system_repositories_configs: "{{ cli_repositories }}"

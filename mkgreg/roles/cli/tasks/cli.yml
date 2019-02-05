@@ -3,6 +3,9 @@
   package:
     name: "{{ cli_packages }}"
     state: present
+  retries: 3
+  register: install_cli
+  until: install_cli is success
 
 - name: remove packages that shouldn't hang around
   become: true
@@ -16,3 +19,6 @@
     name: "{{ cli_dnf_packages }}"
     state: present
   when: ansible_pkg_mgr == 'dnf'
+  retries: 3
+  register: install_dnf_tools
+  until: install_dnf_tools is success

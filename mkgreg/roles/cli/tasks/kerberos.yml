@@ -5,6 +5,9 @@
       - krb5-libs
       - krb5-workstation
     state: present
+  retries: 3
+  register: install_kerberos
+  until: install_kerberos is success
 
 - name: configure Kerberos
   become: true
