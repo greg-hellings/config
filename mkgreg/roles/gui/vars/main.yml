@@ -69,4 +69,4 @@ gui_packages:
   - avidemux-gui
   - openshot
   - qwinff
-  - mediacreator
+  - mediawriter
