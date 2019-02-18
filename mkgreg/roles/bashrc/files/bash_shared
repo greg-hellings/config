@@ -73,13 +73,13 @@ function ac {
 }
 
 function py2env {
-	virtualenv -p /usr/bin/python2 "${HOME}/venv/${1}"
+	/usr/bin/virtualenv -p /usr/bin/python2 "${HOME}/venv/${1}"
 	"${HOME}/venv/${1}/bin/pip" install -U pip
 }
 
 function py3env {
-	python3 -m venv "${HOME}/venv/${1}"
-	"${HOME}/venv/${1}/bin/pip" install -U pip
+	/usr/bin/python3 -m venv --clear "${HOME}/venv/${1}"
+	"${HOME}/venv/${1}/bin/python3" -m pip install -U pip
 }
 
 function unknown_host {
