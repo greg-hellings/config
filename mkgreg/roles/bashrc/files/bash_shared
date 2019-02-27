@@ -78,8 +78,20 @@ function py2env {
 }
 
 function py3env {
-	/usr/bin/python3 -m venv --clear "${HOME}/venv/${1}"
+	VENV_NAME="${1}"
+	PYVERSION="$(python3 -c "import sys;print(sys.version[:sys.version.find('.',2)])")"
+	SITE_PACKAGES_PATH="/usr/lib64/python${PYVERSION}/site-packages/"
+	VENV_SITE_PACKAGES="${HOME}/venv/${VENV_NAME}/lib64/python${PYVERSION}/site-packages/"
+	# Create the virtualenv and update pip to latest
+	/usr/bin/python3 -m venv --clear "${HOME}/venv/${VENV_NAME}"
 	"${HOME}/venv/${1}/bin/python3" -m pip install -U pip
+	# Link SELinux into the environment if necessary
+	if [ -d "${SEPY_PATH}" ]; then
+		ln -s "${SITE_PACKAGES_PATH}/selinux" "${VENV_SITE_PACKAGES}"
+		ln -s ${SITE_PACKAGES_PATH}/_selinux*.so "${VENV_SITE_PACKAGES}"
+	else
+		echo "ERROR: LibSELinux not found for Python ${PYVERSION}. Install system package to enable."
+	fi
 }
 
 function unknown_host {
