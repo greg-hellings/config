@@ -16,6 +16,23 @@
     - greg_hellings.mounts
 
 # ############################################################################
+# Servers that are important to the health and functioning of my own mental
+# state
+# ############################################################################
+- name: configure DHCP server
+  gather_facts: false
+  hosts: dhcpd
+  roles:
+    - greg_hellings.static_ip
+    - greg_hellings.dhcpd
+
+- name: configure server functions
+  gather_facts: false
+  hosts: dns_server
+  roles:
+    - dns_server
+
+# ############################################################################
 # Personal desktop configuration, for use on systems that I administrate, and
 # where GUI programs are needed
 # ############################################################################
@@ -34,7 +51,7 @@
   hosts: dev
   roles:
     - greg_hellings.ansible
-    - greg_hellings.docker
+    - oasis_roles.docker
     - packaging
     - java-devel
     - dev
@@ -87,4 +104,4 @@
   hosts: docker
   gather_facts: false
   roles:
-    - greg_hellings.docker
+    - oasis_roles.docker

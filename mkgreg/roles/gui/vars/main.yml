@@ -70,3 +70,5 @@ gui_packages:
   - openshot
   - qwinff
   - mediawriter
+  - redhat-text-fonts
+  - redhat-display-fonts

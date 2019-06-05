@@ -20,6 +20,7 @@
   when:
     - ansible_os_family != 'Darwin'
     - ansible_connection != 'docker'
+    - ansible_distribution != 'CentOS'
 
 - name: enable SSHD
   become: true

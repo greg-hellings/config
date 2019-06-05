@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="mkgreg",
-    version="1.3",
+    version="2.0",
     description="Making Greg's systems awesome",
     long_description="A set of scripts and Ansible playbooks to make Greg's" +
                      " systems awesome",
@@ -14,6 +14,7 @@ setup(
     classifiers=[
         "Development Status :: 5- Stable",
         "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
         "License :: OSI Approved : GNU General Public License v3 (GPLv3)"
     ],
     keywords="me, myself, I",
@@ -25,11 +26,8 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            "mkgreg-gui=mkgreg.bin.mkgreg:mkgreg_gui",
-            "mkgreg-cli=mkgreg.bin.mkgreg:mkgreg_cli",
-            "mkgreg-dev=mkgreg.bin.mkgreg:mkgreg_dev",
-            "mkgreg-user=mkgreg.bin.mkgreg:mkgreg_user",
-            "mkgreg=mkgreg.bin.mkgreg:mkgreg"
+            "mkgreg=mkgreg.bin.mkgreg:mkgreg",
+            "mkgreg-sudo=mkgreg.bin.mkgreg:mkgreg_sudo"
         ]
     }
 )

@@ -6,12 +6,6 @@ cli_repositories:
     # yamllint disable-line rule:line-length
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/greghellings/Packer/pubkey.gpg
     description: Greg Hellings's Packer builds
-  - name: openh264
-    baseurl: https://codecs.fedoraproject.org/openh264/$releasever/$basearch/
-    gpgcheck: true
-    # yamllint disable-line rule:line-length
-    gpgkey: /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-{{ ansible_distribution_version }}-{{ ansible_architecture }}
-    description: openh264 repository
   # ##########################################################################
   # Also in the GUI role, update there as well
   # ##########################################################################
@@ -21,12 +15,8 @@ cli_repositories:
     gpgcheck: true
     gpgkey: http://negativo17.org/repos/RPM-GPG-KEY-slaanesh
     description: Negativo17's Handbrake repository
-  - name: fedora-Handbrake-source
-    baseurl: http://negativo17.org/repos/multimedia/fedora-$releasever/SRPMS/
-    gpgcheck: true
-    gpgkey: http://negativo17.org/repos/RPM-GPG-KEY-slaanesh
-    enabled: false
-    desciprtion: Negativo17's Handbrake repository - source
+    exclude:
+      - vlc
   - name: rpmfusion-free
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
@@ -34,7 +24,8 @@ cli_repositories:
     gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
     gpgcheck: true
     repo_gpgcheck: false
-    exclude: avidemux
+    exclude: &rpmfusion_free_excludes
+      - avidemux
     description: RPMFusion free
   - name: rpmfusion-free-updates
     # yamllint disable-line rule:line-length
@@ -43,6 +34,7 @@ cli_repositories:
     gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
     gpgcheck: true
     repo_gpgcheck: false
+    exclude: *rpmfusion_free_excludes
     description: RPMFusion free - updates
   # ##########################################################################
   # END DUPLICATION

@@ -1,13 +1,15 @@
 - oasis_roles.system_repositories
 - oasis_roles.update_ca_trust
+- oasis_roles.docker
 - greg_hellings.ansible
 - greg_hellings.authorized_key
 - greg_hellings.awx_devel
 - greg_hellings.cinch
 - greg_hellings.copy_or_link
-- greg_hellings.docker
+- greg_hellings.dhcpd
 - greg_hellings.mariadb
 - greg_hellings.mounts
 - greg_hellings.python_prep
+- greg_hellings.static_ip
+- greg_hellings.sudoers
 - greg_hellings.sword
-- greg_hellings.dhcpd

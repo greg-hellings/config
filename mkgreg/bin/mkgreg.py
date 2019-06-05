@@ -8,7 +8,7 @@ from .utils import INVENTORIES, call_ansible, install_dependencies
 parser = ArgumentParser(description="Configures a system for Greg's use")
 
 
-def mkgreg(default=None):
+def mkgreg(default=None, playbook='site.yml'):
     parser.add_argument('-i', '--inventory-file', default=default, dest='inv',
                         help='Ansible inventory file')
     args, extra_args = parser.parse_known_args()
@@ -16,7 +16,7 @@ def mkgreg(default=None):
     if args.inv is None or not path.exists(args.inv):
         raise Exception('An inventory file must be specified')
     install_dependencies()
-    call_ansible(args.inv, 'site.yml', extra_args)
+    call_ansible(args.inv, playbook, extra_args)
 
 
 def mkgreg_gui():
@@ -33,3 +33,7 @@ def mkgreg_dev():
 
 def mkgreg_user():
     mkgreg(INVENTORIES['user'])
+
+
+def mkgreg_sudo():
+    mkgreg(playbook='sudo.yml')
