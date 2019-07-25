@@ -72,3 +72,4 @@ gui_packages:
   - mediawriter
   - redhat-text-fonts
   - redhat-display-fonts
+  - virt-viewer
