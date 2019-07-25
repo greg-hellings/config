@@ -17,6 +17,8 @@ cli_repositories:
     description: Negativo17's Handbrake repository
     exclude:
       - vlc
+      - live555
+      - live555-libs
   - name: rpmfusion-free
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
@@ -72,8 +74,7 @@ cli_packages:
   - entr
   - python3-flake8
   - python3-tox
-  - python3-molecule
-  - python3-twine
+  - twine
   - python3-jinja2
   - python3-jenkins-job-builder
   - python3-shade
