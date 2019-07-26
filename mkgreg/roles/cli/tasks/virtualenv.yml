@@ -4,6 +4,7 @@
     state: present
     name: "{{ item.packages }}"
     virtualenv_python: "{{ item.python }}"
+    virtualenv_site_packages: true
   with_items:
     - name: tools2
       packages: &packages
