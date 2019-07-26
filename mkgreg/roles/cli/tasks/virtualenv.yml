@@ -16,6 +16,7 @@
         - openstacksdk
         - docker
         - twine
+        - dnf
       python: python2
     - name: tools3
       packages: *packages
