@@ -17,7 +17,6 @@
         - openstacksdk
         - docker
         - twine
-        - dnf
         - ovirt-engine-sdk-python
       python: python2
     - name: tools3
