@@ -21,6 +21,7 @@ gui_repositories:
       - openh264-libs
       - x265-libs
       - compat-ffmpeg-libs
+      - mkisofs
   - name: rpmfusion-free
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
