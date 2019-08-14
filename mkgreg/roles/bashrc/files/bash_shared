@@ -23,13 +23,7 @@ alias ll='ls -l'
 alias calc='bc'
 alias gohome='ssh greg@home.thehellings.com -D localhost:10080'
 alias s102='ssh greg@192.168.1.102'
-alias savecentral="set -ex && git -C ~/build/redhat/ci/ci-ops-central \
-        commit -a --amend && git -C ~/build/redhat/ci/ci-ops-central push \
-        --force gitlab && set +ex"
-alias saveprojex="set -ex && git -C ~/build/redhat/ci/ci-ops-projex \
-        commit -a --amend && git -C ~/build/redhat/ci/ci-ops-projex push \
-        --force gitlab && set +ex"
-alias vup='vagrant up --provision'
+alias vup='vagrant up --provision --provider libvirt'
 alias vos='vagrant up --provision --provider openstack'
 alias vssh='vagrant ssh'
 alias vhalt='vagrant halt'
@@ -42,6 +36,10 @@ alias an='ansible -i hosts'
 alias ap='ansible-playbook -i hosts'
 alias d='deactivate'
 alias yaml2js="python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)'"
+alias roles="cd ~/config/source/oasis/roles"
+alias origin="cd ~/config/source/oasis/origin"
+alias packaging="cd ~/config/source/packaging/"
+alias devroles="cd ~/config/source/devroles"
 
 function parse_git_branch {
 	ref=$(git symbolic-ref HEAD 2> /dev/null) || return
@@ -79,19 +77,19 @@ function py2env {
 
 function py3env {
 	VENV_NAME="${1}"
-	PYVERSION="$(python3 -c "import sys;print(sys.version[:sys.version.find('.',2)])")"
-	SITE_PACKAGES_PATH="/usr/lib64/python${PYVERSION}/site-packages/"
-	VENV_SITE_PACKAGES="${HOME}/venv/${VENV_NAME}/lib64/python${PYVERSION}/site-packages/"
+	#PYVERSION="$(python3 -c "import sys;print(sys.version[:sys.version.find('.',2)])")"
+	#SITE_PACKAGES_PATH="/usr/lib64/python${PYVERSION}/site-packages/"
+	#VENV_SITE_PACKAGES="${HOME}/venv/${VENV_NAME}/lib64/python${PYVERSION}/site-packages/"
 	# Create the virtualenv and update pip to latest
-	/usr/bin/python3 -m venv --clear "${HOME}/venv/${VENV_NAME}"
+	/usr/bin/python3 -m venv --clear "${HOME}/venv/${VENV_NAME}" --system-site-packages
 	"${HOME}/venv/${1}/bin/python3" -m pip install -U pip
 	# Link SELinux into the environment if necessary
-	if [ -d "${SEPY_PATH}" ]; then
-		ln -s "${SITE_PACKAGES_PATH}/selinux" "${VENV_SITE_PACKAGES}"
-		ln -s ${SITE_PACKAGES_PATH}/_selinux*.so "${VENV_SITE_PACKAGES}"
-	else
-		echo "ERROR: LibSELinux not found for Python ${PYVERSION}. Install system package to enable."
-	fi
+	#if [ -d "${SITE_PACKAGES_PATH}" ]; then
+	#	ln -s "${SITE_PACKAGES_PATH}/selinux" "${VENV_SITE_PACKAGES}"
+	#	ln -s ${SITE_PACKAGES_PATH}/_selinux*.so "${VENV_SITE_PACKAGES}"
+	#else
+	#	echo "ERROR: LibSELinux not found for Python ${PYVERSION}. Install system package to enable."
+	#fi
 }
 
 function unknown_host {
@@ -100,7 +98,7 @@ function unknown_host {
 
 function oasis_on {
 	project="${1}"
-	git -C "${HOME}/.vagrant.d/" co "${project}"
+	#git -C "${HOME}/.vagrant.d/" co "${project}"
 	cd ~/config/source/oasis/origin/"${project}"
 }
 
