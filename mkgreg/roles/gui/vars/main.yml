@@ -48,16 +48,15 @@ gui_packages:
   - vim-X11
   - google-chrome-stable
   - gnome-tweak-tool
-  - gnome-shell-extension-calc
+  #- gnome-shell-extension-calc
   - gnome-shell-extension-freon
   - gnome-shell-extension-gpaste
   - gnome-shell-extension-pomodoro
   - gnome-shell-extension-apps-menu
-  - gnome-shell-extension-panel-osd
   - gnome-shell-extension-openweather
   - gnome-shell-extension-places-menu
   - gnome-shell-extension-window-list
-  - gnome-shell-extension-simple-dock
+  #- gnome-shell-extension-simple-dock
   - gnome-shell-extension-dash-to-dock
   - gnome-shell-extension-topicons-plus
   - gnome-shell-extension-windowsNavigator
