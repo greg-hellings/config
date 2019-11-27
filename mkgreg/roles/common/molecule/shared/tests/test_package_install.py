@@ -4,7 +4,7 @@ import pytest
 @pytest.mark.parametrize('name', [
     ('vim-enhanced'),
     ('git'),
-    ('python2-libselinux'),
+    ('python3-libselinux'),
     ('mlocate'),
     ('screen'),
     ('openssh-server'),
