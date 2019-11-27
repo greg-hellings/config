@@ -1,0 +1,3 @@
+- greg_hellings.copy_or_link
+- oasis_roles.molecule_docker_ci
+- oasis_roles.molecule_openstack_ci
