@@ -56,7 +56,7 @@ gui_packages:
   - HandBrake-gui
   - transmission
   - vlc
-    #- entropypianotuner
+  #- entropypianotuner
   - NetworkManager-openvpn
   - NetworkManager-openvpn-gnome
   - avidemux-gui
