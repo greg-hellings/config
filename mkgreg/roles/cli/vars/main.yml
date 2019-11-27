@@ -9,26 +9,6 @@ cli_repositories:
   # ##########################################################################
   # Also in the GUI role, update there as well
   # ##########################################################################
-  - name: fedora-Handbrake
-    # yamllint disable-line rule:line-length
-    baseurl: http://negativo17.org/repos/multimedia/fedora-$releasever/$basearch/
-    gpgcheck: true
-    gpgkey: http://negativo17.org/repos/RPM-GPG-KEY-slaanesh
-    description: Negativo17's Handbrake repository
-    exclude:
-      - vlc
-      - live555
-      - live555-libs
-      - avidemux
-      - avidemux-gui
-      - avidemux-libs
-      - ffmpeg
-      - ffmpeg-libs
-      - gstreamer1-plugins-bad
-      - openh264-libs
-      - x265-libs
-      - compat-ffmpeg-libs
-      - mkisofs
   - name: rpmfusion-free
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
@@ -36,8 +16,6 @@ cli_repositories:
     gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
     gpgcheck: true
     repo_gpgcheck: false
-    exclude: &rpmfusion_free_excludes
-      - avidemux
     description: RPMFusion free
   - name: rpmfusion-free-updates
     # yamllint disable-line rule:line-length
@@ -46,7 +24,6 @@ cli_repositories:
     gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
     gpgcheck: true
     repo_gpgcheck: false
-    exclude: *rpmfusion_free_excludes
     description: RPMFusion free - updates
   # ##########################################################################
   # END DUPLICATION
