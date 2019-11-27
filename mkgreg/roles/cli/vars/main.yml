@@ -45,6 +45,7 @@ cli_repositories:
     repo_gpgcheck: false
     description: RPMFusion nonfree - updates
 cli_packages:
+  - libcurl-devel
   - gcc-c++
   - redhat-rpm-config
   - HandBrake-cli
