@@ -18,15 +18,15 @@ install:
   - molecule --version
 
 env:
+  # Roles that just have configuration options
+  - ROLE=bashrc
   # Roles that install things
   - ROLE=cli
   - ROLE=common
   - ROLE=dev
   - ROLE=gui
-  - ROLE=packaging
   - ROLE=java-devel
-  # Roles that just have configuration options
-  - ROLE=bashrc
+  - ROLE=packaging
 
 script:
   - cd mkgreg/roles/${ROLE} && travis_wait molecule test -s docker
