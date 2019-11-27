@@ -83,7 +83,6 @@ cli_packages:
   - libvirt-devel
   - rubygem-bundler
   # Media tools
-  - libdvdcss
   - ffmpeg
   # Related to libvirt packages
   - libvirt
