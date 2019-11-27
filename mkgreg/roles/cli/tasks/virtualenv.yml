@@ -6,7 +6,7 @@
     virtualenv_python: "{{ item.python }}"
     virtualenv_site_packages: true
   with_items:
-    - name: tools2
+    - name: tools3
       packages: &packages
         - wheel
         - ipython
@@ -18,9 +18,6 @@
         - docker
         - twine
         - ovirt-engine-sdk-python
-      python: python2
-    - name: tools3
-      packages: *packages
       python: python3
   retries: 3
   register: create_virtualenvs
