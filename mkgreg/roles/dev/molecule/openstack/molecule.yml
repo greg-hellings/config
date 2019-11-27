@@ -8,24 +8,13 @@ lint:
     config-file: tests/yamllint.yml
 platforms:
   - name: test-dev
-    image: Fedora 29
-    flavor: m1.medium
+    image: Fedora 30
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
-    options:
-      x:
-        - "701"
   playbooks:
-    prepare: ../shared/prepare.yml
     converge: ../shared/playbook.yml
-  inventory:
-    group_vars:
-      all:
-        ansible_python_interpreter: /usr/bin/python3
-scenario:
-  name: openstack
 verifier:
   name: testinfra
   lint:
