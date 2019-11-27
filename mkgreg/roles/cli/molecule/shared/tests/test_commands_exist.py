@@ -9,7 +9,7 @@ import pytest
     ('ansible-lint'),
     ('make'),
     ('ffmpeg'),
-    ('packer'),
+    ('packerio'),
     ('vagrant')
 ])
 def test_command(host, cmd):
