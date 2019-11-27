@@ -45,15 +45,11 @@ cli_repositories:
     repo_gpgcheck: false
     description: RPMFusion nonfree - updates
 cli_packages:
-  - libcurl-devel
-  - gcc-c++
-  - redhat-rpm-config
   - HandBrake-cli
   - libaacs
   - jq
   - gnupg2
   - origin-clients
-  - source-to-image
   - sword
   - python3-sword
   - sword-utils
@@ -64,21 +60,21 @@ cli_packages:
   - python3-tox
   - twine
   - python3-jinja2
-  - python3-jenkins-job-builder
   - python3-shade
   - python3-ipython
   - ShellCheck
   - ansible-lint
   - pyp2rpm
   # Dev tools
+  - libcurl-devel
+  - gcc-c++
+  - redhat-rpm-config
   - cmake
   - make
   - rpmdevtools
   - golang
-  - rubygem-gem2rpm
   - yamllint
-  - rubygem-gem2rpm
-  - golang
+  - libxml2-devel
   # Vagrant development
   - ruby-devel
   - libvirt-devel
