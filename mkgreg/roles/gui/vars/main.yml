@@ -1,6 +1,8 @@
 gui_gpg_keys:
+  # yamllint disable-line rule:line-length
   - https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
   - https://swdl.bluejeans.com/repos/bluejeans/bjn-key
+  # yamllint disable-line rule:line-length
   - https://copr-be.cloud.fedoraproject.org/results/greghellings/EntropyPianoTuner/pubkey.gpg
   - https://dl.google.com/linux/linux_signing_key.pub
 gui_repositories:
