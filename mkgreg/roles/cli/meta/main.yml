@@ -14,3 +14,4 @@ galaxy_info:
 dependencies:
   - role: oasis_roles.system_repositories
     system_repositories_configs: "{{ cli_repositories }}"
+    system_repositories_rpm_keys: "{{ cli_gpg_keys }}"

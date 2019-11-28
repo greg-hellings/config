@@ -1,3 +1,7 @@
+cli_gpg_keys:
+  - https://copr-be.cloud.fedoraproject.org/results/greghellings/Packer/pubkey.gpg
+  - https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
+  - https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_distribution_version }}
 cli_repositories:
   - name: greghellings-packer
     # yamllint disable-line rule:line-length
@@ -13,7 +17,7 @@ cli_repositories:
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
     # yamllint disable-line rule:line-length
-    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
     gpgcheck: true
     repo_gpgcheck: false
     description: RPMFusion free
@@ -21,7 +25,7 @@ cli_repositories:
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
     # yamllint disable-line rule:line-length
-    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
     gpgcheck: true
     repo_gpgcheck: false
     description: RPMFusion free - updates
@@ -32,7 +36,7 @@ cli_repositories:
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-$releasever&arch=$basearch
     # yamllint disable-line rule:line-length
-    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_distribution_version }}
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
     gpgcheck: true
     repo_gpgcheck: false
     description: RPMFusion nonfree
@@ -40,7 +44,7 @@ cli_repositories:
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-released-$releasever&arch=$basearch
     # yamllint disable-line rule:line-length
-    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_distribution_version }}
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-$releasever
     gpgcheck: true
     repo_gpgcheck: false
     description: RPMFusion nonfree - updates

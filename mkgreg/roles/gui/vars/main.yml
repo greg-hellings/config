@@ -1,3 +1,8 @@
+gui_gpg_keys:
+  - https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
+  - https://swdl.bluejeans.com/repos/bluejeans/bjn-key
+  - https://copr-be.cloud.fedoraproject.org/results/greghellings/EntropyPianoTuner/pubkey.gpg
+  - https://dl.google.com/linux/linux_signing_key.pub
 gui_repositories:
   # ##########################################################################
   # Also present in the CLI role - update there as well
@@ -6,7 +11,7 @@ gui_repositories:
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-$releasever&arch=$basearch
     # yamllint disable-line rule:line-length
-    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
     gpgcheck: true
     repo_gpgcheck: false
     description: RPMFusion free
@@ -14,7 +19,7 @@ gui_repositories:
     # yamllint disable-line rule:line-length
     metalink: https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-$releasever&arch=$basearch
     # yamllint disable-line rule:line-length
-    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}
+    gpgkey: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
     gpgcheck: true
     repo_gpgcheck: false
     description: RPMFusion free - updates
