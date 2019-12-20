@@ -1,0 +1,10 @@
+- hosts: openwrt
+  gather_facts: false
+  roles:
+    - openwrt_switch
+    - openwrt_wifi
+
+- hosts: router
+  gather_facts: false
+  roles:
+    - openwrt_router

@@ -37,3 +37,7 @@ def mkgreg_user():
 
 def mkgreg_sudo():
     mkgreg(playbook='sudo.yml')
+
+
+def mkgreg_openwrt():
+    mkgreg(playbook='openwrt.yml')
