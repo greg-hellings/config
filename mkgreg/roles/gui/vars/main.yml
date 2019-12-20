@@ -55,7 +55,6 @@ gui_packages:
   - vim-X11
   - google-chrome-stable
   - gnome-tweak-tool
-  #- gnome-shell-extension-calc
   - gnome-shell-extension-freon
   - gnome-shell-extension-gpaste
   - gnome-shell-extension-pomodoro
@@ -63,7 +62,6 @@ gui_packages:
   - gnome-shell-extension-openweather
   - gnome-shell-extension-places-menu
   - gnome-shell-extension-window-list
-  #- gnome-shell-extension-simple-dock
   - gnome-shell-extension-dash-to-dock
   - gnome-shell-extension-topicons-plus
   - gnome-shell-extension-windowsNavigator
@@ -79,7 +77,6 @@ gui_packages:
   - HandBrake-gui
   - transmission
   - vlc
-  #- entropypianotuner
   - NetworkManager-openvpn
   - NetworkManager-openvpn-gnome
   - avidemux-gui
@@ -89,3 +86,9 @@ gui_packages:
   - redhat-text-fonts
   - redhat-display-fonts
   - virt-viewer
+  # needed for Chrome cast Gnome Shell extensions
+  - npm
+  - node
+  - ffmpeg
+  - nautilus-python
+  - python3-gobject
