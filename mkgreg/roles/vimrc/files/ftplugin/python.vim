@@ -11,7 +11,6 @@ if !exists("b:loaded_python_ftplugin_opts")
 	else
 		let g:flake8_cmd="/usr/bin/flake8"
 	endif
-	autocmd BufWritePost *.py call Flake8()
 	" show 80 column boundary in insert mode only
 	" https://stackoverflow.com/questions/11774904/vim-scripting-if-vim-version-is-7-3
 	if version > 702
