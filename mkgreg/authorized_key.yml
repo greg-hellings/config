@@ -1,0 +1,7 @@
+- name: authorized key
+  hosts: sudo
+  tasks:
+    - name: install authorized_key
+      authorized_key:
+        user: "{{ ansible_user }}"
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
