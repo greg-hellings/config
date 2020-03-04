@@ -8,12 +8,6 @@ from traceback import print_exc
 import sys
 
 TOP = path.normpath(path.join(path.dirname(__file__), '..'))
-INVENTORIES = {
-    'gui': path.join(TOP, 'inventories', 'gui'),
-    'cli': path.join(TOP, 'inventories', 'cli'),
-    'dev': path.join(TOP, 'inventories', 'dev'),
-    'user': path.join(TOP, 'inventories', 'user')
-}
 REQUIREMENTS = path.join(TOP, 'requirements.yml')
 
 
@@ -43,6 +37,8 @@ def install_dependencies():
     try:
         galaxy.run(['install', '-r', REQUIREMENTS], stdout=sys.stdout,
                    stderr=sys.stderr)
+        galaxy.run(['collection', 'install', '-r', REQUIREMENTS],
+                   stdout=sys.stdout, stderr=sys.stderr)
     except ProcessExecutionError as ex:
         print('Error installing Galaxy dependencies')
         print(ex.stderr, file=sys.stderr)

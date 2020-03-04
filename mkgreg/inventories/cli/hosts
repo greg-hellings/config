@@ -1,4 +1,0 @@
-self ansible_connection=local
-
-[cli]
-self

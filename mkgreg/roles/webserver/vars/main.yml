@@ -1,4 +1,0 @@
-webserver_packages:
-  - nginx
-  - certbot
-  - python-virtualenv

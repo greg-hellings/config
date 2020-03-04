@@ -1,4 +1,4 @@
 - name: configure sudo access
   hosts: sudo
   roles:
-    - greg_hellings.sudoers
+    - devroles.system.sudoers

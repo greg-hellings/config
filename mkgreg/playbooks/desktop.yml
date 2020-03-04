@@ -1,0 +1,20 @@
+- name: configure desktop systems
+  hosts: cli
+  roles:
+    - devroles.system.cli
+
+- name: configure desktop systems
+  gather_facts: false
+  hosts: gui
+  roles:
+    - devroles.system.gui
+
+- name: configure development systems
+  hosts: dev
+  roles:
+    - devroles.system.dev
+    - oasis_roles.docker
+    - devroles.devel.ansible
+    - devroles.devel.java_devel
+    - devroles.devel.packaging
+    - devroles.devel.sword

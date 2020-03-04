@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="mkgreg",
-    version="2.2",
+    version="3.0",
     description="Making Greg's systems awesome",
     long_description="A set of scripts and Ansible playbooks to make Greg's" +
                      " systems awesome",
@@ -12,7 +12,7 @@ setup(
     author="Gregory Hellings",
     license="GPLv3",
     classifiers=[
-        "Development Status :: 5- Stable",
+        "Development Status :: 5 - Stable",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
         "License :: OSI Approved : GNU General Public License v3 (GPLv3)"

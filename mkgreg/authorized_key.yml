@@ -1,7 +1,4 @@
 - name: authorized key
-  hosts: sudo
-  tasks:
-    - name: install authorized_key
-      authorized_key:
-        user: "{{ ansible_user }}"
-        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+  hosts: all
+  roles:
+    - role: devroles.system.authorized_key

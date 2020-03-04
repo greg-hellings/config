@@ -1,0 +1,19 @@
+- hosts: ansible
+  roles:
+    - devroles.devel.ansible
+
+- hosts: cinch
+  roles:
+    - devroles.devel.cinch
+
+- hosts: java-devel
+  roles:
+    - devroles.devel.java_devel
+
+- hosts: packaging
+  roles:
+    - devroles.devel.packaging
+
+- hosts: sword
+  roles:
+    - devroles.devel.sword

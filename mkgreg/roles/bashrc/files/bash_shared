@@ -8,10 +8,10 @@ export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GOPATH=~/.go
 export EDITOR=/usr/bin/vim
 export GOPATH=${HOME}/build/go
-export PATH=$HOME/.gem/ruby/2.4.0/gems/travis-1.8.8/bin:/$HOME/.local/bin:$HOME/.local/lib/flex/bin:/opt/android-studio/bin:/opt/intellij/bin:/opt/packer:$PATH
+export PATH=$HOME/.gem/ruby/gems/travis-1.8.10/bin:/$HOME/.local/bin:$HOME/.local/lib/flex/bin:/opt/android-studio/bin:/opt/intellij/bin:/opt/packer:$PATH
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 export SWORD_PATH=$HOME/.sword
-#export VAGRANT_DEFAULT_PROVIDER=virtualbox
+export ANSIBLE_COLLECTIONS_PATHS=${HOME}/src/:${HOME}/.ansible
 color_prompt="yes"
 if [ "$color_prompt" = yes ]; then
 	PS1='[\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;31m\]🎩\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
@@ -22,7 +22,6 @@ fi
 alias ll='ls -l'
 alias calc='bc'
 alias gohome='ssh greg@home.thehellings.com -D localhost:10080'
-alias s102='ssh greg@192.168.1.102'
 alias vup='vagrant up --provision --provider libvirt'
 alias vos='vagrant up --provision --provider openstack'
 alias vssh='vagrant ssh'
@@ -31,15 +30,13 @@ alias vprov='vagrant provision'
 alias vdown='vagrant destroy'
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 alias acp="rsync --progress -ah"
-alias vb="VBoxManage"
-alias an='ansible -i hosts'
-alias ap='ansible-playbook -i hosts'
 alias d='deactivate'
 alias yaml2js="python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)'"
-alias roles="cd ~/config/source/oasis/roles"
-alias origin="cd ~/config/source/oasis/origin"
+alias roles="cd ~/src/oasis/roles"
+alias origin="cd ~/src/oasis/origin"
 alias packaging="cd ~/config/source/packaging/"
-alias devroles="cd ~/config/source/devroles"
+alias devroles="cd ~/src/ansible_collections/devroles"
+alias molcol="molecule -c ../../tests/molecule.yml"
 
 function parse_git_branch {
 	ref=$(git symbolic-ref HEAD 2> /dev/null) || return

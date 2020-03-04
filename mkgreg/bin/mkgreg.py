@@ -2,14 +2,14 @@
 from __future__ import print_function
 from argparse import ArgumentParser
 from os import path
-from .utils import INVENTORIES, call_ansible, install_dependencies
+from .utils import call_ansible, install_dependencies
 
 
 parser = ArgumentParser(description="Configures a system for Greg's use")
 
 
-def mkgreg(default=None, playbook='site.yml', more_args=[]):
-    parser.add_argument('-i', '--inventory-file', default=default, dest='inv',
+def mkgreg(playbook='site.yml', more_args=[]):
+    parser.add_argument('-i', '--inventory-file', default=None, dest='inv',
                         help='Ansible inventory file')
     args, extra_args = parser.parse_known_args()
     # Requires that an inventory be present
@@ -17,22 +17,6 @@ def mkgreg(default=None, playbook='site.yml', more_args=[]):
         raise Exception('An inventory file must be specified')
     install_dependencies()
     call_ansible(args.inv, playbook, extra_args + more_args)
-
-
-def mkgreg_gui():
-    mkgreg(INVENTORIES['gui'])
-
-
-def mkgreg_cli():
-    mkgreg(INVENTORIES['cli'])
-
-
-def mkgreg_dev():
-    mkgreg(INVENTORIES['dev'])
-
-
-def mkgreg_user():
-    mkgreg(INVENTORIES['user'])
 
 
 def mkgreg_sudo():

@@ -1,107 +1,28 @@
 # ############################################################################
-# Preliminary stuff that all the hosts need
+# Preliminary stuff that all the hosts need, if I'm able to install to them
 # ############################################################################
-- name: setup the python executable correctly
-  hosts: all:!noadmin
-  roles:
-    - greg_hellings.python_prep
-
-- name: most baseline things
-  hosts: all:!noadmin
-  roles:
-    - role: oasis_roles.system_repositories
-      system_repositories_configs: "{{ repositories }}"
-      when: repositories is defined
-    - common
-    - greg_hellings.mounts
+- import_playbook: playbooks/baseline.yml
 
 # ############################################################################
 # Servers that are important to the health and functioning of my own mental
-# state
+# state. They run different network services, such as dhcp, dns, etc
 # ############################################################################
-- name: configure DHCP server
-  gather_facts: false
-  hosts: dhcpd
-  roles:
-    - greg_hellings.static_ip
-    - greg_hellings.dhcpd
-
-- name: configure server functions
-  gather_facts: false
-  hosts: dns_server
-  roles:
-    - dns_server
+- import_playbook: playbooks/services.yml
+- import_playbook: playbooks/mirrors.yml
 
 # ############################################################################
-# Personal desktop configuration, for use on systems that I administrate, and
-# where GUI programs are needed
+# Personal desktop configuration, for use on systems that I administrate
 # ############################################################################
-- name: configure desktop systems
-  hosts: cli:desktop:dev:mythtv
-  roles:
-    - cli
+- import_playbook: playbooks/desktop.yml
 
-- name: configure desktop systems
-  gather_facts: false
-  hosts: desktop:dev
-  roles:
-    - gui
-
-- name: configure development systems
-  hosts: dev
-  roles:
-    - greg_hellings.ansible
-    - oasis_roles.docker
-    - packaging
-    - java-devel
-    - dev
-    - greg_hellings.sword
 # ############################################################################
 # Simple user-land configuration that does not require root access to install
 # but makes my life so much easier! Designed to be run on any system that I
 # have login-level access to
 # ############################################################################
-- name: basic user config files
-  hosts: all:!crosswire.org
-  roles:
-    - vimrc
-    - bashrc
-    - private_files
-    - greg_hellings.authorized_key
-    - gitconfig
-  tags:
-    - config
+- import_playbook: playbooks/userland.yml
 
-# ############################################################################
-# Sets up necessary Certificate Authority chains, if you need any of them.
-# ############################################################################
-- name: install certificate authorities
-  hosts: admin
-  roles:
-    - oasis_roles.update_ca_trust
-
-- name: configure mariadb/mysql database
-  hosts: mariadb
-  roles:
-    - greg_hellings.mariadb
-
-- name: configure webserver
-  hosts: webserver
-  roles:
-    - webserver
-
-- name: configure mythtv
-  gather_facts: false
-  hosts: mythtv
-  roles:
-    - role: mythtv
-      tags:
-        - mythtv
 # ############################################################################
 # Development machines, designed to be spun up in local VMs
 # ############################################################################
-- name: configure a basic docker system
-  hosts: docker
-  gather_facts: false
-  roles:
-    - oasis_roles.docker
+- import_playbook: playbooks/development.yml
