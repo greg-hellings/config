@@ -1,8 +1,4 @@
 roles: []
-  #- oasis_roles.system_repositories
-  #- oasis_roles.update_ca_trust
-  #- oasis_roles.docker
-  #- oasis_roles.firewalld
 collections:
   - oasis_roles.system
   - devroles.system

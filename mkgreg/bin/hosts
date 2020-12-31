@@ -1,0 +1,13 @@
+localhost ansible_connection=local
+
+[sudo]
+localhost
+
+[dev]
+localhost
+
+[gui]
+localhost
+
+[cli]
+localhost

@@ -1,19 +1,24 @@
 - hosts: ansible
   roles:
-    - devroles.devel.ansible
+    - role: devroles.devel.ansible
+      when: ansible_facts.pkg_mgr not in ['atomic_container']
 
 - hosts: cinch
   roles:
-    - devroles.devel.cinch
+    - role: devroles.devel.cinch
+      when: ansible_facts.pkg_mgr not in ['atomic_container']
 
 - hosts: java-devel
   roles:
-    - devroles.devel.java_devel
+    - role: devroles.devel.java_devel
+      # This one also sets up Maven config, so keep it
 
 - hosts: packaging
   roles:
-    - devroles.devel.packaging
+    - role: devroles.devel.packaging
+      when: ansible_facts.pkg_mgr not in ['atomic_container']
 
 - hosts: sword
   roles:
-    - devroles.devel.sword
+    - role: devroles.devel.sword
+      when: ansible_facts.pkg_mgr not in ['atomic_container']

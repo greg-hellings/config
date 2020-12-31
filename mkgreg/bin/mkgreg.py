@@ -6,16 +6,18 @@ from .utils import call_ansible, install_dependencies
 
 
 parser = ArgumentParser(description="Configures a system for Greg's use")
+dirname = path.dirname(__file__)
+default_inventory = path.join(dirname, "hosts")
 
 
 def mkgreg(playbook='site.yml', more_args=[]):
-    parser.add_argument('-i', '--inventory-file', default=None, dest='inv',
-                        help='Ansible inventory file')
+    parser.add_argument('-i', '--inventory-file', default=default_inventory,
+                        dest='inv', help='Ansible inventory file')
     args, extra_args = parser.parse_known_args()
     # Requires that an inventory be present
     if args.inv is None or not path.exists(args.inv):
         raise Exception('An inventory file must be specified')
-    install_dependencies()
+    #install_dependencies()
     call_ansible(args.inv, playbook, extra_args + more_args)
 
 
@@ -29,3 +31,6 @@ def mkgreg_openwrt():
 
 def mkgreg_authkey():
     mkgreg(playbook='authorized_key.yml', more_args=['-k'])
+
+def mkgreg_dotfiles():
+    mkgreg(playbook='userland.yml')

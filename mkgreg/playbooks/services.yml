@@ -1,7 +1,8 @@
 - name: configure firewall
   hosts: all
   roles:
-    - oasis_roles.system.firewalld
+    - role: oasis_roles.system.firewalld
+      when: ansible_pkg_mgr not in ['atomic_container']
 
 - name: configure DHCP server
   hosts: dhcpd

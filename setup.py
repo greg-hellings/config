@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="mkgreg",
-    version="3.0",
+    version="3.1",
     description="Making Greg's systems awesome",
     long_description="A set of scripts and Ansible playbooks to make Greg's" +
                      " systems awesome",
@@ -29,7 +29,8 @@ setup(
             "mkgreg=mkgreg.bin.mkgreg:mkgreg",
             "mkgreg-sudo=mkgreg.bin.mkgreg:mkgreg_sudo",
             "mkgreg-openwrt=mkgreg.bin.mkgreg:mkgreg_openwrt",
-            "mkgreg-authkey=mkgreg.bin.mkgreg:mkgreg_authkey"
+            "mkgreg-authkey=mkgreg.bin.mkgreg:mkgreg_authkey",
+            "mkgreg-dotfiles=mkgreg.bin.mkgreg:mkgreg_dotfiles"
         ]
     }
 )

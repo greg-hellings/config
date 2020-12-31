@@ -35,9 +35,9 @@ def call_ansible(inventory, playbook, *args):
 def install_dependencies():
     galaxy = local['ansible-galaxy']
     try:
-        galaxy.run(['install', '-f', '-r', REQUIREMENTS], stdout=sys.stdout,
+        galaxy.run(['install', '-r', REQUIREMENTS], stdout=sys.stdout,
                    stderr=sys.stderr)
-        galaxy.run(['collection', 'install', '-f', '-r', REQUIREMENTS],
+        galaxy.run(['collection', 'install', '-r', REQUIREMENTS],
                    stdout=sys.stdout, stderr=sys.stderr)
     except ProcessExecutionError as ex:
         print('Error installing Galaxy dependencies')
