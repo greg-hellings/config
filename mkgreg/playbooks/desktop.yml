@@ -2,7 +2,6 @@
   hosts: cli
   roles:
     - role: devroles.system.packages
-      when: ansible_facts.pkg_mgr not in ['atomic_container']
     - role: devroles.system.flatpaks
 
 - name: configure development systems
@@ -10,11 +9,11 @@
   roles:
     - devroles.system.dev
     - role: oasis_roles.system.docker
-      when: ansible_pkg_mgr not in ['atomic_container']
+      when: ansible_facts.pkg_mgr not in ['atomic_container']
     - role: devroles.devel.ansible
-      when: ansible_pkg_mgr not in ['atomic_container']
+      when: ansible_facts.pkg_mgr not in ['atomic_container']
     - role: devroles.devel.java_devel
     - role: devroles.devel.packaging
-      when: ansible_pkg_mgr not in ['atomic_container']
+      when: ansible_facts.pkg_mgr not in ['atomic_container']
     - role: devroles.devel.sword
-      when: ansible_pkg_mgr not in ['atomic_container']
+      when: ansible_facts.pkg_mgr not in ['atomic_container']
