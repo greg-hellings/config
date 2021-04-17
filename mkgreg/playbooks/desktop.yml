@@ -9,7 +9,9 @@
   roles:
     - devroles.system.dev
     - role: oasis_roles.system.docker
-      when: ansible_facts.pkg_mgr not in ['atomic_container']
+      when:
+        - ansible_facts.pkg_mgr not in ['atomic_container']
+        - ansible_facts.hostname != 'toolbox'
     - role: devroles.devel.ansible
       when: ansible_facts.pkg_mgr not in ['atomic_container']
     - role: devroles.devel.java_devel
