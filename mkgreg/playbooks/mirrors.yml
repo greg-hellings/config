@@ -1,6 +1,0 @@
-- name: configure mirror
-  hosts: mirrors
-  roles:
-    - role: devroles.system.webserver
-      webserver_domains: "{{ mirror_webserver_domains }}"
-    - role: devroles.system.mirror

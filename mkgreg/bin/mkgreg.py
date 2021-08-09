@@ -10,7 +10,7 @@ dirname = path.dirname(__file__)
 default_inventory = path.join(dirname, "hosts")
 
 
-def mkgreg(playbook='site.yml', more_args=[]):
+def mkgreg(playbook='devroles.system.site', more_args=[]):
     parser.add_argument('-i', '--inventory-file', default=default_inventory,
                         dest='inv', help='Ansible inventory file')
     args, extra_args = parser.parse_known_args()
@@ -33,4 +33,4 @@ def mkgreg_authkey():
     mkgreg(playbook='authorized_key.yml', more_args=['-k'])
 
 def mkgreg_dotfiles():
-    mkgreg(playbook='userland.yml')
+    mkgreg(playbook='devroles.system.userland')

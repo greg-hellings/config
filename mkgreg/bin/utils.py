@@ -12,8 +12,10 @@ REQUIREMENTS = path.join(TOP, 'requirements.yml')
 
 
 def call_ansible(inventory, playbook, *args):
+    if '.yml' in playbook:
+        playbook = path.join(TOP, playbook)
     ansible_args = [
-        path.join(TOP, playbook),
+        playbook,
         '-i', inventory,
         '--ssh-common-args=-o StrictHostKeyChecking=no'
     ]
