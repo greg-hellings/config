@@ -1,5 +1,0 @@
-- name: configure sudo access
-  hosts: sudo
-  roles:
-    - role: devroles.system.sudoers
-      ansible_ssh_pipelining: false

@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="mkgreg",
-    version="3.1",
+    version="4.0",
     description="Making Greg's systems awesome",
     long_description="A set of scripts and Ansible playbooks to make Greg's" +
                      " systems awesome",

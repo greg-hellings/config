@@ -1,4 +1,0 @@
-- name: authorized key
-  hosts: all
-  roles:
-    - role: devroles.system.authorized_key

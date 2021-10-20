@@ -1,7 +1,0 @@
-- name: awx development
-  hosts: awx-development
-  gather_facts: false
-  roles:
-    - devroles.system.docker
-    - devroles.devel.ansible
-    - devroles.devel.awx_devel

@@ -22,15 +22,8 @@ def mkgreg(playbook='devroles.system.site', more_args=[]):
 
 
 def mkgreg_sudo():
-    mkgreg(playbook='sudo.yml', more_args=['-K'])
+    mkgreg(playbook='devroles.system.sudo', more_args=['-K', '-k'])
 
-
-def mkgreg_openwrt():
-    mkgreg(playbook='openwrt.yml')
-
-
-def mkgreg_authkey():
-    mkgreg(playbook='authorized_key.yml', more_args=['-k'])
 
 def mkgreg_dotfiles():
     mkgreg(playbook='devroles.system.userland')
